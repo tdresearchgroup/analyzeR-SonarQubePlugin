@@ -5,14 +5,14 @@
   <groupId>org.sonarsource.plugins.example</groupId>
   <artifactId>sonar-r-techdebt-plugin</artifactId>
   <packaging>sonar-plugin</packaging>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
 
-  <name>Example Plugin for SonarQube 8.x</name>
+  <name>SonarQube R Technical Debt Plugin</name>
   <description>Example of Plugin for SonarQube: Foo Language, FooLint, Custom Metrics and MeasureComputers</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <sonar.apiVersion>9.2.3.50713</sonar.apiVersion>
+    <sonar.apiVersion>8.3.1.34397</sonar.apiVersion>
     <jdk.min.version>1.8</jdk.min.version>
     <sonar.sources>src/main/java,src/main/js</sonar.sources>
   </properties>
