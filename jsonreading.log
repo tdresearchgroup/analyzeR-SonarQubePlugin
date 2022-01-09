@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-01-06T20:31:25.681646Z</date>
+  <millis>1641501085681</millis>
+  <nanos>646000</nanos>
+  <sequence>1</sequence>
+  <logger>org.sonarsource.plugins.rtechnicaldebt.getMetricsFromParsedJSON</logger>
+  <level>SEVERE</level>
+  <class>org.sonarsource.plugins.rtechnicaldebt.getMetricsFromParsedJSON</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>metric1=1.0</message>
+</record>
+<record>
+  <date>2022-01-06T20:31:25.687942Z</date>
+  <millis>1641501085687</millis>
+  <nanos>942000</nanos>
+  <sequence>2</sequence>
+  <logger>org.sonarsource.plugins.rtechnicaldebt.getMetricsFromParsedJSON</logger>
+  <level>SEVERE</level>
+  <class>org.sonarsource.plugins.rtechnicaldebt.getMetricsFromParsedJSON</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>metric2=2.0</message>
+</record>
+<record>
+  <date>2022-01-06T20:31:25.692767Z</date>
+  <millis>1641501085692</millis>
+  <nanos>767000</nanos>
+  <sequence>3</sequence>
+  <logger>org.sonarsource.plugins.rtechnicaldebt.getMetricsFromParsedJSON</logger>
+  <level>SEVERE</level>
+  <class>org.sonarsource.plugins.rtechnicaldebt.getMetricsFromParsedJSON</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>metric3=3.0</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>

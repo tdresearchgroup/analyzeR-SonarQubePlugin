@@ -1,0 +1,17 @@
+[
+  {
+    "name": "metric1",
+    "description": "metric description here",
+    "value": 1
+  },
+  {
+    "name": "metric2",
+    "description": "metric description here",
+    "value": 1
+  },
+  {
+    "name": "metric3",
+    "description": "metric description here",
+    "value": 1
+  }
+]
