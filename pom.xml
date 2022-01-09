@@ -45,6 +45,8 @@
       <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
+
+    <!--GSON for JSON Reading-->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
@@ -62,7 +64,7 @@
         <extensions>true</extensions>
         <configuration>
           <pluginKey>example</pluginKey>
-          <pluginClass>org.sonarsource.plugins.RTechnicalDebtPlugin.RTechnicalDebtPlugin</pluginClass>
+          <pluginClass>org.sonarsource.plugins.rtechnicaldebt.RPlugin</pluginClass>
         </configuration>
       </plugin>
       <plugin>
