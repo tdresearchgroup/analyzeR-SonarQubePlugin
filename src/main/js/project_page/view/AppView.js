@@ -38,7 +38,7 @@
   <button class="button button-red" id="example-project_page--button"><%= label %></button>
 </div>`),
 
-    el: '#example-project_page',
+    el: '#rtechnicaldebt-project_page',
 
     events: {
       'click': 'handleClick'

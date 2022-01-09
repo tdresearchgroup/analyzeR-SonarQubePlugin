@@ -17,25 +17,30 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.plugins.RTechnicalDebtPlugin.hooks;
+package org.sonarsource.plugins.rtechnicaldebt.notUsed.settings;
 
-import org.sonar.api.batch.postjob.PostJob;
-import org.sonar.api.batch.postjob.PostJobContext;
-import org.sonar.api.batch.postjob.PostJobDescriptor;
-import org.sonar.api.utils.log.Logger;
-import org.sonar.api.utils.log.Loggers;
+import java.util.List;
+import org.sonar.api.config.PropertyDefinition;
 
-public class PostJobInScanner implements PostJob {
+import static java.util.Arrays.asList;
 
-  private static final Logger LOGGER = Loggers.get(PostJobInScanner.class);
+public class HelloWorldProperties {
 
-  @Override
-  public void describe(PostJobDescriptor descriptor) {
-    descriptor.name("After scan");
+  public static final String HELLO_KEY = "sonar.rtechnicaldebt.hello";
+  public static final String CATEGORY = "Properties Example";
+
+  private HelloWorldProperties() {
+    // only statics
   }
 
-  @Override
-  public void execute(PostJobContext context) {
-    LOGGER.info("Something to do after the analysis report has been submitted");
+  public static List<PropertyDefinition> getProperties() {
+    return asList(
+      PropertyDefinition.builder(HELLO_KEY)
+        .name("Hello")
+        .description("Say Hello")
+        .defaultValue(String.valueOf(false))
+        .category(CATEGORY)
+        .build());
   }
+
 }

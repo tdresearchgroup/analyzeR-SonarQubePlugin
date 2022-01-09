@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.plugins.RTechnicalDebtPlugin.rules;
+package org.sonarsource.plugins.rtechnicaldebt.rules;
 
 import java.io.File;
 import java.util.Arrays;
@@ -35,7 +35,7 @@ import org.sonar.api.config.Configuration;
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
-import org.sonarsource.plugins.RTechnicalDebtPlugin.languages.RLanguage;
+import org.sonarsource.plugins.rtechnicaldebt.languages.R;
 
 /**
  * The goal of this Sensor is to load the results of an analysis performed by a fictive external tool named: FooLint
@@ -63,7 +63,7 @@ public class FooLintIssuesLoaderSensor implements Sensor {
   @Override
   public void describe(final SensorDescriptor descriptor) {
     descriptor.name("FooLint Issues Loader Sensor");
-    descriptor.onlyOnLanguage(RLanguage.KEY);
+    descriptor.onlyOnLanguage(R.KEY);
   }
 
   protected String reportPathKey() {
@@ -136,7 +136,7 @@ public class FooLintIssuesLoaderSensor implements Sensor {
   }
 
   private static String getRepositoryKeyForLanguage(String languageKey) {
-    return languageKey.toLowerCase() + "-" + FooLintRulesDefinition.KEY;
+    return languageKey.toLowerCase() + "-" + RRulesDefinition.KEY;
   }
 
   @Override
@@ -194,7 +194,7 @@ public class FooLintIssuesLoaderSensor implements Sensor {
     public List<ErrorDataFromExternalLinter> parse(final File file) throws XMLStreamException {
       LOGGER.info("Parsing file {}", file.getAbsolutePath());
 
-      // as the goal of this example is not to demonstrate how to parse an xml file we return an hard coded list of FooError
+      // as the goal of this rtechnicaldebt is not to demonstrate how to parse an xml file we return an hard coded list of FooError
 
       ErrorDataFromExternalLinter fooError1 = new ErrorDataFromExternalLinter("ExampleRule1", "More precise description of the error", "src/MyClass.foo", 5);
       ErrorDataFromExternalLinter fooError2 = new ErrorDataFromExternalLinter("ExampleRule2", "More precise description of the error", "src/MyClass.foo", 9);

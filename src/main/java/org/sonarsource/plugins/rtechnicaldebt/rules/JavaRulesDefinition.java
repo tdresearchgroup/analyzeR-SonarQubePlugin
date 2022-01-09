@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.plugins.RTechnicalDebtPlugin.rules;
+package org.sonarsource.plugins.rtechnicaldebt.rules;
 
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rule.RuleStatus;
@@ -26,7 +26,7 @@ import org.sonar.api.server.rule.RulesDefinition;
 
 public class JavaRulesDefinition implements RulesDefinition {
 
-  public static final String REPOSITORY = "java-example";
+  public static final String REPOSITORY = "java-rtechnicaldebt";
   public static final String JAVA_LANGUAGE = "java";
   public static final RuleKey RULE_ON_LINE_1 = RuleKey.of(REPOSITORY, "line1");
 

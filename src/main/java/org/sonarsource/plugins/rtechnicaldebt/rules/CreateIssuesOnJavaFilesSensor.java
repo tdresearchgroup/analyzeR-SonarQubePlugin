@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.plugins.RTechnicalDebtPlugin.rules;
+package org.sonarsource.plugins.rtechnicaldebt.rules;
 
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
@@ -41,7 +41,7 @@ public class CreateIssuesOnJavaFilesSensor implements Sensor {
     descriptor.name("Add issues on line 1 of all Java files");
 
     // optimisation to disable execution of sensor if project does
-    // not contain Java files or if the example rule is not activated
+    // not contain Java files or if the rtechnicaldebt rule is not activated
     // in the Quality profile
     descriptor.onlyOnLanguage("java");
     descriptor.createIssuesForRuleRepositories(JavaRulesDefinition.REPOSITORY);

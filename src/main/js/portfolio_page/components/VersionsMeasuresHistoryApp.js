@@ -50,27 +50,27 @@ export default class VersionsMeasuresHistoryApp extends React.PureComponent {
           <thead>
             <tr className="code-components-header">
               <th className="thin nowrap text-center code-components-cell">
-                {window.t("example.portfolio_page.qg")}
+                {window.t("rtechnicaldebt.portfolio_page.qg")}
               </th>
               <th className="thin nowrap text-right code-components-cell">
-                {window.t("example.portfolio_page.bugs")}
+                {window.t("rtechnicaldebt.portfolio_page.bugs")}
               </th>
               <th className="thin nowrap text-right code-components-cell">
-                {window.t("example.portfolio_page.reliability_rating")}
-              </th>
-
-              <th className="thin nowrap text-right code-components-cell">
-                {window.t("example.portfolio_page.vulnerabilities")}
-              </th>
-              <th className="thin nowrap text-right code-components-cell">
-                {window.t("example.portfolio_page.security_rating")}
+                {window.t("rtechnicaldebt.portfolio_page.reliability_rating")}
               </th>
 
               <th className="thin nowrap text-right code-components-cell">
-                {window.t("example.portfolio_page.code_smells_effort")}
+                {window.t("rtechnicaldebt.portfolio_page.vulnerabilities")}
               </th>
               <th className="thin nowrap text-right code-components-cell">
-                {window.t("example.portfolio_page.maintainability_rating")}
+                {window.t("rtechnicaldebt.portfolio_page.security_rating")}
+              </th>
+
+              <th className="thin nowrap text-right code-components-cell">
+                {window.t("rtechnicaldebt.portfolio_page.code_smells_effort")}
+              </th>
+              <th className="thin nowrap text-right code-components-cell">
+                {window.t("rtechnicaldebt.portfolio_page.maintainability_rating")}
               </th>
             </tr>
           </thead>

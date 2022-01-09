@@ -17,11 +17,11 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.plugins.RTechnicalDebtPlugin.languages;
+package org.sonarsource.plugins.rtechnicaldebt.languages;
 
 import org.sonar.api.server.profile.BuiltInQualityProfilesDefinition;
 
-import static org.sonarsource.plugins.RTechnicalDebtPlugin.rules.FooLintRulesDefinition.REPO_KEY;
+import static org.sonarsource.plugins.rtechnicaldebt.rules.RRulesDefinition.REPO_KEY;
 
 /**
  * Default, BuiltIn Quality Profile for the projects having files of the language "foo"
@@ -30,14 +30,14 @@ public final class RQualityProfile implements BuiltInQualityProfilesDefinition {
 
   @Override
   public void define(Context context) {
-    NewBuiltInQualityProfile profile = context.createBuiltInQualityProfile("FooLint Rules", RLanguage.KEY);
+    NewBuiltInQualityProfile profile = context.createBuiltInQualityProfile("R Technical Debt Rules and Metrics", R.KEY);
     profile.setDefault(true);
 
-    NewBuiltInActiveRule rule1 = profile.activateRule(REPO_KEY, "ExampleRule1");
+    NewBuiltInActiveRule rule1 = profile.activateRule(REPO_KEY, "R1");
     rule1.overrideSeverity("BLOCKER");
-    NewBuiltInActiveRule rule2 = profile.activateRule(REPO_KEY, "ExampleRule2");
+    NewBuiltInActiveRule rule2 = profile.activateRule(REPO_KEY, "R2");
     rule2.overrideSeverity("MAJOR");
-    NewBuiltInActiveRule rule3 = profile.activateRule(REPO_KEY, "ExampleRule3");
+    NewBuiltInActiveRule rule3 = profile.activateRule(REPO_KEY, "R3");
     rule3.overrideSeverity("CRITICAL");
 
     profile.done();

@@ -17,30 +17,26 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.plugins.RTechnicalDebtPlugin.settings;
+package org.sonarsource.plugins.rtechnicaldebt.notUsed.settings;
 
-import java.util.List;
-import org.sonar.api.config.PropertyDefinition;
+import org.sonar.api.batch.sensor.Sensor;
+import org.sonar.api.batch.sensor.SensorContext;
+import org.sonar.api.batch.sensor.SensorDescriptor;
+import org.sonar.api.utils.log.Loggers;
 
-import static java.util.Arrays.asList;
+public class SayHelloFromScanner implements Sensor {
 
-public class HelloWorldProperties {
-
-  public static final String HELLO_KEY = "sonar.example.hello";
-  public static final String CATEGORY = "Properties Example";
-
-  private HelloWorldProperties() {
-    // only statics
+  @Override
+  public void describe(SensorDescriptor descriptor) {
+    descriptor.name(getClass().getName());
   }
 
-  public static List<PropertyDefinition> getProperties() {
-    return asList(
-      PropertyDefinition.builder(HELLO_KEY)
-        .name("Hello")
-        .description("Say Hello")
-        .defaultValue(String.valueOf(false))
-        .category(CATEGORY)
-        .build());
+  @Override
+  public void execute(SensorContext context) {
+    if (context.config().getBoolean(HelloWorldProperties.HELLO_KEY).orElse(false)) {
+      // print log only if property is set to true
+      Loggers.get(getClass()).info("Hello World!");
+    }
   }
 
 }

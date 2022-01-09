@@ -17,16 +17,18 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.plugins.RTechnicalDebtPlugin.measures;
+package org.sonarsource.plugins.rtechnicaldebt.measures;
 
+import java.io.IOException;
 import java.util.List;
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metrics;
+import org.sonarsource.plugins.rtechnicaldebt.getMetricsFromParsedJSON;
 
 import static java.util.Arrays.asList;
 
-public class TechnicalDebtMetrics implements Metrics {
+public class RMetrics implements Metrics {
 
   public static final Metric<Integer> FILENAME_SIZE = new Metric.Builder("filename_size", "Filename Size", Metric.ValueType.INT)
     .setDescription("Number of characters of file names")
@@ -42,10 +44,22 @@ public class TechnicalDebtMetrics implements Metrics {
     .setDomain(CoreMetrics.DOMAIN_GENERAL)
     .create();
 
-  public static final Metric<Integer> LINES_OF_CODE = new Metric.Builder("lines_of_code", "Lines of Code", Metric.ValueType.INT).setDescription("Number of Lines of Code").setDirection(Metric.DIRECTION_BETTER).setQualitative(true).setDomain(CoreMetrics.DOMAIN_GENERAL).create();
+  public static final Metric<Integer> LINES_OF_CODE = new Metric.Builder("lines_of_code","Lines of Code", Metric.ValueType.INT).setDescription("Number of Lines of Code.").setDescription("Rating based on size of file names")
+          .setDirection(Metric.DIRECTION_BETTER)
+          .setQualitative(true)
+          .setDomain(CoreMetrics.DOMAIN_GENERAL)
+          .create();
 
   @Override
   public List<Metric> getMetrics() {
+
+    try {
+      getMetricsFromParsedJSON x = new getMetricsFromParsedJSON();
+      x.getMetrics().forEach(m -> System.out.println(m));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    System.out.println(LINES_OF_CODE);
     return asList(FILENAME_SIZE, FILENAME_SIZE_RATING);
   }
 }
