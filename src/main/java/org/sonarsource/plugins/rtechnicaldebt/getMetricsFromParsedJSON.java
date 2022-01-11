@@ -11,11 +11,14 @@ import java.util.*;
 
 public class getMetricsFromParsedJSON {
 
-    String JSON = "testjson.json";
+    String JSON = "local-testing-resources/testjson.json";
     List<TechnicalDebtMetric> metrics;
 
     public getMetricsFromParsedJSON() throws IOException {
-        // this.metrics = getMetrics(JSON);
+        // TODO - Make sensor use this. Causes Null pointer exception, so this needs to stay till fixed.
+        metrics = new ArrayList<>();
+        //this.metrics = getMetrics(JSON);
+
         System.out.println(this);
         String currentPath = new java.io.File(".").getCanonicalPath();
         System.out.println("Current dir:" + currentPath);
@@ -23,8 +26,8 @@ public class getMetricsFromParsedJSON {
         String currentDir = System.getProperty("user.dir");
         System.out.println("Current dir using System:" + currentDir);
 
-        metrics = new ArrayList<TechnicalDebtMetric>();
-        // TODO - Make sensor use this. Causes Null pointer exception, so this needs to stay till fixed.
+
+
     }
 
     private List<TechnicalDebtMetric> getMetrics(String filename) throws IOException {
@@ -47,4 +50,5 @@ public class getMetricsFromParsedJSON {
     public void setJSON(String JSON) {
         this.JSON = JSON;
     }
+
 }
