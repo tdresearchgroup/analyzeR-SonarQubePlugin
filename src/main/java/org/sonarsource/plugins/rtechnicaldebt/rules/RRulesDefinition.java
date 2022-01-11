@@ -47,7 +47,6 @@ public final class RRulesDefinition implements RulesDefinition {
       RulesDefinitionXmlLoader rulesLoader = new RulesDefinitionXmlLoader();
       rulesLoader.load(repository, rulesXml, StandardCharsets.UTF_8.name());
     }
-
     repository.done();
   }
 

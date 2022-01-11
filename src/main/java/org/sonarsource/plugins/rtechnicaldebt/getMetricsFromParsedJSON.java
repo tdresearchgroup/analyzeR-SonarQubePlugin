@@ -25,9 +25,6 @@ public class getMetricsFromParsedJSON {
 
         String currentDir = System.getProperty("user.dir");
         System.out.println("Current dir using System:" + currentDir);
-
-
-
     }
 
     private List<TechnicalDebtMetric> getMetrics(String filename) throws IOException {

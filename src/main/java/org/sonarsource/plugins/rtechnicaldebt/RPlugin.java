@@ -20,6 +20,7 @@
 package org.sonarsource.plugins.rtechnicaldebt;
 
 import org.sonar.api.Plugin;
+import org.sonar.api.config.PropertyDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.languages.R;
 import org.sonarsource.plugins.rtechnicaldebt.languages.RQualityProfile;
 import org.sonarsource.plugins.rtechnicaldebt.measures.ComputeSizeAverage;
@@ -36,7 +37,11 @@ import org.sonarsource.plugins.rtechnicaldebt.rules.JavaRulesDefinition;
  */
 public class RPlugin implements Plugin {
 
-  public String MetricsFile = "testfile";
+  public String ouputdefault = "testfile.json";
+
+  public static String TD_METRICS_FILE = "sonar.r.techdebt.metrics";
+
+  public static String R_SUFFIXES = "sonar.r.file.suffix";
 
   @Override
   public void define(Context context) {
@@ -61,6 +66,10 @@ public class RPlugin implements Plugin {
 
     // tutorial on web extensions
     // context.addExtension(MyPluginPageDefinition.class);
+
+    // Adding MetricsFile Output
+    context.addExtension(PropertyDefinition.builder(TD_METRICS_FILE).name("Technical Debt Metrics Filename")
+            .description("filename to the metrics json").category(".R").defaultValue(ouputdefault).build());
 
   }
 }
