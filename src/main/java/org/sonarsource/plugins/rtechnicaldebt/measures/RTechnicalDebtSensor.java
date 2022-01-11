@@ -5,7 +5,6 @@ import org.sonar.api.batch.sensor.Sensor;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.measures.CoreMetrics;
-import org.sonar.api.measures.Metric;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 import org.sonarsource.plugins.rtechnicaldebt.RPlugin;
@@ -16,7 +15,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class RTechnicalDebtSensor implements Sensor {
@@ -39,7 +37,7 @@ public class RTechnicalDebtSensor implements Sensor {
         sensorLogger.info("Sensor execute()");
 
         // Reading metrics
-        Optional<String> tdOutputProperty = sensorContext.config().get(RPlugin.TD_METRICS_FILE);
+        Optional<String> tdOutputProperty = sensorContext.config().get(RPlugin.PROPERTy_R_TECHDEBT_METRICS_FILE);
 
         // Skip missing entries
         if (!tdOutputProperty.isPresent()){

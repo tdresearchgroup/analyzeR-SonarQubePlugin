@@ -43,7 +43,7 @@ public class RPlugin implements Plugin {
 
   public static final String PROPERTY_FILE_SUFFIXES = "sonar.r.file.suffixes";
 
-  public static final String PROPERTY_R_TDEBT_OUTPUT_FILE = "sonar.r.tdebt.output";
+  public static final String PROPERTy_R_TECHDEBT_METRICS_FILE = "sonar.r.tdebt.output";
 
   @Override
   public void define(Context context) {
@@ -80,7 +80,7 @@ public class RPlugin implements Plugin {
                     .defaultValue(".R")
                     .multiValues(true)
                     .build(),
-            PropertyDefinition.builder(PROPERTY_R_TDEBT_OUTPUT_FILE)
+            PropertyDefinition.builder(PROPERTy_R_TECHDEBT_METRICS_FILE)
                     .name("R Technical Debt script Output Filename")
                     .description("Path and filename to R Technical Debt script output in JSON format")
                     .category("R")
