@@ -27,26 +27,17 @@ import static org.sonar.api.web.page.Page.Qualifier.SUB_VIEW;
 import static org.sonar.api.web.page.Page.Qualifier.VIEW;
 import static org.sonar.api.web.page.Page.Scope.COMPONENT;
 
-public class MyPluginPageDefinition implements PageDefinition {
+public class RPluginPageDefinition implements PageDefinition {
 
   @Override
   public void define(Context context) {
     context
-      .addPage(Page.builder("example/global_page")
-        .setName("Global Page using Vanilla JS")
-        .build())
-      .addPage(Page.builder("example/project_page")
-        .setName("Project Page using Backbone JS")
-        .setScope(COMPONENT)
-        .build())
-      .addPage(Page.builder("example/portfolio_page")
-        .setName("Portfolio Page using React JS")
-        .setScope(COMPONENT)
-        .setComponentQualifiers(VIEW, SUB_VIEW)
-        .build())
-      .addPage(Page.builder("example/admin_page")
-        .setName("Admin Page using React JS")
-        .setAdmin(true)
-        .build());
+            .addPage(Page.builder("example/global_page")
+                    .setName("R Technical Debt : Metrics Dashboard")
+                    .build())
+            .addPage(Page.builder("example/admin_page")
+                    .setName("Admin Page using React JS")
+                    .setAdmin(true)
+                    .build());
   }
 }

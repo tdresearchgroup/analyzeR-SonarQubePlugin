@@ -27,10 +27,12 @@ import org.sonarsource.plugins.rtechnicaldebt.measures.ComputeSizeAverage;
 import org.sonarsource.plugins.rtechnicaldebt.measures.ComputeSizeRating;
 import org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics;
 import org.sonarsource.plugins.rtechnicaldebt.measures.SetSizeOnFilesSensor;
+import org.sonarsource.plugins.rtechnicaldebt.notUsed.web.RPluginPageDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.rules.CreateIssuesOnJavaFilesSensor;
 import org.sonarsource.plugins.rtechnicaldebt.rules.FooLintIssuesLoaderSensor;
 import org.sonarsource.plugins.rtechnicaldebt.rules.RRulesDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.rules.JavaRulesDefinition;
+import static java.util.Arrays.asList;
 
 /**
  * This class is the entry point for all extensions. It is referenced in pom.xml.
@@ -39,9 +41,9 @@ public class RPlugin implements Plugin {
 
   public String ouputdefault = "testfile.json";
 
-  public static String TD_METRICS_FILE = "sonar.r.techdebt.metrics";
+  public static final String PROPERTY_FILE_SUFFIXES = "sonar.r.file.suffixes";
 
-  public static String R_SUFFIXES = "sonar.r.file.suffix";
+  public static final String PROPERTY_R_TDEBT_OUTPUT_FILE = "sonar.r.tdebt.output";
 
   @Override
   public void define(Context context) {
@@ -65,11 +67,25 @@ public class RPlugin implements Plugin {
     // context.addExtensions(HelloWorldProperties.getProperties()).addExtension(SayHelloFromScanner.class);
 
     // tutorial on web extensions
-    // context.addExtension(MyPluginPageDefinition.class);
+    context.addExtension(RPluginPageDefinition.class);
 
     // Adding MetricsFile Output
-    context.addExtension(PropertyDefinition.builder(TD_METRICS_FILE).name("Technical Debt Metrics Filename")
-            .description("filename to the metrics json").category(".R").defaultValue(ouputdefault).build());
+    // Adding R option on left side of admin page
 
+    context.addExtensions(asList(
+            PropertyDefinition.builder(PROPERTY_FILE_SUFFIXES)
+                    .name("Suffixes R")
+                    .description("Comma-separated list of suffixes for R language")
+                    .category("R")
+                    .defaultValue(".R")
+                    .multiValues(true)
+                    .build(),
+            PropertyDefinition.builder(PROPERTY_R_TDEBT_OUTPUT_FILE)
+                    .name("R Technical Debt script Output Filename")
+                    .description("Path and filename to R Technical Debt script output in JSON format")
+                    .category("R")
+                    .defaultValue("rtd_output.json")
+                    .build()
+    ));
   }
 }
