@@ -24,7 +24,7 @@ import InstanceStatisticsApp from './components/InstanceStatisticsApp';
 // overall number of Quality Profiles, Quality Gates, total number of issues,
 // and total number of projects.
 //
-// You can access it at /admin/extension/rtechnicaldebt/admin_page
-window.registerExtension('rtechnicaldebt/admin_page', () => {
+// You can access it at /admin/extension/example/admin_page
+window.registerExtension('example/admin_page', () => {
   return <InstanceStatisticsApp />
 });

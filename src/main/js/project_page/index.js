@@ -30,8 +30,8 @@ require("./view/AppView");
 
 // This creates a page for any component (project, portfolio, etc).
 //
-//  You can access it at /project/extension/rtechnicaldebt/project_page?id={COMPONENT_ID}
-window.registerExtension('rtechnicaldebt/project_page', function (options) {
+//  You can access it at /project/extension/example/project_page?id={COMPONENT_ID}
+window.registerExtension('example/project_page', function (options) {
   // options.el contains the DOM node we can use for our app. Prepare our node
   // so our Backbone View can correctly target it.
   options.el.innerHTML = `<div class="page page-limited" id="example-project_page">Loading...</div>`;

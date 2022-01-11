@@ -27,7 +27,7 @@ import org.sonarsource.plugins.rtechnicaldebt.measures.ComputeSizeAverage;
 import org.sonarsource.plugins.rtechnicaldebt.measures.ComputeSizeRating;
 import org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics;
 import org.sonarsource.plugins.rtechnicaldebt.measures.SetSizeOnFilesSensor;
-import org.sonarsource.plugins.rtechnicaldebt.notUsed.web.RPluginPageDefinition;
+import org.sonarsource.plugins.rtechnicaldebt.web.RPluginPageDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.rules.CreateIssuesOnJavaFilesSensor;
 import org.sonarsource.plugins.rtechnicaldebt.rules.FooLintIssuesLoaderSensor;
 import org.sonarsource.plugins.rtechnicaldebt.rules.RRulesDefinition;

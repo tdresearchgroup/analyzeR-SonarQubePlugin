@@ -25,7 +25,7 @@ function init() {
 </div>
 `;
   document
-    .getElementById("rtechnicaldebt-global_page--button")
+    .getElementById("example-global_page--button")
     .addEventListener("click", handleButtonClick);
 }
 
@@ -41,7 +41,7 @@ export function start(element) {
 export function stop() {
   // Remove any event listeners we still have.
   document
-    .getElementById("rtechnicaldebt-global_page--button")
+    .getElementById("example-global_page--button")
     .removeEventListener("click", handleButtonClick);
 
   // The node will get removed completely by SonarQube anyway, but we can still

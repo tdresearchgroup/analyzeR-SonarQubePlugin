@@ -23,7 +23,7 @@ import VersionsMeasuresHistoryApp from "./components/VersionsMeasuresHistoryApp"
 // This creates a page for portfolios, which generates a report for all the
 // projects inside the portfolio.
 //
-//  You can access it at /project/extension/rtechnicaldebt/portfolio_page?id={PORTFOLIO_ID}&qualifier=VW
-window.registerExtension("rtechnicaldebt/portfolio_page", options => {
+//  You can access it at /project/extension/example/portfolio_page?id={PORTFOLIO_ID}&qualifier=VW
+window.registerExtension("example/portfolio_page", options => {
   return <VersionsMeasuresHistoryApp project={options.component} />;
 });

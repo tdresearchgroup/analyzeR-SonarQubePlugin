@@ -22,8 +22,8 @@ import "./app.css";
 // This creates a page for portfolios, which generates a report for all the
 // projects inside the portfolio.
 //
-//  You can access it at /extension/rtechnicaldebt/global_page
-window.registerExtension('rtechnicaldebt/global_page', function (options) {
+//  You can access it at /extension/example/global_page
+window.registerExtension('example/global_page', function (options) {
   // options.el contains the DOM node we can use for our app. Call the start
   // method to initialize the application, and pass it this DOM node.
   app.start(options.el);
