@@ -3,8 +3,11 @@ node_modules
 yarn.lock
 target/
 node/
+node_modules/
 .idea/
 sonar-example-plugin.iml
+Resources/local-testing-resources
+Sample-Project/
 
 # Eclipse
 .classpath

@@ -17,10 +17,11 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.plugins.rtechnicaldebt.measures;
+package org.sonarsource.plugins.rtechnicaldebt.notUsed.measures;
 
 import org.sonar.api.ce.measure.Measure;
 import org.sonar.api.ce.measure.MeasureComputer;
+import org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics;
 
 import static org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics.FILENAME_SIZE;
 import static org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics.FILENAME_SIZE_RATING;

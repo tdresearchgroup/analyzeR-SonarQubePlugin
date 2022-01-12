@@ -25,12 +25,12 @@ import org.sonar.api.resources.Qualifiers;
 
 import static java.util.Arrays.asList;
 
-public class FooLanguageProperties {
+public class RLanguageProperties {
 
-  public static final String FILE_SUFFIXES_KEY = "sonar.foo.file.suffixes";
+  public static final String FILE_SUFFIXES_KEY = "sonar.r.file.suffixes";
   public static final String FILE_SUFFIXES_DEFAULT_VALUE = ".r";
 
-  private FooLanguageProperties() {
+  private RLanguageProperties() {
     // only statics
   }
 

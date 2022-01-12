@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class RTechnicalDebtSensor implements Sensor {
@@ -47,9 +48,9 @@ public class RTechnicalDebtSensor implements Sensor {
 
         else{
             String metricfile = tdOutputProperty.get();
-            byte[] filedata;
+            List<String> filedata;
             try {
-                filedata = Files.readAllBytes(Paths.get(metricfile));
+                filedata = Files.readAllLines(Paths.get(metricfile));
 
             } catch (IOException e) {
                 sensorLogger.warn("Error Reading "+metricfile);
@@ -58,8 +59,10 @@ public class RTechnicalDebtSensor implements Sensor {
                 return;
             }
 
+            /*
             String json = new String(filedata);
             System.out.println(json);
+             */
 
         }
 

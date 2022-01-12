@@ -11,3 +11,9 @@ SonarQube Version Error on plugin launch: Check that `pom.xml` has the correct `
 ![image info](./Resources/ReadMeImages/NewSonarAPI.png)
 
 
+### [SonarQube Scanner](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/)
+
+```bash
+sonar-scanner -Dsonar.projectKey=myproject -Dsonar.sources=src```
+
+
