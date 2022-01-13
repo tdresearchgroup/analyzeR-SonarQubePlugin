@@ -50,12 +50,8 @@ public class TechDebtFromJSON implements Sensor {
         // Iterable<InputFile> files = fs.inputFiles(fs.predicates().hasType(InputFile.Type.MAIN));
         InputFile file = fs.inputFile(fs.predicates().hasFilename(RPlugin.PROPERTY_METRICS_FILE));
 
-        try {
-            RMetricsParser rMetricsParser = new RMetricsParser();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        RMetricsParser parser = new RMetricsParser();
+        parser.getMetrics(file);
 
         /*
         for (InputFile file : files) {

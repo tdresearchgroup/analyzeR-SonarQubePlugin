@@ -45,6 +45,8 @@ public class RPlugin implements Plugin {
 
   public static final String PROPERTY_METRICS_FILE = "sonar.r.tdebt.output";
 
+  private static final String FILENAME = "r_techdebt_output.json";
+
   @Override
   public void define(Context context) {
     // tutorial on hooks
@@ -84,7 +86,7 @@ public class RPlugin implements Plugin {
                     .name("R Technical Debt script Output Filename")
                     .description("Path and filename to R Technical Debt script output in JSON format")
                     .category("R")
-                    .defaultValue("r_techdebt_output.json")
+                    .defaultValue(FILENAME)
                     .build()
     ));
   }
