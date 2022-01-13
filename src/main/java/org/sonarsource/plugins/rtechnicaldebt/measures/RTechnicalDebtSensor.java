@@ -38,7 +38,7 @@ public class RTechnicalDebtSensor implements Sensor {
         sensorLogger.info("Sensor execute()");
 
         // Reading metrics
-        Optional<String> tdOutputProperty = sensorContext.config().get(RPlugin.PROPERTy_R_TECHDEBT_METRICS_FILE);
+        Optional<String> tdOutputProperty = sensorContext.config().get(RPlugin.PROPERTY_METRICS_FILE);
 
         // Skip missing entries
         if (!tdOutputProperty.isPresent()){
@@ -65,7 +65,6 @@ public class RTechnicalDebtSensor implements Sensor {
              */
 
         }
-
 
         // TODO - See if there another way to get an overview tab working in sonarqube
         // A lines of Code value which will get the overview tab working in sonarqube

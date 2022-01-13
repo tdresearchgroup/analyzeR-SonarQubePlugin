@@ -24,7 +24,7 @@ import java.util.List;
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metrics;
-import org.sonarsource.plugins.rtechnicaldebt.getMetricsFromParsedJSON;
+import org.sonarsource.plugins.rtechnicaldebt.RMetricsParser;
 
 import static java.util.Arrays.asList;
 
@@ -53,12 +53,14 @@ public class RMetrics implements Metrics {
   @Override
   public List<Metric> getMetrics() {
 
+    /*
     try {
-      getMetricsFromParsedJSON x = new getMetricsFromParsedJSON();
+      RMetricsParser x = new RMetricsParser();
       x.getMetrics().forEach(m -> System.out.println(m));
     } catch (IOException e) {
       e.printStackTrace();
     }
+     */
     System.out.println(LINES_OF_CODE);
     return asList(FILENAME_SIZE, FILENAME_SIZE_RATING);
   }

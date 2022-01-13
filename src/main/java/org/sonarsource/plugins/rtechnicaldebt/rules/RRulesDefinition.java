@@ -25,12 +25,12 @@ import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 import org.sonarsource.plugins.rtechnicaldebt.languages.R;
 
-public final class RRulesDefinition implements RulesDefinition {
+public class RRulesDefinition implements RulesDefinition {
 
   private static final String PATH_TO_RULES_XML = "/example/r-rules.xml";
 
-  protected static final String KEY = "rlint";
-  protected static final String NAME = "RLint";
+  protected static final String KEY = "rtechdebt";
+  protected static final String NAME = "RTechDebt";
 
   public static final String REPO_KEY = R.KEY + "-" + KEY;
   protected static final String REPO_NAME = R.KEY + "-" + NAME;

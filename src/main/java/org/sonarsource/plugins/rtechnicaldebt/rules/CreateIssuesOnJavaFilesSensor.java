@@ -26,6 +26,7 @@ import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.batch.sensor.issue.NewIssue;
 import org.sonar.api.batch.sensor.issue.NewIssueLocation;
+import org.sonarsource.plugins.rtechnicaldebt.notUsed.rules.JavaRulesDefinition;
 
 /**
  * Generates issues on all java files at line 1. This rule

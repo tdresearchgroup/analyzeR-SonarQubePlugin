@@ -2,6 +2,7 @@ package org.sonarsource.plugins.rtechnicaldebt;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.sonar.api.batch.fs.InputFile;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -9,12 +10,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class getMetricsFromParsedJSON {
+public class RMetricsParser {
 
-    String JSON = "local-testing-resources/testjson.json";
+    // String JSON = "local-testing-resources/r_techdebt_output.json";
     List<TechnicalDebtMetric> metrics;
 
-    public getMetricsFromParsedJSON() throws IOException {
+    public RMetricsParser() throws IOException {
         // TODO - Make sensor use this. Causes Null pointer exception, so this needs to stay till fixed.
         metrics = new ArrayList<>();
         //this.metrics = getMetrics(JSON);
@@ -27,9 +28,11 @@ public class getMetricsFromParsedJSON {
         System.out.println("Current dir using System:" + currentDir);
     }
 
-    private List<TechnicalDebtMetric> getMetrics(String filename) throws IOException {
+    public List<TechnicalDebtMetric> getMetrics(InputFile file) throws IOException {
 
-        Reader reader = Files.newBufferedReader(Paths.get(filename));
+        System.out.println("READING FILE -> "+ file.toString());
+
+        Reader reader = Files.newBufferedReader(file.path());
 
         List<TechnicalDebtMetric> metrics = new Gson().fromJson(reader,new TypeToken<List<TechnicalDebtMetric>>() {}.getType());
 
@@ -38,14 +41,6 @@ public class getMetricsFromParsedJSON {
         reader.close();
 
         return metrics;
-    }
-
-    public List<TechnicalDebtMetric> getMetrics() {
-        return metrics;
-    }
-
-    public void setJSON(String JSON) {
-        this.JSON = JSON;
     }
 
 }

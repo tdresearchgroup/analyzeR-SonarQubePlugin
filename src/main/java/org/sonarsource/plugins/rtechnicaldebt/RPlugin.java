@@ -31,7 +31,7 @@ import org.sonarsource.plugins.rtechnicaldebt.web.RPluginPageDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.rules.CreateIssuesOnJavaFilesSensor;
 import org.sonarsource.plugins.rtechnicaldebt.rules.FooLintIssuesLoaderSensor;
 import org.sonarsource.plugins.rtechnicaldebt.rules.RRulesDefinition;
-import org.sonarsource.plugins.rtechnicaldebt.rules.JavaRulesDefinition;
+import org.sonarsource.plugins.rtechnicaldebt.notUsed.rules.JavaRulesDefinition;
 import static java.util.Arrays.asList;
 
 /**
@@ -43,7 +43,7 @@ public class RPlugin implements Plugin {
 
   public static final String PROPERTY_FILE_SUFFIXES = "sonar.r.file.suffixes";
 
-  public static final String PROPERTy_R_TECHDEBT_METRICS_FILE = "sonar.r.tdebt.output";
+  public static final String PROPERTY_METRICS_FILE = "sonar.r.tdebt.output";
 
   @Override
   public void define(Context context) {
@@ -57,7 +57,7 @@ public class RPlugin implements Plugin {
     // context.addExtensions(RLanguageProperties.getProperties());
 
     // tutorial on measures
-    context.addExtensions(RMetrics.class, SetSizeOnFilesSensor.class, ComputeSizeAverage.class, ComputeSizeRating.class);
+    context.addExtensions(RMetrics.class, SetSizeOnFilesSensor.class, ComputeSizeAverage.class, ComputeSizeRating.class, TechDebtFromJSON.class);
 
     // tutorial on rules
     context.addExtensions(JavaRulesDefinition.class, CreateIssuesOnJavaFilesSensor.class);
@@ -80,11 +80,11 @@ public class RPlugin implements Plugin {
                     .defaultValue(".R")
                     .multiValues(true)
                     .build(),
-            PropertyDefinition.builder(PROPERTy_R_TECHDEBT_METRICS_FILE)
+            PropertyDefinition.builder(PROPERTY_METRICS_FILE)
                     .name("R Technical Debt script Output Filename")
                     .description("Path and filename to R Technical Debt script output in JSON format")
                     .category("R")
-                    .defaultValue("rtd_output.json")
+                    .defaultValue("r_techdebt_output.json")
                     .build()
     ));
   }
