@@ -9,6 +9,6 @@ Move plugin `.jar` file from `/target` to `sonarqube/extensions/plugins` and res
 
 ### Documentation
 
-Detailed documentation, credits and sonarqube help is [available here](Documentation)
+Detailed documentation, credits and sonarqube help is [available here](Resources/Documentation)
 
 
