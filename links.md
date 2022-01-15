@@ -1,0 +1,1 @@
+SonarQube Java Plugin https://github.com/SonarSource/sonarqube/blob/master/sonar-plugin-api/src/main/java/org/sonar/api/measures/CoreMetrics.java

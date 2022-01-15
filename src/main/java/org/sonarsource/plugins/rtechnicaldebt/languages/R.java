@@ -21,7 +21,7 @@ package org.sonarsource.plugins.rtechnicaldebt.languages;
 
 import org.sonar.api.config.Configuration;
 import org.sonar.api.resources.AbstractLanguage;
-import org.sonarsource.plugins.rtechnicaldebt.notUsed.settings.RLanguageProperties;
+import org.sonarsource.plugins.rtechnicaldebt.RPlugin;
 
 /**
  * This class defines the fictive Foo language.
@@ -40,7 +40,7 @@ public final class R extends AbstractLanguage {
 
   @Override
   public String[] getFileSuffixes() {
-    return config.getStringArray(RLanguageProperties.FILE_SUFFIXES_KEY);
+    return config.getStringArray(RPlugin.PROPERTY_FILE_SUFFIXES);
   }
 
 }

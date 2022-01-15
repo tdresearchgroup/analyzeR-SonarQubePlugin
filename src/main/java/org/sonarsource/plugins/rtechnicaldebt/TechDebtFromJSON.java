@@ -26,9 +26,6 @@ import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
-import org.sonarsource.plugins.rtechnicaldebt.measures.RTechnicalDebtSensor;
-
-import java.io.IOException;
 
 /**
  * Scanner feeds raw measures on files but must not aggregate values to directories and project.

@@ -17,4 +17,6 @@ SonarQube Version Error on plugin launch: Check that `pom.xml` has the correct `
 sonar-scanner -Dsonar.projectKey=myproject -Dsonar.sources=src
 ```
 
+IN SONAR.PROPERTIES FOR SCANNER ADD sonar.r.tdebt.output = OUTPUT
+
 

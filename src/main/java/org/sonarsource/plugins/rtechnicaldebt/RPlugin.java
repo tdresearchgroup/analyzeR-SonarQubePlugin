@@ -23,15 +23,11 @@ import org.sonar.api.Plugin;
 import org.sonar.api.config.PropertyDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.languages.R;
 import org.sonarsource.plugins.rtechnicaldebt.languages.RQualityProfile;
-import org.sonarsource.plugins.rtechnicaldebt.notUsed.measures.ComputeSizeAverage;
-import org.sonarsource.plugins.rtechnicaldebt.notUsed.measures.ComputeSizeRating;
 import org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics;
-import org.sonarsource.plugins.rtechnicaldebt.notUsed.measures.SetSizeOnFilesSensor;
-import org.sonarsource.plugins.rtechnicaldebt.web.RPluginPageDefinition;
-import org.sonarsource.plugins.rtechnicaldebt.rules.CreateIssuesOnJavaFilesSensor;
-import org.sonarsource.plugins.rtechnicaldebt.rules.FooLintIssuesLoaderSensor;
+import org.sonarsource.plugins.rtechnicaldebt.measures.RMetricsSensor;
 import org.sonarsource.plugins.rtechnicaldebt.rules.RRulesDefinition;
-import org.sonarsource.plugins.rtechnicaldebt.notUsed.rules.JavaRulesDefinition;
+import org.sonarsource.plugins.rtechnicaldebt.web.RPluginPageDefinition;
+
 import static java.util.Arrays.asList;
 
 /**
@@ -56,14 +52,12 @@ public class RPlugin implements Plugin {
 
     // tutorial on languages
     context.addExtensions(R.class, RQualityProfile.class);
-    // context.addExtensions(RLanguageProperties.getProperties());
 
     // tutorial on measures
-    context.addExtensions(RMetrics.class, SetSizeOnFilesSensor.class, ComputeSizeAverage.class, ComputeSizeRating.class, TechDebtFromJSON.class);
+    context.addExtensions(RMetrics.class, RMetricsSensor.class);
 
     // tutorial on rules
-    context.addExtensions(JavaRulesDefinition.class, CreateIssuesOnJavaFilesSensor.class);
-    context.addExtensions(RRulesDefinition.class, FooLintIssuesLoaderSensor.class);
+    context.addExtension(RRulesDefinition.class);
 
     // tutorial on settings
     // context.addExtensions(HelloWorldProperties.getProperties()).addExtension(SayHelloFromScanner.class);
