@@ -41,7 +41,7 @@ public class RPlugin implements Plugin {
 
   public static final String PROPERTY_METRICS_FILE = "sonar.r.tdebt.output";
 
-  private static final String FILENAME = "r_techdebt_output.json";
+  private static final String FILENAME = "metrics.json";
 
   @Override
   public void define(Context context) {

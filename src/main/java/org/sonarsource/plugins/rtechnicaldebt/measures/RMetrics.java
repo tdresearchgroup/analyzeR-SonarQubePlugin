@@ -176,4 +176,93 @@ public class RMetrics implements Metrics {
           .setOptimizedBestValue(true)
           .create();
 
+  public static final String COUPLING_BETWEEN_OBJECTS_KEY = "CBO";
+  public static final Metric<Integer> COUPLING_BETWEEN_OBJECTS = new Metric.Builder(COUPLING_BETWEEN_OBJECTS_KEY,"Coupling Between Object Classes", Metric.ValueType.INT)
+          .setDescription("Number of other modules or packages that an application or module is coupled too")
+          .setDirection(Metric.DIRECTION_WORST)
+          .setQualitative(false)
+          .setDomain(CATEGORY_COUPLING)
+          .setBestValue(0.0)
+          .setOptimizedBestValue(true)
+          .create();
+
+  public static final String AFFERENT_COUPLING_KEY = "CA";
+  public static final Metric<Integer> AFFERENT_COUPLING = new Metric.Builder(AFFERENT_COUPLING_KEY,"Afferent Coupling", Metric.ValueType.INT)
+          .setDescription("Measure of how many other applications use the specific application or module")
+          .setDirection(Metric.DIRECTION_WORST)
+          .setQualitative(false)
+          .setDomain(CATEGORY_COUPLING)
+          .setBestValue(0.0)
+          .setOptimizedBestValue(true)
+          .create();
+
+  public static final String EFFERENT_COUPLING_KEY = "CE";
+  public static final Metric<Integer> EFFERENT_COUPLING = new Metric.Builder(EFFERENT_COUPLING_KEY,"Efferent Coupling", Metric.ValueType.INT)
+          .setDescription("Measure of how many other modules or packages are used by the specific application or module")
+          .setDirection(Metric.DIRECTION_WORST)
+          .setQualitative(false)
+          .setDomain(CATEGORY_COUPLING)
+          .setBestValue(0.0)
+          .setOptimizedBestValue(true)
+          .create();
+
+  public static final String MARTINS_INSTABILITY_KEY = "MI";
+  public static final Metric<Integer> MARTINS_INSTABILITY = new Metric.Builder(MARTINS_INSTABILITY_KEY,"Martin's Instability Measure", Metric.ValueType.FLOAT)
+          .setDescription("Ce/(Ce+Ca)")
+          .setDirection(Metric.DIRECTION_WORST)
+          .setQualitative(false)
+          .setDomain(CATEGORY_COUPLING)
+          .setBestValue(0.0)
+          .setOptimizedBestValue(true)
+          .create();
+
+  public static final String LACK_COHESION_METHODS_KEY = "LCOM";
+  public static final Metric<Integer> LACK_COHESION_METHODS = new Metric.Builder(LACK_COHESION_METHODS_KEY,"Lack of Cohesion in Methods", Metric.ValueType.INT)
+          .setDescription("Difference between the number of function pairs without and with common non static fields")
+          .setDirection(Metric.DIRECTION_WORST)
+          .setQualitative(false)
+          .setDomain(CATEGORY_COHESION)
+          .setBestValue(0.0)
+          .setOptimizedBestValue(true)
+          .create();
+
+  public static final String COHESION_AMONG_METHODS_KEY = "CAM";
+  public static final Metric<Integer> COHESION_AMONG_METHODS = new Metric.Builder(COHESION_AMONG_METHODS_KEY,"Cohesion Among Methods", Metric.ValueType.INT)
+          .setDescription("Represents the relatedness among functions of an application or module")
+          .setDirection(Metric.DIRECTION_WORST)
+          .setQualitative(false)
+          .setDomain(CATEGORY_COHESION)
+          .setBestValue(0.0)
+          .setOptimizedBestValue(true)
+          .create();
+
+  public static final String DATA_ACCESS_METRICS_KEY = "DAM";
+  public static final Metric<Integer> DATA_ACCESS_METRICS = new Metric.Builder(DATA_ACCESS_METRICS_KEY,"Data Access Metrics", Metric.ValueType.INT)
+          .setDescription("Ratio of the number of private fields to total number of fields")
+          .setDirection(Metric.DIRECTION_WORST)
+          .setQualitative(false)
+          .setDomain(CATEGORY_ENCAPSULATION)
+          .setBestValue(0.0)
+          .setOptimizedBestValue(true)
+          .create();
+
+  public static final String NUMBER_PRIVATE_FIELDS_KEY = "NPRIF";
+  public static final Metric<Integer> NUMBER_PRIVATE_FIELDS = new Metric.Builder(NUMBER_PRIVATE_FIELDS_KEY,"Number of Private Fields", Metric.ValueType.INT)
+          .setDescription("Number of private fields of an application or module")
+          .setDirection(Metric.DIRECTION_WORST)
+          .setQualitative(false)
+          .setDomain(CATEGORY_ENCAPSULATION)
+          .setBestValue(0.0)
+          .setOptimizedBestValue(true)
+          .create();
+
+  public static final String NUMBER_PRIVATE_METHODS_KEY = "NPRIM";
+  public static final Metric<Integer> NUMBER_PRIVATE_METHODS = new Metric.Builder(NUMBER_PRIVATE_METHODS_KEY,"Number of Private Methods", Metric.ValueType.INT)
+          .setDescription("Number of private functions of an application or module")
+          .setDirection(Metric.DIRECTION_WORST)
+          .setQualitative(false)
+          .setDomain(CATEGORY_ENCAPSULATION)
+          .setBestValue(0.0)
+          .setOptimizedBestValue(true)
+          .create();
 }
