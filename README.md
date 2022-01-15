@@ -1,8 +1,5 @@
 # R-Plugin
 
-
-
-
 Built on the [SonarQube Plugin Example](https://github.com/SonarSource/sonar-custom-plugin-example)
 
 Move plugin `.jar` file from `/target` to `sonarqube/extensions/plugins` and restart server.
