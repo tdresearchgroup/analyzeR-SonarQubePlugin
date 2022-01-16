@@ -22,6 +22,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+
+import org.sonarsource.plugins.rtechnicaldebt.measures.RProjectMetric;
+import org.sonarsource.plugins.rtechnicaldebt.measures.RFileMetric;
+
 public class RMetricsSensor implements Sensor {
     private static Logger sensorLogger = Loggers.get(RMetricsSensor.class);
 
@@ -39,88 +46,89 @@ public class RMetricsSensor implements Sensor {
         FileSystem fs = sensorContext.fileSystem();
 
         // Reading metrics
-        Optional<String> tdOutputProperty = sensorContext.config().get(RPlugin.PROPERTY_METRICS_FILE);
+        Optional<String> rscriptOutput = sensorContext.config().get(RPlugin.PROPERTY_METRICS_FILE);
+
+        RProjectMetric data ;
 
         // Skip missing entries
-        if (!tdOutputProperty.isPresent()){
-            sensorLogger.warn("TechDebt Metrics file is not found -> ",tdOutputProperty);
-            System.out.println("TechDebt Metrics file is not found -> "+tdOutputProperty);
+        if (!rscriptOutput.isPresent()){
+            sensorLogger.warn("TechDebt Metrics file is not found -> ",rscriptOutput);
+            //System.out.println("TechDebt Metrics file is not found -> "+rscriptOutput);
         }
 
-        else{
-            String metricfile = tdOutputProperty.get();
+        else {
+            String metricfile = rscriptOutput.get();
             List<String> filedata;
             try {
                 filedata = Files.readAllLines(Paths.get(metricfile));
 
+                data = parse(metricfile);
+                //System.out.println("Parsed Data " + data.toString());
+
             } catch (IOException e) {
-                sensorLogger.warn("Error Reading "+metricfile);
+                sensorLogger.warn("Error Reading " + metricfile);
                 sensorLogger.warn(e.getMessage());
                 e.printStackTrace();
                 return;
             }
-            System.out.println(filedata);
-            sensorLogger.info("Read td-output.json");
 
-            /*
-            String json = new String(filedata);
-            System.out.println(json);
-             */
 
+            ArrayList<InputFile> inputfiles = new ArrayList<>();
+            fs.inputFiles(fs.predicates().and(fs.predicates().hasType(InputFile.Type.MAIN), fs.predicates().hasLanguage(R.KEY)))
+                    .forEach(file -> {
+                        //countLines(sensorContext, file);
+                        updateMetrics(sensorContext, data, file);
+                        System.out.println("Processing File name " + file.toString());
+
+                        inputfiles.add(file);
+                    });
+            System.out.println(inputfiles);
         }
-
-        // TODO - See if there another way to get an overview tab working in sonarqube
-        // A lines of Code value which will get the overview tab working in sonarqube
-
-        ArrayList<InputFile> inputfiles = new ArrayList<>();
-        fs.inputFiles(fs.predicates().and(fs.predicates().hasType(InputFile.Type.MAIN),fs.predicates().hasLanguage(R.KEY)))
-                .forEach(file -> {
-                    //countLines(sensorContext, file);
-                    readMetrics(sensorContext, file);
-                    inputfiles.add(file);
-                });
-        System.out.println(inputfiles);
-
     }
 
-    public void countLines(SensorContext sensorContext, InputFile inputFile){
+
+
+    public RProjectMetric parse(String filename) {
+
+        Gson gson = new Gson();
+        String buf;
         try {
-            int numlines = inputFile.lines();
-            sensorContext.<Integer>newMeasure().withValue(numlines).forMetric(CoreMetrics.NCLOC).on(inputFile).save();
-        } catch (Exception e) {
-            sensorLogger.warn("Error in countLines, which is required to get a new tab in sonarqube "+ e.getMessage());
-            e.printStackTrace();
+            buf = Files.readString(Paths.get(filename));
+            RProjectMetric data = gson.fromJson(buf, RProjectMetric.class);
+            return data;
+
+        }catch (IOException e){
+                System.out.println("ERROR READING Metrics FILE CONTENTS");
+                e.printStackTrace();
         }
+        return new RProjectMetric();
+    }
+
+    // find the file pacific
+    public RFileMetric findFileMetric(RProjectMetric data,String  filename) {
+        for (RFileMetric fm:data.metrics) {
+            //System.out.println("Loop File name " + fm.filename);
+            if (fm.filename.equals(filename))
+                return fm;
+        }
+        return null;
     }
 
 
-    /*
+    public void updateMetrics(SensorContext sensorContext, RProjectMetric data,InputFile inputFile){
 
-        try (Stream<String> stream = Files.lines(path, StandardCharsets.UTF_8)) {
-        stream.forEach(System.out::println);
-    }
-        catch (IOException e) {
-        e.printStackTrace();
-    }
-
-     */
-    public void readMetrics(SensorContext sensorContext, InputFile inputFile){
-
-        try //(Scanner scanner = new Scanner(inputFile, StandardCharsets.UTF_8))
+        try
         {
-            /*
-            int [] values = new int [100];
-            int i = 0;
-            while(scanner.hasNextInt()) {
-                value[i++] = scanner.nextInt();
+            String filename = inputFile.toString();
+            RFileMetric fm = findFileMetric(data,filename);
+            if (fm != null) {
+                sensorContext.<Integer>newMeasure().withValue(fm.LOC).forMetric(RMetrics.LINES_OF_CODE).on(inputFile).save();
+                sensorContext.<Integer>newMeasure().withValue(fm.NMC).forMetric(RMetrics.NUMBER_METHOD_CALLS).on(inputFile).save();
             }
-
-             */
-            sensorContext.<Integer>newMeasure().withValue(100).forMetric(RMetrics.RTD_LOC_SIZE).on(inputFile).save();
-            sensorContext.<Integer>newMeasure().withValue(200).forMetric(RMetrics.RTD_NMC_SIZE).on(inputFile).save();
         } catch (Exception e) {
-            sensorLogger.warn("Error in readMetrics, which is required to get a new tab in sonarqube "+ e.getMessage());
+            sensorLogger.warn("Error in readMetrics, which is required to get the measures "+ e.getMessage());
             e.printStackTrace();
         }
     }
 }
+

@@ -43,48 +43,13 @@ public class RMetrics implements Metrics {
     .setDomain(CoreMetrics.DOMAIN_GENERAL)
     .create();
 
-  public static final Metric<Integer> RTD_LOC_SIZE = new Metric.Builder("rtd_loc", "R-TD LOC", Metric.ValueType.INT)
-          .setDescription("R-TD LOC")
-          .setDirection(Metric.DIRECTION_BETTER)
-          .setQualitative(false)
-          .setDomain(CoreMetrics.DOMAIN_GENERAL)
-          .create();
-
-
-  public static final Metric<Integer> RTD_LOC_SIZE_RATING = new Metric.Builder("rtd_size_rating", "R-TD lOC Rating", Metric.ValueType.RATING)
-          .setDescription("R-TD Rating based on LOC")
-          .setDirection(Metric.DIRECTION_BETTER)
-          .setQualitative(true)
-          .setDomain(CoreMetrics.DOMAIN_ISSUES)
-          .create();
-
-  public static final Metric<Integer> RTD_NMC_SIZE = new Metric.Builder("rtd_nmc", "R-TD NMC", Metric.ValueType.INT)
-          .setDescription("R-TD NMC")
-          .setDirection(Metric.DIRECTION_BETTER)
-          .setQualitative(false)
-          .setDomain("Custom R Technical Debt")
-          .create();
-
-  public static final Metric<Integer> RTD_NMCI_SIZE = new Metric.Builder("rtd_nmci", "R-TD NMCI", Metric.ValueType.INT)
-          .setDescription("R-TD NMCI ")
-          .setDirection(Metric.DIRECTION_BETTER)
-          .setQualitative(false)
-          .setDomain(CoreMetrics.DOMAIN_COMPLEXITY)
-          .create();
-
-
-
-  @Override
-  public List<Metric> getMetrics() {
-    return asList(FILENAME_SIZE, FILENAME_SIZE_RATING,RTD_LOC_SIZE,RTD_LOC_SIZE_RATING,RTD_NMC_SIZE,RTD_NMCI_SIZE);
-  }
 
   // Metric Categories
-  public static String CATEGORY_SIZE = "Size";
-  public static String CATEGORY_COMPLEXITY = "Complexity";
-  public static String CATEGORY_COUPLING = "Coupling Measures";
-  public static String CATEGORY_COHESION = "Cohesion";
-  public static String CATEGORY_ENCAPSULATION = "Encapsulation";
+  public static String CATEGORY_SIZE = "R Size";
+  public static String CATEGORY_COMPLEXITY = "R Complexity";
+  public static String CATEGORY_COUPLING = "R Coupling Measures";
+  public static String CATEGORY_COHESION = "R Cohesion";
+  public static String CATEGORY_ENCAPSULATION = "R Encapsulation";
 
   public static final String LINES_OF_CODE_KEY = "LOC";
   public static final Metric<Integer> LINES_OF_CODE = new Metric.Builder(LINES_OF_CODE_KEY, "Lines of Code", Metric.ValueType.INT)
@@ -265,4 +230,13 @@ public class RMetrics implements Metrics {
           .setBestValue(0.0)
           .setOptimizedBestValue(true)
           .create();
+
+
+
+  @Override
+  public List<Metric> getMetrics() {
+    //return asList(FILENAME_SIZE, FILENAME_SIZE_RATING,RTD_LOC_SIZE,RTD_LOC_SIZE_RATING,RTD_NMC_SIZE,RTD_NMCI_SIZE);
+    return asList(LINES_OF_CODE ,NUMBER_PUBLIC_METHODS , NUMBER_STATIC_FIELDS , NUMBER_METHOD_CALLS ,  NUMBER_METHOD_CALLS_INTERNAL , NUMBER_METHOD_CALLS_EXTERNAL ,WEIGHTED_METHODS_PER_CLASS ,
+            AVERAGE_METHOD_COMPLEXITY , RESPONSE_FOR_CLASS ,COUPLING_BETWEEN_OBJECTS ,AFFERENT_COUPLING , EFFERENT_COUPLING , MARTINS_INSTABILITY ,LACK_COHESION_METHODS , COHESION_AMONG_METHODS , DATA_ACCESS_METRICS , NUMBER_PRIVATE_FIELDS ,NUMBER_PRIVATE_METHODS);
+  }
 }
