@@ -8,3 +8,5 @@
 # 
 
 ../sonar-scanner/bin/sonar-scanner -Dsonar.login=admin -Dsonar.password=admin22
+
+/Users/pranav/sonar-scanner/bin/sonar-scanner -Dsonar.login=admin -Dsonar.password=admin22
