@@ -126,7 +126,7 @@ public class RMetricsSensor implements Sensor {
 
                 sensorContext.<Integer>newMeasure().withValue(fm.LOC).forMetric(RMetrics.LINES_OF_CODE).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NPM).forMetric(RMetrics.NUMBER_PRIVATE_METHODS).on(inputFile).save();
-                //sensorContext.<Integer>newMeasure().withValue(fm.NOF).forMetric(RMetrics.NUMBER_OF_FIELDS).on(inputFile).save();
+                sensorContext.<Integer>newMeasure().withValue(fm.NOF).forMetric(RMetrics.NUMBER_FIELDS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NSTAF).forMetric(RMetrics.NUMBER_STATIC_FIELDS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NMC).forMetric(RMetrics.NUMBER_METHOD_CALLS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NMCI).forMetric(RMetrics.NUMBER_METHOD_CALLS_INTERNAL).on(inputFile).save();
