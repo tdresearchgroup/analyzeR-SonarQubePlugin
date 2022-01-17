@@ -7,6 +7,4 @@
 # configure the sonarcanner conf/properties   as described here https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/
 # 
 
-#../sonar-scanner/bin/sonar-scanner -Dsonar.login=admin -Dsonar.password=admin22
-
-~/Users/pranav/sonar-scanner/bin/sonar-scanner -Dsonar.login=admin -Dsonar.password=admin22
+../sonar-scanner/bin/sonar-scanner -Dsonar.login=admin -Dsonar.password=admin22

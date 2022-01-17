@@ -4,11 +4,16 @@ import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.Sensor;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
+import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 import org.sonarsource.plugins.rtechnicaldebt.RPlugin;
 import org.sonarsource.plugins.rtechnicaldebt.languages.R;
 import org.sonar.api.batch.fs.FileSystem;
+import org.sonar.api.measures.Metrics;
+
+import java.util.Scanner;
+import java.nio.charset.StandardCharsets;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,6 +23,11 @@ import java.util.List;
 import java.util.Optional;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+
+import org.sonarsource.plugins.rtechnicaldebt.measures.RProjectMetric;
+import org.sonarsource.plugins.rtechnicaldebt.measures.RFileMetric;
 
 public class RMetricsSensor implements Sensor {
     private static Logger sensorLogger = Loggers.get(RMetricsSensor.class);
@@ -78,17 +88,18 @@ public class RMetricsSensor implements Sensor {
 
 
 
-    public RProjectMetric parse(String filename) {
+    public RProjectMetric parse(String  filename) {
 
         Gson gson = new Gson();
-        String buffer;
+
+        String buf;
         try {
-            buffer = Files.readString(Paths.get(filename));
-            RProjectMetric data = gson.fromJson(buffer, RProjectMetric.class);
+            buf = Files.readString(Paths.get(filename));
+            RProjectMetric data = gson.fromJson(buf, RProjectMetric.class);
             return data;
 
         }catch (IOException e){
-                System.out.println("ERROR READING Metrics FILE CONTENTS");
+                System.out.println("Error Reading Metrics File "+filename);
                 e.printStackTrace();
         }
         return new RProjectMetric();
@@ -98,24 +109,24 @@ public class RMetricsSensor implements Sensor {
     public RFileMetric findFileMetric(RProjectMetric data,String  filename) {
         for (RFileMetric fm:data.metrics) {
             //System.out.println("Loop File name " + fm.filename);
-            if (fm.filename.equals(filename))
+            if ( fm.filename.equals(filename))
                 return fm;
         }
-        return null;
+        return new RFileMetric();
     }
 
 
     public void updateMetrics(SensorContext sensorContext, RProjectMetric data,InputFile inputFile){
-
+        String filename = inputFile.toString();
         try
         {
-            String filename = inputFile.toString();
             RFileMetric fm = findFileMetric(data,filename);
+
             if (fm != null) {
 
                 sensorContext.<Integer>newMeasure().withValue(fm.LOC).forMetric(RMetrics.LINES_OF_CODE).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NPM).forMetric(RMetrics.NUMBER_PRIVATE_METHODS).on(inputFile).save();
-                sensorContext.<Integer>newMeasure().withValue(fm.NOF).forMetric(RMetrics.NUMBER_OF_FIELDS).on(inputFile).save();
+                //sensorContext.<Integer>newMeasure().withValue(fm.NOF).forMetric(RMetrics.NUMBER_OF_FIELDS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NSTAF).forMetric(RMetrics.NUMBER_STATIC_FIELDS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NMC).forMetric(RMetrics.NUMBER_METHOD_CALLS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NMCI).forMetric(RMetrics.NUMBER_METHOD_CALLS_INTERNAL).on(inputFile).save();
@@ -129,13 +140,13 @@ public class RMetricsSensor implements Sensor {
                 sensorContext.<Float>newMeasure().withValue(fm.MI).forMetric(RMetrics.MARTINS_INSTABILITY).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.LCOM).forMetric(RMetrics.LACK_OF_COHESION_IN_METHODS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.CAM).forMetric(RMetrics.COHESION_AMONG_METHODS).on(inputFile).save();
-                sensorContext.<Integer>newMeasure().withValue(fm.DAM).forMetric(RMetrics.DATA_ACCESS_METRICS).on(inputFile).save();
+                sensorContext.<Float>newMeasure().withValue(fm.DAM).forMetric(RMetrics.DATA_ACCESS_METRICS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NPRIF).forMetric(RMetrics.NUMBER_PRIVATE_FIELDS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NPRIM).forMetric(RMetrics.NUMBER_PRIVATE_METHODS).on(inputFile).save();
             }
         } catch (Exception e) {
-            sensorLogger.warn("Error in readMetrics, which is required to get the measures "+ e.getMessage());
-            e.printStackTrace();
+            sensorLogger.warn("Error in readMetrics, which is required to get the measures for "+ filename + " " + e.getMessage());
+            //e.printStackTrace();
         }
     }
 }

@@ -3,13 +3,14 @@
 Metrics
 
  */
+
 package org.sonarsource.plugins.rtechnicaldebt.measures;
 
 public class RFileMetric {
     String filename;
 
-    int LOC,NPM,NOF,NSTAF,NMC,NMCI,NMCE,WMC,RFC,CBO,Ca,Ce,LCOM,CAM,DAM,NPRIF,NPRIM;
-    float AMC,MI;
+    int LOC,NPM,NOF,NSTAF,NMC,NMCI,NMCE,WMC,RFC,CBO,Ca,Ce,LCOM,CAM,NPRIF,NPRIM;
+    Float DAM,AMC,MI;
 
     @Override
     public String toString() {
