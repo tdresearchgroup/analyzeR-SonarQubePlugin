@@ -2,7 +2,6 @@
 
 
 # Make sure sonar-scanner is installed locally . Latest versions from https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/
-
 # configure the Project properties file   'sonar-project.properties' as described here https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/
 # configure the sonarcanner conf/properties   as described here https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/
 # 
