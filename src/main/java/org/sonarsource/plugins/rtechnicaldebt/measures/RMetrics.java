@@ -18,31 +18,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package org.sonarsource.plugins.rtechnicaldebt.measures;
-
-import java.io.IOException;
 import java.util.List;
-import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metrics;
 
 import static java.util.Arrays.asList;
 
 public class RMetrics implements Metrics {
-
-  public static final Metric<Integer> FILENAME_SIZE = new Metric.Builder("filename_size", "R TD Filename Size", Metric.ValueType.INT)
-    .setDescription("Number of characters of file names")
-    .setDirection(Metric.DIRECTION_BETTER)
-    .setQualitative(false)
-    .setDomain(CoreMetrics.DOMAIN_GENERAL)
-    .create();
-
-  public static final Metric<Integer> FILENAME_SIZE_RATING = new Metric.Builder("filename_size_rating", "R TD Filename Size Rating", Metric.ValueType.RATING)
-    .setDescription("Rating based on size of file names")
-    .setDirection(Metric.DIRECTION_BETTER)
-    .setQualitative(true)
-    .setDomain(CoreMetrics.DOMAIN_GENERAL)
-    .create();
-
 
   // Metric Categories
   public static String CATEGORY_SIZE = "R Size";

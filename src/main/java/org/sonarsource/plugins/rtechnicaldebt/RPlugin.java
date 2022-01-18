@@ -35,8 +35,6 @@ import static java.util.Arrays.asList;
  */
 public class RPlugin implements Plugin {
 
-  public String ouputdefault = "testfile.json";
-
   public static final String PROPERTY_FILE_SUFFIXES = "sonar.r.file.suffixes";
 
   public static final String PROPERTY_METRICS_FILE = "sonar.r.tdebt.output";
@@ -45,9 +43,6 @@ public class RPlugin implements Plugin {
 
   @Override
   public void define(Context context) {
-    // tutorial on hooks
-    // http://docs.sonarqube.org/display/DEV/Adding+Hooks
-    // context.addExtensions(PostJobInScanner.class, DisplayQualityGateStatus.class);
 
 
     // tutorial on languages

@@ -32,7 +32,6 @@ import org.sonarsource.plugins.rtechnicaldebt.measures.RFileMetric;
 public class RMetricsSensor implements Sensor {
     private static Logger sensorLogger = Loggers.get(RMetricsSensor.class);
 
-
     @Override
     public void describe(SensorDescriptor sensorDescriptor) {
         sensorLogger.info("Describe()");
