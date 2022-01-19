@@ -32,6 +32,7 @@ import org.sonarsource.plugins.rtechnicaldebt.measures.RFileMetric;
 public class RMetricsSensor implements Sensor {
     private static Logger sensorLogger = Loggers.get(RMetricsSensor.class);
 
+
     @Override
     public void describe(SensorDescriptor sensorDescriptor) {
         sensorLogger.info("Describe()");
@@ -123,25 +124,42 @@ public class RMetricsSensor implements Sensor {
 
             if (fm != null) {
 
+                //
+                System.out.println("Metrics for file " + filename + " " + fm.toString());
+                // SET Size Metrics
                 sensorContext.<Integer>newMeasure().withValue(fm.LOC).forMetric(RMetrics.LINES_OF_CODE).on(inputFile).save();
-                sensorContext.<Integer>newMeasure().withValue(fm.NPM).forMetric(RMetrics.NUMBER_PRIVATE_METHODS).on(inputFile).save();
-                sensorContext.<Integer>newMeasure().withValue(fm.NOF).forMetric(RMetrics.NUMBER_FIELDS).on(inputFile).save();
-                sensorContext.<Integer>newMeasure().withValue(fm.NSTAF).forMetric(RMetrics.NUMBER_STATIC_FIELDS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NMC).forMetric(RMetrics.NUMBER_METHOD_CALLS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NMCI).forMetric(RMetrics.NUMBER_METHOD_CALLS_INTERNAL).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NMCE).forMetric(RMetrics.NUMBER_METHOD_CALLS_EXTERNAL).on(inputFile).save();
-                sensorContext.<Integer>newMeasure().withValue(fm.WMC).forMetric(RMetrics.WEIGHTED_METHODS_PER_CLASS).on(inputFile).save();
-                sensorContext.<Float>newMeasure().withValue(fm.AMC).forMetric(RMetrics.AVERAGE_METHOD_COMPLEXITY).on(inputFile).save();
-                sensorContext.<Integer>newMeasure().withValue(fm.RFC).forMetric(RMetrics.RESPONSE_FOR_CLASS).on(inputFile).save();
+                sensorContext.<Integer>newMeasure().withValue(fm.NPM).forMetric(RMetrics.NUMBER_PUBLIC_METHODS).on(inputFile).save();
+                sensorContext.<Integer>newMeasure().withValue(fm.NOF).forMetric(RMetrics.NUMBER_PUBLIC_FIELDS).on(inputFile).save();
+
+
+                // Set Encapsulation Metrics
+
+                sensorContext.<Float>newMeasure().withValue(fm.DAM).forMetric(RMetrics.DATA_ACCESS_METRICS).on(inputFile).save();
+                sensorContext.<Integer>newMeasure().withValue(fm.NPRIF).forMetric(RMetrics.NUMBER_PRIVATE_FIELDS).on(inputFile).save();
+                sensorContext.<Integer>newMeasure().withValue(fm.NPRIM).forMetric(RMetrics.NUMBER_PRIVATE_METHODS).on(inputFile).save();
+
+
+                // Set the Coupling Metrics
                 sensorContext.<Integer>newMeasure().withValue(fm.CBO).forMetric(RMetrics.COUPLING_BETWEEN_OBJECTS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.Ca).forMetric(RMetrics.AFFERENT_COUPLING).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.Ce).forMetric(RMetrics.EFFERENT_COUPLING).on(inputFile).save();
                 sensorContext.<Float>newMeasure().withValue(fm.MI).forMetric(RMetrics.MARTINS_INSTABILITY).on(inputFile).save();
+
+                // Set the Complexity Metrics
+                sensorContext.<Integer>newMeasure().withValue(fm.WMC).forMetric(RMetrics.WEIGHTED_METHODS_PER_CLASS).on(inputFile).save();
+                sensorContext.<Float>newMeasure().withValue(fm.AMC).forMetric(RMetrics.AVERAGE_METHOD_COMPLEXITY).on(inputFile).save();
+
+                // Set the Complexity Metrics
                 sensorContext.<Integer>newMeasure().withValue(fm.LCOM).forMetric(RMetrics.LACK_OF_COHESION_IN_METHODS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.CAM).forMetric(RMetrics.COHESION_AMONG_METHODS).on(inputFile).save();
-                sensorContext.<Float>newMeasure().withValue(fm.DAM).forMetric(RMetrics.DATA_ACCESS_METRICS).on(inputFile).save();
-                sensorContext.<Integer>newMeasure().withValue(fm.NPRIF).forMetric(RMetrics.NUMBER_PRIVATE_FIELDS).on(inputFile).save();
-                sensorContext.<Integer>newMeasure().withValue(fm.NPRIM).forMetric(RMetrics.NUMBER_PRIVATE_METHODS).on(inputFile).save();
+
+                // Not available or Not Sure !
+                sensorContext.<Integer>newMeasure().withValue(fm.NSTAF).forMetric(RMetrics.NUMBER_STATIC_FIELDS).on(inputFile).save();
+                sensorContext.<Integer>newMeasure().withValue(fm.RFC).forMetric(RMetrics.RESPONSE_FOR_CLASS).on(inputFile).save();
+
             }
         } catch (Exception e) {
             sensorLogger.warn("Error in readMetrics, which is required to get the measures for "+ filename + " " + e.getMessage());

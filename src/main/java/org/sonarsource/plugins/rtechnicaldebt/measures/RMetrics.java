@@ -18,7 +18,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package org.sonarsource.plugins.rtechnicaldebt.measures;
+
+import java.io.IOException;
 import java.util.List;
+import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metrics;
 
@@ -27,11 +30,11 @@ import static java.util.Arrays.asList;
 public class RMetrics implements Metrics {
 
   // Metric Categories
-  public static String CATEGORY_SIZE = "R Size";
-  public static String CATEGORY_COMPLEXITY = "R Complexity";
+  public static String CATEGORY_SIZE = "R Size Measures";
+  public static String CATEGORY_COMPLEXITY = "R Complexity Measures";
   public static String CATEGORY_COUPLING = "R Coupling Measures";
-  public static String CATEGORY_COHESION = "R Cohesion";
-  public static String CATEGORY_ENCAPSULATION = "R Encapsulation";
+  public static String CATEGORY_COHESION = "R Cohesion Measures";
+  public static String CATEGORY_ENCAPSULATION = "R Encapsulation Measures";
 
   public static final String LINES_OF_CODE_KEY = "LOC";
   public static final Metric<Integer> LINES_OF_CODE = new Metric.Builder(LINES_OF_CODE_KEY, "Lines of Code", Metric.ValueType.INT)
@@ -53,8 +56,8 @@ public class RMetrics implements Metrics {
           .setOptimizedBestValue(true)
           .create();
 
-  public static final String NUMBER_FIELDS_KEY = "NPM";
-  public static final Metric<Integer> NUMBER_FIELDS = new Metric.Builder(NUMBER_FIELDS_KEY, "Number of Fields", Metric.ValueType.INT)
+  public static final String NUMBER_PUBLIC_FIELDS_KEY = "NPF";
+  public static final Metric<Integer> NUMBER_PUBLIC_FIELDS = new Metric.Builder(NUMBER_PUBLIC_FIELDS_KEY, "Number of Public Fields", Metric.ValueType.INT)
           .setDescription("Number of public fields in an application or module")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)
@@ -62,6 +65,7 @@ public class RMetrics implements Metrics {
           .setBestValue(0.0)
           .setOptimizedBestValue(true)
           .create();
+
 
   public static final String NUMBER_STATIC_FIELDS_KEY = "NSTAF";
   public static final Metric<Integer> NUMBER_STATIC_FIELDS = new Metric.Builder(NUMBER_STATIC_FIELDS_KEY, "Number of Static Fields", Metric.ValueType.INT)
@@ -193,15 +197,6 @@ public class RMetrics implements Metrics {
           .setOptimizedBestValue(true)
           .create();
 
-  public static final String DATA_ACCESS_METRICS_KEY = "DAM";
-  public static final Metric<Float> DATA_ACCESS_METRICS = new Metric.Builder(DATA_ACCESS_METRICS_KEY,"Data Access Metrics", Metric.ValueType.INT)
-          .setDescription("Ratio of the number of private fields to total number of fields")
-          .setDirection(Metric.DIRECTION_WORST)
-          .setQualitative(false)
-          .setDomain(CATEGORY_ENCAPSULATION)
-          .setBestValue(0.0)
-          .setOptimizedBestValue(true)
-          .create();
 
   public static final String NUMBER_PRIVATE_FIELDS_KEY = "NPRIF";
   public static final Metric<Integer> NUMBER_PRIVATE_FIELDS = new Metric.Builder(NUMBER_PRIVATE_FIELDS_KEY,"Number of Private Fields", Metric.ValueType.INT)
@@ -223,12 +218,20 @@ public class RMetrics implements Metrics {
           .setOptimizedBestValue(true)
           .create();
 
+  public static final String DATA_ACCESS_METRICS_KEY = "DAM";
+  public static final Metric<Float> DATA_ACCESS_METRICS = new Metric.Builder(DATA_ACCESS_METRICS_KEY,"Data Access Metrics", Metric.ValueType.INT)
+          .setDescription("Ratio of the number of private fields to total number of fields")
+          .setDirection(Metric.DIRECTION_WORST)
+          .setQualitative(false)
+          .setDomain(CATEGORY_ENCAPSULATION)
+          .setBestValue(0.0)
+          .setOptimizedBestValue(true)
+          .create();
 
 
   @Override
   public List<Metric> getMetrics() {
-    //return asList(FILENAME_SIZE, FILENAME_SIZE_RATING,RTD_LOC_SIZE,RTD_LOC_SIZE_RATING,RTD_NMC_SIZE,RTD_NMCI_SIZE);
-    return asList(LINES_OF_CODE ,NUMBER_PUBLIC_METHODS , NUMBER_STATIC_FIELDS , NUMBER_METHOD_CALLS ,  NUMBER_METHOD_CALLS_INTERNAL , NUMBER_METHOD_CALLS_EXTERNAL ,WEIGHTED_METHODS_PER_CLASS ,
+    return asList(LINES_OF_CODE ,NUMBER_PUBLIC_METHODS , NUMBER_PUBLIC_FIELDS , NUMBER_METHOD_CALLS ,  NUMBER_METHOD_CALLS_INTERNAL , NUMBER_METHOD_CALLS_EXTERNAL ,WEIGHTED_METHODS_PER_CLASS ,
             AVERAGE_METHOD_COMPLEXITY , RESPONSE_FOR_CLASS ,COUPLING_BETWEEN_OBJECTS ,AFFERENT_COUPLING , EFFERENT_COUPLING , MARTINS_INSTABILITY ,LACK_OF_COHESION_IN_METHODS , COHESION_AMONG_METHODS , DATA_ACCESS_METRICS , NUMBER_PRIVATE_FIELDS ,NUMBER_PRIVATE_METHODS);
   }
 }

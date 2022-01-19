@@ -25,6 +25,8 @@ import org.sonarsource.plugins.rtechnicaldebt.languages.R;
 import org.sonarsource.plugins.rtechnicaldebt.languages.RQualityProfile;
 import org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics;
 import org.sonarsource.plugins.rtechnicaldebt.measures.RMetricsSensor;
+import org.sonarsource.plugins.rtechnicaldebt.measures.ComputeLOCAverage;
+import org.sonarsource.plugins.rtechnicaldebt.measures.ComputeNPRIFAverage;
 import org.sonarsource.plugins.rtechnicaldebt.rules.RRulesDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.web.RPluginPageDefinition;
 
@@ -35,6 +37,8 @@ import static java.util.Arrays.asList;
  */
 public class RPlugin implements Plugin {
 
+  public String ouputdefault = "testfile.json";
+
   public static final String PROPERTY_FILE_SUFFIXES = "sonar.r.file.suffixes";
 
   public static final String PROPERTY_METRICS_FILE = "sonar.r.tdebt.output";
@@ -43,6 +47,9 @@ public class RPlugin implements Plugin {
 
   @Override
   public void define(Context context) {
+    // tutorial on hooks
+    // http://docs.sonarqube.org/display/DEV/Adding+Hooks
+    // context.addExtensions(PostJobInScanner.class, DisplayQualityGateStatus.class);
 
 
     // tutorial on languages
@@ -50,6 +57,7 @@ public class RPlugin implements Plugin {
 
     // tutorial on measures
     context.addExtensions(RMetrics.class, RMetricsSensor.class);
+    context.addExtensions(ComputeLOCAverage.class,ComputeNPRIFAverage.class);
 
     // tutorial on rules
     context.addExtension(RRulesDefinition.class);
