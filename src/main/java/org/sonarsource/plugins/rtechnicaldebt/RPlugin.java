@@ -23,10 +23,7 @@ import org.sonar.api.Plugin;
 import org.sonar.api.config.PropertyDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.languages.R;
 import org.sonarsource.plugins.rtechnicaldebt.languages.RQualityProfile;
-import org.sonarsource.plugins.rtechnicaldebt.measures.ComputeLOCAverage;
-import org.sonarsource.plugins.rtechnicaldebt.measures.ComputeNPRIFAverage;
-import org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics;
-import org.sonarsource.plugins.rtechnicaldebt.measures.RMetricsSensor;
+import org.sonarsource.plugins.rtechnicaldebt.measures.*;
 import org.sonarsource.plugins.rtechnicaldebt.rules.RRulesDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.web.RPluginPageDefinition;
 
@@ -52,7 +49,7 @@ public class RPlugin implements Plugin {
     // tutorial on measures
     context.addExtensions(RMetrics.class, RMetricsSensor.class);
     // TODO - Implement for all metrics/findd another way.
-    context.addExtensions(ComputeLOCAverage.class,ComputeNPRIFAverage.class);
+    context.addExtensions(ComputeLOCAverage.class, computeNPMAverage.class, computeNPRIMaverage.class,ComputeNPRIFAverage.class);
 
 
     // TODO - Might need to clean thi
