@@ -50,8 +50,7 @@ public class RPlugin implements Plugin {
     // tutorial on measures
     context.addExtensions(RMetrics.class, RMetricsSensor.class);
 
-
-    // TODO - Implement for all metrics/find another way.
+    // Average Metric for all metrics
     context.addExtensions(ComputeAverageLOC.class,ComputeAverageNPM.class,ComputeAverageNPF.class,ComputeAverageNSTAF.class,ComputeAverageNMC.class,ComputeAverageNMCI.class,ComputeAverageNMCE.class,ComputeAverageWMC.class,ComputeAverageAMC.class,ComputeAverageRFC.class,ComputeAverageCBO.class,ComputeAverageCA.class,ComputeAverageCE.class,ComputeAverageMI.class,ComputeAverageLCOM.class, ComputeAverageCAM.class,ComputeAverageNPRIF.class,ComputeAverageNPRIM.class,ComputeAverageDAM.class);
 
 
