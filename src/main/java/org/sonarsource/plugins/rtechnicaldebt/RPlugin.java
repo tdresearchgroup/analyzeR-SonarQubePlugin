@@ -54,13 +54,15 @@ public class RPlugin implements Plugin {
     // TODO - Implement for all metrics/findd another way.
     context.addExtensions(ComputeLOCAverage.class,ComputeNPRIFAverage.class);
 
+
+    // TODO - Might need to clean thi
     // tutorial on rules
     context.addExtension(RRulesDefinition.class);
 
     // tutorial on web extensions
     context.addExtension(RPluginPageDefinition.class);
 
-    // Adding MetricsFile Output
+    // Adding Metrics File Output
     // Adding R option on left side of admin page
 
     context.addExtensions(asList(
