@@ -2,5 +2,5 @@ projectKey=org.sonarsource.plugins.rtechnicaldebt:sample-project
 serverUrl=http://localhost:9000
 serverVersion=8.9.6.50800
 dashboardUrl=http://localhost:9000/dashboard?id=org.sonarsource.plugins.rtechnicaldebt%3Asample-project
-ceTaskId=AX5qUJHaLAG5zPTZAVkB
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AX5qUJHaLAG5zPTZAVkB
+ceTaskId=AX5yviIgiVaO-6PaOo9s
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX5yviIgiVaO-6PaOo9s

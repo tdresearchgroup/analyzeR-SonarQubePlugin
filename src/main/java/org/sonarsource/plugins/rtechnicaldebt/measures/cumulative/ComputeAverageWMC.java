@@ -1,3 +1,4 @@
+
 /*
  * Example Plugin for SonarQube
  * Copyright (C) 2009-2020 SonarSource SA
@@ -17,21 +18,21 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.plugins.rtechnicaldebt.measures;
+package org.sonarsource.plugins.rtechnicaldebt.measures.cumulative;
 
 import org.sonar.api.ce.measure.Component;
 
 import org.sonar.api.ce.measure.Measure;
 import org.sonar.api.ce.measure.MeasureComputer;
 
-import static org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics.LINES_OF_CODE;
+import static org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics.WEIGHTED_METHODS_PER_CLASS;
 
-public class ComputeLOCAverage implements MeasureComputer {
+public class ComputeAverageWMC implements MeasureComputer {
 
   @Override
   public MeasureComputerDefinition define(MeasureComputerDefinitionContext def) {
     return def.newDefinitionBuilder()
-      .setOutputMetrics(LINES_OF_CODE.key())
+      .setOutputMetrics(WEIGHTED_METHODS_PER_CLASS.key())
       .build();
   }
 
@@ -42,12 +43,12 @@ public class ComputeLOCAverage implements MeasureComputer {
     if (context.getComponent().getType() != Component.Type.FILE) {
       int sum = 0;
       int count = 0;
-      for (Measure child : context.getChildrenMeasures(LINES_OF_CODE.key())) {
+      for (Measure child : context.getChildrenMeasures(WEIGHTED_METHODS_PER_CLASS.key())) {
         sum += child.getIntValue();
         count++;
       }
       int average = count == 0 ? 0 : sum / count;
-      context.addMeasure(LINES_OF_CODE.key(), average);
+      context.addMeasure(WEIGHTED_METHODS_PER_CLASS.key(), average);
     }
   }
 }

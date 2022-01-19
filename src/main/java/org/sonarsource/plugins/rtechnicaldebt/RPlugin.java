@@ -24,6 +24,7 @@ import org.sonar.api.config.PropertyDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.languages.R;
 import org.sonarsource.plugins.rtechnicaldebt.languages.RQualityProfile;
 import org.sonarsource.plugins.rtechnicaldebt.measures.*;
+import org.sonarsource.plugins.rtechnicaldebt.measures.cumulative.*;
 import org.sonarsource.plugins.rtechnicaldebt.rules.RRulesDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.web.RPluginPageDefinition;
 
@@ -48,11 +49,13 @@ public class RPlugin implements Plugin {
 
     // tutorial on measures
     context.addExtensions(RMetrics.class, RMetricsSensor.class);
-    // TODO - Implement for all metrics/findd another way.
-    context.addExtensions(ComputeLOCAverage.class, computeNPMAverage.class, computeNPRIMaverage.class,ComputeNPRIFAverage.class);
 
 
-    // TODO - Might need to clean thi
+    // TODO - Implement for all metrics/find another way.
+    context.addExtensions(ComputeAverageLOC.class,ComputeAverageNPM.class,ComputeAverageNPF.class,ComputeAverageNSTAF.class,ComputeAverageNMC.class,ComputeAverageNMCI.class,ComputeAverageNMCE.class,ComputeAverageWMC.class,ComputeAverageAMC.class,ComputeAverageRFC.class,ComputeAverageCBO.class,ComputeAverageCA.class,ComputeAverageCE.class,ComputeAverageMI.class,ComputeAverageLCOM.class, ComputeAverageCAM.class,ComputeAverageNPRIF.class,ComputeAverageNPRIM.class,ComputeAverageDAM.class);
+
+
+    // TODO - Might need to clean this up
     // tutorial on rules
     context.addExtension(RRulesDefinition.class);
 

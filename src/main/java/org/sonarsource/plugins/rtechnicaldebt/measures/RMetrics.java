@@ -19,9 +19,8 @@
  */
 package org.sonarsource.plugins.rtechnicaldebt.measures;
 
-import java.io.IOException;
 import java.util.List;
-import org.sonar.api.measures.CoreMetrics;
+
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metrics;
 
@@ -178,7 +177,7 @@ public class RMetrics implements Metrics {
           .create();
 
   public static final String LACK_COHESION_METHODS_KEY = "LCOM";
-  public static final Metric<Integer> LACK_OF_COHESION_IN_METHODS = new Metric.Builder(LACK_COHESION_METHODS_KEY,"Lack of Cohesion in Methods", Metric.ValueType.INT)
+  public static final Metric<Integer> LACK_COHESION_METHODS = new Metric.Builder(LACK_COHESION_METHODS_KEY,"Lack of Cohesion in Methods", Metric.ValueType.INT)
           .setDescription("Difference between the number of function pairs without and with common non static fields")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)
@@ -232,6 +231,6 @@ public class RMetrics implements Metrics {
   @Override
   public List<Metric> getMetrics() {
     return asList(LINES_OF_CODE ,NUMBER_PUBLIC_METHODS , NUMBER_PUBLIC_FIELDS , NUMBER_METHOD_CALLS ,  NUMBER_METHOD_CALLS_INTERNAL , NUMBER_METHOD_CALLS_EXTERNAL ,WEIGHTED_METHODS_PER_CLASS ,
-            AVERAGE_METHOD_COMPLEXITY , RESPONSE_FOR_CLASS ,COUPLING_BETWEEN_OBJECTS ,AFFERENT_COUPLING , EFFERENT_COUPLING , MARTINS_INSTABILITY ,LACK_OF_COHESION_IN_METHODS , COHESION_AMONG_METHODS , DATA_ACCESS_METRICS , NUMBER_PRIVATE_FIELDS ,NUMBER_PRIVATE_METHODS);
+            AVERAGE_METHOD_COMPLEXITY , RESPONSE_FOR_CLASS ,COUPLING_BETWEEN_OBJECTS ,AFFERENT_COUPLING , EFFERENT_COUPLING , MARTINS_INSTABILITY , LACK_COHESION_METHODS, COHESION_AMONG_METHODS , DATA_ACCESS_METRICS , NUMBER_PRIVATE_FIELDS ,NUMBER_PRIVATE_METHODS);
   }
 }

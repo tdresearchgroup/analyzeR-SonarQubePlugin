@@ -4,16 +4,11 @@ import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.Sensor;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
-import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 import org.sonarsource.plugins.rtechnicaldebt.RPlugin;
 import org.sonarsource.plugins.rtechnicaldebt.languages.R;
 import org.sonar.api.batch.fs.FileSystem;
-import org.sonar.api.measures.Metrics;
-
-import java.util.Scanner;
-import java.nio.charset.StandardCharsets;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,14 +18,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-
-import org.sonarsource.plugins.rtechnicaldebt.measures.RProjectMetric;
-import org.sonarsource.plugins.rtechnicaldebt.measures.RFileMetric;
 
 public class RMetricsSensor implements Sensor {
-    private static Logger sensorLogger = Loggers.get(RMetricsSensor.class);
+    private static final Logger sensorLogger = Loggers.get(RMetricsSensor.class);
 
 
     @Override
@@ -153,7 +143,7 @@ public class RMetricsSensor implements Sensor {
                 sensorContext.<Float>newMeasure().withValue(fm.AMC).forMetric(RMetrics.AVERAGE_METHOD_COMPLEXITY).on(inputFile).save();
 
                 // Set the Complexity Metrics
-                sensorContext.<Integer>newMeasure().withValue(fm.LCOM).forMetric(RMetrics.LACK_OF_COHESION_IN_METHODS).on(inputFile).save();
+                sensorContext.<Integer>newMeasure().withValue(fm.LCOM).forMetric(RMetrics.LACK_COHESION_METHODS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.CAM).forMetric(RMetrics.COHESION_AMONG_METHODS).on(inputFile).save();
 
                 // Not available or Not Sure !
