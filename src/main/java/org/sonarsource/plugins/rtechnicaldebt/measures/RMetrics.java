@@ -65,7 +65,6 @@ public class RMetrics implements Metrics {
           .setOptimizedBestValue(true)
           .create();
 
-
   public static final String NUMBER_STATIC_FIELDS_KEY = "NSTAF";
   public static final Metric<Integer> NUMBER_STATIC_FIELDS = new Metric.Builder(NUMBER_STATIC_FIELDS_KEY, "Number of Static Fields", Metric.ValueType.INT)
           .setDescription("Number of static fields in an application or module")
@@ -218,7 +217,7 @@ public class RMetrics implements Metrics {
           .create();
 
   public static final String DATA_ACCESS_METRICS_KEY = "DAM";
-  public static final Metric<Float> DATA_ACCESS_METRICS = new Metric.Builder(DATA_ACCESS_METRICS_KEY,"Data Access Metrics", Metric.ValueType.INT)
+  public static final Metric<Float> DATA_ACCESS_METRICS = new Metric.Builder(DATA_ACCESS_METRICS_KEY,"Data Access Metrics", Metric.ValueType.FLOAT)
           .setDescription("Ratio of the number of private fields to total number of fields")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)

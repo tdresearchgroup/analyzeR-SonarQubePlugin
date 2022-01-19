@@ -5,7 +5,7 @@
   <groupId>org.sonarsource.plugins.rtechnicaldebt</groupId>
   <artifactId>sonar-r-techdebt-plugin</artifactId>
   <packaging>sonar-plugin</packaging>
-  <version>0.0.7</version>
+  <version>0.0.8</version>
 
   <name>SonarQube R Technical Debt Plugin</name>
   <description>Example of Plugin for SonarQube: Foo Language, FooLint, Custom Metrics and MeasureComputers</description>
