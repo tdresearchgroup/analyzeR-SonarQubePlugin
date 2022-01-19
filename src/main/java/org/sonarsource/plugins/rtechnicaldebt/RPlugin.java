@@ -57,6 +57,7 @@ public class RPlugin implements Plugin {
 
     // tutorial on measures
     context.addExtensions(RMetrics.class, RMetricsSensor.class);
+    // TODO - Implement for all metrics/findd another way.
     context.addExtensions(ComputeLOCAverage.class,ComputeNPRIFAverage.class);
 
     // tutorial on rules
