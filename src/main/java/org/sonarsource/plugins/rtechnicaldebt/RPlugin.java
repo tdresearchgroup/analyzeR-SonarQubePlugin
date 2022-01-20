@@ -50,13 +50,17 @@ public class RPlugin implements Plugin {
     // tutorial on measures
     context.addExtensions(RMetrics.class, RMetricsSensor.class);
 
+
+    // TODO -> Clean this up
     // Average Metric for all metrics
-    context.addExtensions(ComputeAverageLOC.class,ComputeAverageNPM.class,ComputeAverageNPF.class,ComputeAverageNMC.class,ComputeAverageNMCI.class,ComputeAverageNMCE.class,ComputeAverageWMC.class,ComputeAverageRFC.class,ComputeAverageCBO.class,ComputeAverageCA.class,ComputeAverageCE.class,ComputeAverageLCOM.class, ComputeAverageCAM.class,ComputeAverageNPRIF.class,ComputeAverageNPRIM.class);
+    context.addExtensions(ComputeAverageLOC.class,ComputeAverageNPM.class,ComputeAverageNPF.class,
+            ComputeAverageNMC.class,ComputeAverageNMCI.class,ComputeAverageNMCE.class,ComputeAverageWMC.class,
+            ComputeAverageRFC.class,ComputeAverageCBO.class,ComputeAverageCA.class,ComputeAverageCE.class,
+            ComputeAverageLCOM.class, ComputeAverageCAM.class,ComputeAverageNPRIF.class,ComputeAverageNPRIM.class,
+            ComputeAverageAMC.class,ComputeAverageMI.class,ComputeAverageDAM.class);
 
     // TODO - Int <-> Double <-> FLoat issues with ComputeAverageAMC.class,ComputeAverageMI.class,ComputeAverageDAM.class
 
-
-    // TODO - Might need to clean this up
     // tutorial on rules
     context.addExtension(RRulesDefinition.class);
 

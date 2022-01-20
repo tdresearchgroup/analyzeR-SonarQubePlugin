@@ -41,13 +41,13 @@ public class ComputeAverageAMC implements MeasureComputer {
     // measure is already defined on files by {@link SetSizeOnFilesSensor}
     // in scanner stack
     if (context.getComponent().getType() != Component.Type.FILE) {
-      int sum = 0;
+      float sum = 0;
       int count = 0;
       for (Measure child : context.getChildrenMeasures(AVERAGE_METHOD_COMPLEXITY.key())) {
         sum += child.getIntValue();
         count++;
       }
-      int average = count == 0 ? 0 : sum / count;
+      float average = count == 0 ? 0 : sum / count;
       context.addMeasure(AVERAGE_METHOD_COMPLEXITY.key(), average);
     }
   }

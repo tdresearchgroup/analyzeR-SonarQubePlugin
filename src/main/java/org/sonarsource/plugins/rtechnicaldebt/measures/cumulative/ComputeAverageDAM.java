@@ -21,7 +21,6 @@
 package org.sonarsource.plugins.rtechnicaldebt.measures.cumulative;
 
 import org.sonar.api.ce.measure.Component;
-
 import org.sonar.api.ce.measure.Measure;
 import org.sonar.api.ce.measure.MeasureComputer;
 
@@ -41,13 +40,13 @@ public class ComputeAverageDAM implements MeasureComputer {
     // measure is already defined on files by {@link SetSizeOnFilesSensor}
     // in scanner stack
     if (context.getComponent().getType() != Component.Type.FILE) {
-      int sum = 0;
+      float sum = 0;
       int count = 0;
       for (Measure child : context.getChildrenMeasures(DATA_ACCESS_METRICS.key())) {
         sum += child.getIntValue();
         count++;
       }
-      int average = count == 0 ? 0 : sum / count;
+      float average = count == 0 ? 0 : sum / count;
       context.addMeasure(DATA_ACCESS_METRICS.key(), average);
     }
   }
