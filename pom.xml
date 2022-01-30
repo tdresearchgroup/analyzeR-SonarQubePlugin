@@ -8,7 +8,7 @@
   <version>0.0.8</version>
 
   <name>SonarQube R Technical Debt Plugin</name>
-  <description>Example of Plugin for SonarQube: Foo Language, FooLint, Custom Metrics and MeasureComputers</description>
+  <description>Plugin to calculate and display technical-debt metrics for R files.</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
