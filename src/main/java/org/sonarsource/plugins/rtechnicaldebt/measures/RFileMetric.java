@@ -3,7 +3,10 @@
 Metrics
 
  */
-
+/**
+ * @author Pranav Chandramouli, University of Saskatchewan
+ * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
+ */
 package org.sonarsource.plugins.rtechnicaldebt.measures;
 
 public class RFileMetric {
