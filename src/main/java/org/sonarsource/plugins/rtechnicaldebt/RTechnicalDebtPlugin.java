@@ -1,4 +1,3 @@
-
 /**
  * @author Pranav Chandramouli, University of Saskatchewan
  * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
@@ -8,7 +7,6 @@ package org.sonarsource.plugins.rtechnicaldebt;
 import org.sonar.api.Plugin;
 import org.sonar.api.config.PropertyDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.languages.RLanguageDefinition;
-import org.sonarsource.plugins.rtechnicaldebt.removethis.RQualityProfile;
 import org.sonarsource.plugins.rtechnicaldebt.measures.*;
 import org.sonarsource.plugins.rtechnicaldebt.measures.cumulative.*;
 import org.sonarsource.plugins.rtechnicaldebt.removethis.rules.RRulesDefinition;
@@ -47,20 +45,20 @@ public class RTechnicalDebtPlugin implements Plugin {
     context.addExtension(RPluginPageDefinition.class);
 
     // Adding Metrics File Output
-    // Adding RLanguageDefinition option on left side of admin page
+    // Adding R option on left side of admin page
 
     context.addExtensions(asList(
             PropertyDefinition.builder(PROPERTY_FILE_SUFFIXES)
-                    .name("Suffixes RLanguageDefinition")
-                    .description("Comma-separated list of suffixes for RLanguageDefinition language")
-                    .category("RLanguageDefinition")
-                    .defaultValue(".RLanguageDefinition")
+                    .name("Suffixes for R")
+                    .description("Comma-separated list of suffixes for R")
+                    .category("R")
+                    .defaultValue(".R")
                     .multiValues(true)
                     .build(),
             PropertyDefinition.builder(PROPERTY_METRICS_FILE)
-                    .name("RLanguageDefinition Technical Debt script Output Filename")
-                    .description("Path and filename to RLanguageDefinition Technical Debt script output in JSON format")
-                    .category("RLanguageDefinition")
+                    .name("R Technical Debt script Output Filename")
+                    .description("Path and filename to R Technical Debt script output in JSON format")
+                    .category("R")
                     .defaultValue(FILENAME)
                     .build()
     ));

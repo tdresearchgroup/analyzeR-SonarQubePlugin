@@ -12,7 +12,7 @@ echo "$(find . -type f -name "${PROJECTPATH}/*.R")"
 echo "Running the R-Scanner for R files in $PROJECTPATH"
 echo "${PROJECTPATH}/*.R"
 
-python3 RScanner.py "${PROJECTPATH}/*.R"
+python3 RScanner2.py "${PROJECTPATH}/*.R"
 
 echo "Running Sonar-Scanner now."
 # "${SONARSCANNERDIR}/bin/sonar-scanner" "-Dsonar.login=admin -Dsonar.password=admin22"

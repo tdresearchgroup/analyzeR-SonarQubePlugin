@@ -10,11 +10,11 @@ import org.sonar.api.resources.AbstractLanguage;
 import org.sonarsource.plugins.rtechnicaldebt.RTechnicalDebtPlugin;
 
 /**
- * Definition of RLanguageDefinition for the plugin.
+ * Definition of R for the plugin.
  */
 public final class RLanguageDefinition extends AbstractLanguage {
 
-  public static final String NAME = "RLanguageDefinition";
+  public static final String NAME = "R";
   public static final String KEY = "r";
 
   private final Configuration config;
