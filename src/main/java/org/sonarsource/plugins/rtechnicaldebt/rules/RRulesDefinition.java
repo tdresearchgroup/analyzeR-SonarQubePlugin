@@ -26,6 +26,7 @@ import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 import org.sonarsource.plugins.rtechnicaldebt.languages.R;
 
 public class RRulesDefinition implements RulesDefinition {
+  // TODO remove?
 
   private static final String PATH_TO_RULES_XML = "/example/r-rules.xml";
 

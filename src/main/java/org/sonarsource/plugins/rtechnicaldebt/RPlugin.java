@@ -44,10 +44,8 @@ public class RPlugin implements Plugin {
   @Override
   public void define(Context context) {
 
-    // tutorial on languages
     context.addExtensions(R.class, RQualityProfile.class);
 
-    // tutorial on measures
     context.addExtensions(RMetrics.class, RMetricsSensor.class);
 
 
@@ -61,10 +59,8 @@ public class RPlugin implements Plugin {
 
     // TODO - Int <-> Double <-> FLoat issues with ComputeAverageAMC.class,ComputeAverageMI.class,ComputeAverageDAM.class
 
-    // tutorial on rules
     context.addExtension(RRulesDefinition.class);
 
-    // tutorial on web extensions
     context.addExtension(RPluginPageDefinition.class);
 
     // Adding Metrics File Output
