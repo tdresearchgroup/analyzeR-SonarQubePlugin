@@ -31,7 +31,7 @@ public class RMetricsSensor implements Sensor {
     @Override
     public void describe(SensorDescriptor sensorDescriptor) {
         sensorLogger.info("Describe()");
-        sensorDescriptor.name("Technical Debt Sensor for the RLanguageDefinition Language").onlyOnLanguage(RLanguageDefinition.KEY);
+        sensorDescriptor.name("Technical Debt Sensor for the R Language").onlyOnLanguage(RLanguageDefinition.KEY);
     }
 
     @Override
