@@ -7,7 +7,7 @@ package org.sonarsource.plugins.rtechnicaldebt;
 
 import org.sonar.api.Plugin;
 import org.sonar.api.config.PropertyDefinition;
-import org.sonarsource.plugins.rtechnicaldebt.languages.R;
+import org.sonarsource.plugins.rtechnicaldebt.languages.RLanguageDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.removethis.RQualityProfile;
 import org.sonarsource.plugins.rtechnicaldebt.measures.*;
 import org.sonarsource.plugins.rtechnicaldebt.measures.cumulative.*;
@@ -27,7 +27,7 @@ public class RTechnicalDebtPlugin implements Plugin {
   @Override
   public void define(Context context) {
 
-    context.addExtensions(R.class, RQualityProfile.class);
+    context.addExtensions(RLanguageDefinition.class, RQualityProfile.class);
 
     context.addExtensions(RMetrics.class, RMetricsSensor.class);
 
@@ -47,20 +47,20 @@ public class RTechnicalDebtPlugin implements Plugin {
     context.addExtension(RPluginPageDefinition.class);
 
     // Adding Metrics File Output
-    // Adding R option on left side of admin page
+    // Adding RLanguageDefinition option on left side of admin page
 
     context.addExtensions(asList(
             PropertyDefinition.builder(PROPERTY_FILE_SUFFIXES)
-                    .name("Suffixes R")
-                    .description("Comma-separated list of suffixes for R language")
-                    .category("R")
-                    .defaultValue(".R")
+                    .name("Suffixes RLanguageDefinition")
+                    .description("Comma-separated list of suffixes for RLanguageDefinition language")
+                    .category("RLanguageDefinition")
+                    .defaultValue(".RLanguageDefinition")
                     .multiValues(true)
                     .build(),
             PropertyDefinition.builder(PROPERTY_METRICS_FILE)
-                    .name("R Technical Debt script Output Filename")
-                    .description("Path and filename to R Technical Debt script output in JSON format")
-                    .category("R")
+                    .name("RLanguageDefinition Technical Debt script Output Filename")
+                    .description("Path and filename to RLanguageDefinition Technical Debt script output in JSON format")
+                    .category("RLanguageDefinition")
                     .defaultValue(FILENAME)
                     .build()
     ));

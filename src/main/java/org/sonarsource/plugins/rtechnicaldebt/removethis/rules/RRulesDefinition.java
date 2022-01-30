@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
-import org.sonarsource.plugins.rtechnicaldebt.languages.R;
+import org.sonarsource.plugins.rtechnicaldebt.languages.RLanguageDefinition;
 
 public class RRulesDefinition implements RulesDefinition {
   // TODO - Can this be removed? Not being used, as we don't have rules.
@@ -19,8 +19,8 @@ public class RRulesDefinition implements RulesDefinition {
   protected static final String KEY = "rtechdebt";
   protected static final String NAME = "RTechDebt";
 
-  public static final String REPO_KEY = R.KEY + "-" + KEY;
-  protected static final String REPO_NAME = R.KEY + "-" + NAME;
+  public static final String REPO_KEY = RLanguageDefinition.KEY + "-" + KEY;
+  protected static final String REPO_NAME = RLanguageDefinition.KEY + "-" + NAME;
 
   protected String rulesDefinitionFilePath() {
     return PATH_TO_RULES_XML;
@@ -39,7 +39,7 @@ public class RRulesDefinition implements RulesDefinition {
 
   @Override
   public void define(Context context) {
-    defineRulesForLanguage(context, REPO_KEY, REPO_NAME, R.KEY);
+    defineRulesForLanguage(context, REPO_KEY, REPO_NAME, RLanguageDefinition.KEY);
   }
 
 }

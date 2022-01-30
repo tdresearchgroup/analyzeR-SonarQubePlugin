@@ -14,11 +14,11 @@ import static java.util.Arrays.asList;
 public class RMetrics implements Metrics {
 
   // Metric Categories
-  public static String CATEGORY_SIZE = "R Size Measures";
-  public static String CATEGORY_COMPLEXITY = "R Complexity Measures";
-  public static String CATEGORY_COUPLING = "R Coupling Measures";
-  public static String CATEGORY_COHESION = "R Cohesion Measures";
-  public static String CATEGORY_ENCAPSULATION = "R Encapsulation Measures";
+  public static String CATEGORY_SIZE = "RLanguageDefinition Size Measures";
+  public static String CATEGORY_COMPLEXITY = "RLanguageDefinition Complexity Measures";
+  public static String CATEGORY_COUPLING = "RLanguageDefinition Coupling Measures";
+  public static String CATEGORY_COHESION = "RLanguageDefinition Cohesion Measures";
+  public static String CATEGORY_ENCAPSULATION = "RLanguageDefinition Encapsulation Measures";
 
   public static final String LINES_OF_CODE_KEY = "LOC";
   public static final Metric<Integer> LINES_OF_CODE = new Metric.Builder(LINES_OF_CODE_KEY, "Lines of Code", Metric.ValueType.INT)

@@ -1,7 +1,7 @@
 package org.sonarsource.plugins.rtechnicaldebt.removethis;
 
 import org.sonar.api.server.profile.BuiltInQualityProfilesDefinition;
-import org.sonarsource.plugins.rtechnicaldebt.languages.R;
+import org.sonarsource.plugins.rtechnicaldebt.languages.RLanguageDefinition;
 
 import static org.sonarsource.plugins.rtechnicaldebt.removethis.rules.RRulesDefinition.REPO_KEY;
 
@@ -13,7 +13,7 @@ public final class RQualityProfile implements BuiltInQualityProfilesDefinition {
   // TODO - Do we need this? For LintR not for metrics??
   @Override
   public void define(Context context) {
-    NewBuiltInQualityProfile profile = context.createBuiltInQualityProfile("R Technical Debt Rules and Metrics", R.KEY);
+    NewBuiltInQualityProfile profile = context.createBuiltInQualityProfile("RLanguageDefinition Technical Debt Rules and Metrics", RLanguageDefinition.KEY);
     profile.setDefault(true);
 
     NewBuiltInActiveRule rule1 = profile.activateRule(REPO_KEY, "R1");

@@ -6,7 +6,7 @@ node/
 node_modules/
 .idea/
 sonar-example-plugin.iml
-Resources/local-testing-resources
+Resources/local-testing-resources/
 Testing-Directory
 
 # Eclipse

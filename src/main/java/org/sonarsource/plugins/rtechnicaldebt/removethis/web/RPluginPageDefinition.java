@@ -29,7 +29,7 @@ public class RPluginPageDefinition implements PageDefinition {
   public void define(Context context) {
     context
             .addPage(Page.builder("example/global_page")
-                    .setName("R Technical Debt : Metrics Dashboard")
+                    .setName("RLanguageDefinition Technical Debt : Metrics Dashboard")
                     .build())
             .addPage(Page.builder("example/admin_page")
                     .setName("Admin Page using React JS")

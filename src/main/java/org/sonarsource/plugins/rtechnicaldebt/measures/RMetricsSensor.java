@@ -12,7 +12,7 @@ import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 import org.sonarsource.plugins.rtechnicaldebt.RTechnicalDebtPlugin;
-import org.sonarsource.plugins.rtechnicaldebt.languages.R;
+import org.sonarsource.plugins.rtechnicaldebt.languages.RLanguageDefinition;
 import org.sonar.api.batch.fs.FileSystem;
 
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class RMetricsSensor implements Sensor {
     @Override
     public void describe(SensorDescriptor sensorDescriptor) {
         sensorLogger.info("Describe()");
-        sensorDescriptor.name("Technical Debt Sensor for the R Language").onlyOnLanguage(R.KEY);
+        sensorDescriptor.name("Technical Debt Sensor for the RLanguageDefinition Language").onlyOnLanguage(RLanguageDefinition.KEY);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class RMetricsSensor implements Sensor {
 
 
             ArrayList<InputFile> inputfiles = new ArrayList<>();
-            fs.inputFiles(fs.predicates().and(fs.predicates().hasType(InputFile.Type.MAIN), fs.predicates().hasLanguage(R.KEY)))
+            fs.inputFiles(fs.predicates().and(fs.predicates().hasType(InputFile.Type.MAIN), fs.predicates().hasLanguage(RLanguageDefinition.KEY)))
                     .forEach(file -> {
                         //countLines(sensorContext, file);
                         updateMetrics(sensorContext, data, file);
