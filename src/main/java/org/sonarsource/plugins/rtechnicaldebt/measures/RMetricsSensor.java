@@ -11,7 +11,7 @@ import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
-import org.sonarsource.plugins.rtechnicaldebt.RPlugin;
+import org.sonarsource.plugins.rtechnicaldebt.RTechnicalDebtPlugin;
 import org.sonarsource.plugins.rtechnicaldebt.languages.R;
 import org.sonar.api.batch.fs.FileSystem;
 
@@ -41,7 +41,7 @@ public class RMetricsSensor implements Sensor {
         FileSystem fs = sensorContext.fileSystem();
 
         // Reading metrics
-        Optional<String> rscriptOutput = sensorContext.config().get(RPlugin.PROPERTY_METRICS_FILE);
+        Optional<String> rscriptOutput = sensorContext.config().get(RTechnicalDebtPlugin.PROPERTY_METRICS_FILE);
 
         RProjectMetric data ;
 

@@ -64,7 +64,7 @@
         <extensions>true</extensions>
         <configuration>
           <pluginKey>example</pluginKey>
-          <pluginClass>org.sonarsource.plugins.rtechnicaldebt.RPlugin</pluginClass>
+          <pluginClass>org.sonarsource.plugins.rtechnicaldebt.RTechnicalDebtPlugin</pluginClass>
         </configuration>
       </plugin>
       <plugin>

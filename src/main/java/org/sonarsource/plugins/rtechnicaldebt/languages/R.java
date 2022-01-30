@@ -7,7 +7,7 @@ package org.sonarsource.plugins.rtechnicaldebt.languages;
 
 import org.sonar.api.config.Configuration;
 import org.sonar.api.resources.AbstractLanguage;
-import org.sonarsource.plugins.rtechnicaldebt.RPlugin;
+import org.sonarsource.plugins.rtechnicaldebt.RTechnicalDebtPlugin;
 
 /**
  * Definition of R for the plugin.
@@ -26,7 +26,7 @@ public final class R extends AbstractLanguage {
 
   @Override
   public String[] getFileSuffixes() {
-    return config.getStringArray(RPlugin.PROPERTY_FILE_SUFFIXES);
+    return config.getStringArray(RTechnicalDebtPlugin.PROPERTY_FILE_SUFFIXES);
   }
 
 }

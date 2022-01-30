@@ -16,10 +16,7 @@ import org.sonarsource.plugins.rtechnicaldebt.removethis.web.RPluginPageDefiniti
 
 import static java.util.Arrays.asList;
 
-/**
- * This class is the entry point for all extensions. It is referenced in pom.xml.
- */
-public class RPlugin implements Plugin {
+public class RTechnicalDebtPlugin implements Plugin {
 
   public static final String PROPERTY_FILE_SUFFIXES = "sonar.r.file.suffixes";
 

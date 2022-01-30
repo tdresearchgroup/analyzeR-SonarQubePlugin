@@ -26,14 +26,14 @@ public class ComputeAverageMI implements MeasureComputer {
     // measure is already defined on files by {@link SetSizeOnFilesSensor}
     // in scanner stack
     if (context.getComponent().getType() != Component.Type.FILE) {
-      float sum = 0;
+      double sum = 0;
       int count = 0;
       for (Measure child : context.getChildrenMeasures(MARTINS_INSTABILITY.key())) {
-        sum += child.getIntValue();
+        sum += child.getDoubleValue();
         count++;
       }
-      float average = count == 0 ? 0 : sum / count;
-      context.addMeasure(MARTINS_INSTABILITY.key(), average);
+      double average = count == 0 ? 0 : sum / count;
+      context.addMeasure(MARTINS_INSTABILITY.key(), (float) average);
     }
   }
 }
