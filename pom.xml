@@ -5,7 +5,7 @@
   <groupId>org.sonarsource.plugins.rtechnicaldebt</groupId>
   <artifactId>sonar-r-techdebt-plugin</artifactId>
   <packaging>sonar-plugin</packaging>
-  <version>0.0.8</version>
+  <version>0.0.10</version>
 
   <name>SonarQube R Technical Debt Plugin</name>
   <description>Plugin to calculate and display technical-debt metrics for R files.</description>
