@@ -11,6 +11,9 @@ import org.sonar.api.measures.Metrics;
 
 import static java.util.Arrays.asList;
 
+/**
+ * Definition of all metrics for R.
+ */
 public class RMetrics implements Metrics {
 
   public static String CATEGORY_SIZE = "R Size Measures";
@@ -159,7 +162,6 @@ public class RMetrics implements Metrics {
           .setOptimizedBestValue(true)
           .create();
 
-
   public static final String NUMBER_PRIVATE_FIELDS_KEY = "NPRIF";
   public static final Metric<Integer> NUMBER_PRIVATE_FIELDS = new Metric.Builder(NUMBER_PRIVATE_FIELDS_KEY,"Number of Private Fields", Metric.ValueType.INT)
           .setDescription("Number of private fields of an application or module")
@@ -198,5 +200,10 @@ public class RMetrics implements Metrics {
   public List<Metric> getMetrics() {
     return asList(LINES_OF_CODE ,NUMBER_PUBLIC_METHODS , NUMBER_PUBLIC_FIELDS , NUMBER_METHOD_CALLS ,  NUMBER_METHOD_CALLS_INTERNAL , NUMBER_METHOD_CALLS_EXTERNAL ,WEIGHTED_METHODS_PER_CLASS ,
             AVERAGE_METHOD_COMPLEXITY , RESPONSE_FOR_CLASS ,COUPLING_BETWEEN_OBJECTS ,AFFERENT_COUPLING , EFFERENT_COUPLING , MARTINS_INSTABILITY , LACK_COHESION_METHODS, DATA_ACCESS_METRICS , NUMBER_PRIVATE_FIELDS ,NUMBER_PRIVATE_METHODS);
+  }
+
+  @Override
+  public String toString() {
+    return super.toString();
   }
 }
