@@ -12,8 +12,16 @@ import org.sonar.api.ce.measure.MeasureComputer;
 
 import static org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics.NUMBER_METHOD_CALLS_INTERNAL;
 
+/**
+ * Computes Cumulative Number of Internal Method Calls
+ */
 public class ComputeAverageNMCI implements MeasureComputer {
 
+  /**
+   * Initializes the NMCI Metric for Project-Wide Metrics
+   * @param def Instance of a MetricsComputerDefiniion Context
+   * @return The Metric Definition
+   */
   @Override
   public MeasureComputerDefinition define(MeasureComputerDefinitionContext def) {
     return def.newDefinitionBuilder()
@@ -21,6 +29,10 @@ public class ComputeAverageNMCI implements MeasureComputer {
       .build();
   }
 
+  /**
+   * Computes the cumulative NMCI metric.
+   * @param context MeasureComputerContext object. The cumulative metric gets added to this.
+   */
   @Override
   public void compute(MeasureComputerContext context) {
     // measure is already defined on files by {@link SetSizeOnFilesSensor}
