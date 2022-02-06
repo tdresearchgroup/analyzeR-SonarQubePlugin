@@ -7,8 +7,8 @@ package org.sonarsource.plugins.rtechnicaldebt.measures;
 public class RFileMetric {
     String filename;
     // Defining all the file based metrics relevant to this project
-    int LOC,NPM,NOF,NMC,NMCI,NMCE,WMC,RFC,CBO,Ca,Ce,LCOM,CAM,NPRIF,NPRIM;
-    Float DAM,AMC,MI;
+    int LOC,NPM,NOF,NMC,NMCI,NMCE,WMC,RFC,NPRIF,NPRIM;
+    Float DAM,AMC,MI,CBO,Ca,Ce,LCOM;
 
     @Override
     public String toString() {
@@ -26,7 +26,6 @@ public class RFileMetric {
                 ", Ca=" + Ca +
                 ", Ce=" + Ce +
                 ", LCOM=" + LCOM +
-                ", CAM=" + CAM +
                 ", DAM=" + DAM +
                 ", NPRIF=" + NPRIF +
                 ", NPRIM=" + NPRIM +

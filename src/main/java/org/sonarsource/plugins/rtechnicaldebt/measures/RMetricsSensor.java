@@ -148,9 +148,9 @@ public class RMetricsSensor implements Sensor {
 
 
                 // Set the Coupling Metrics
-                sensorContext.<Integer>newMeasure().withValue(fm.CBO).forMetric(RMetrics.COUPLING_BETWEEN_OBJECTS).on(inputFile).save();
-                sensorContext.<Integer>newMeasure().withValue(fm.Ca).forMetric(RMetrics.AFFERENT_COUPLING).on(inputFile).save();
-                sensorContext.<Integer>newMeasure().withValue(fm.Ce).forMetric(RMetrics.EFFERENT_COUPLING).on(inputFile).save();
+                sensorContext.<Float>newMeasure().withValue(fm.CBO).forMetric(RMetrics.COUPLING_BETWEEN_OBJECTS).on(inputFile).save();
+                sensorContext.<Float>newMeasure().withValue(fm.Ca).forMetric(RMetrics.AFFERENT_COUPLING).on(inputFile).save();
+                sensorContext.<Float>newMeasure().withValue(fm.Ce).forMetric(RMetrics.EFFERENT_COUPLING).on(inputFile).save();
                 sensorContext.<Float>newMeasure().withValue(fm.MI).forMetric(RMetrics.MARTINS_INSTABILITY).on(inputFile).save();
 
                 // Set the Complexity Metrics
@@ -158,7 +158,7 @@ public class RMetricsSensor implements Sensor {
                 sensorContext.<Float>newMeasure().withValue(fm.AMC).forMetric(RMetrics.AVERAGE_METHOD_COMPLEXITY).on(inputFile).save();
 
                 // Set the Complexity Metrics
-                sensorContext.<Integer>newMeasure().withValue(fm.LCOM).forMetric(RMetrics.LACK_COHESION_METHODS).on(inputFile).save();
+                sensorContext.<Float>newMeasure().withValue(fm.LCOM).forMetric(RMetrics.LACK_COHESION_METHODS).on(inputFile).save();
 
                 // Not available or Not Sure !
                 sensorContext.<Integer>newMeasure().withValue(fm.RFC).forMetric(RMetrics.RESPONSE_FOR_CLASS).on(inputFile).save();

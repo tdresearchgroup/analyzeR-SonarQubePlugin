@@ -110,7 +110,7 @@ public class RMetrics implements Metrics {
           .create();
 
   public static final String COUPLING_BETWEEN_OBJECTS_KEY = "CBO";
-  public static final Metric<Integer> COUPLING_BETWEEN_OBJECTS = new Metric.Builder(COUPLING_BETWEEN_OBJECTS_KEY,"Coupling Between Object Classes", Metric.ValueType.INT)
+  public static final Metric<Float> COUPLING_BETWEEN_OBJECTS = new Metric.Builder(COUPLING_BETWEEN_OBJECTS_KEY,"Coupling Between Object Classes", Metric.ValueType.FLOAT)
           .setDescription("Number of other modules or packages that an application or module is coupled too")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)
@@ -120,7 +120,7 @@ public class RMetrics implements Metrics {
           .create();
 
   public static final String AFFERENT_COUPLING_KEY = "CA";
-  public static final Metric<Integer> AFFERENT_COUPLING = new Metric.Builder(AFFERENT_COUPLING_KEY,"Afferent Coupling", Metric.ValueType.INT)
+  public static final Metric<Float> AFFERENT_COUPLING = new Metric.Builder(AFFERENT_COUPLING_KEY,"Afferent Coupling", Metric.ValueType.FLOAT)
           .setDescription("Measure of how many other applications use the specific application or module")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)
@@ -130,7 +130,7 @@ public class RMetrics implements Metrics {
           .create();
 
   public static final String EFFERENT_COUPLING_KEY = "CE";
-  public static final Metric<Integer> EFFERENT_COUPLING = new Metric.Builder(EFFERENT_COUPLING_KEY,"Efferent Coupling", Metric.ValueType.INT)
+  public static final Metric<Float> EFFERENT_COUPLING = new Metric.Builder(EFFERENT_COUPLING_KEY,"Efferent Coupling", Metric.ValueType.FLOAT)
           .setDescription("Measure of how many other modules or packages are used by the specific application or module")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)
@@ -150,7 +150,7 @@ public class RMetrics implements Metrics {
           .create();
 
   public static final String LACK_COHESION_METHODS_KEY = "LCOM";
-  public static final Metric<Integer> LACK_COHESION_METHODS = new Metric.Builder(LACK_COHESION_METHODS_KEY,"Lack of Cohesion in Methods", Metric.ValueType.INT)
+  public static final Metric<Float> LACK_COHESION_METHODS = new Metric.Builder(LACK_COHESION_METHODS_KEY,"Lack of Cohesion in Methods", Metric.ValueType.FLOAT)
           .setDescription("Difference between the number of function pairs without and with common non static fields")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)
