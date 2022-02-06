@@ -8,8 +8,11 @@ node_modules/
 sonar-example-plugin.iml
 Resources/local-testing-resources/
 Testing-Directory
+JavaDoc/
 
 # Eclipse
 .classpath
 .project
 .settings/
+
+

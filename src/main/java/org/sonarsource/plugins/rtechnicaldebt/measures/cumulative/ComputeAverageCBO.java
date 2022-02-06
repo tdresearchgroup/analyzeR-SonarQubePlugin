@@ -12,8 +12,16 @@ import org.sonar.api.ce.measure.MeasureComputer;
 
 import static org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics.COUPLING_BETWEEN_OBJECTS;
 
+/**
+ * Computes Cumulative Coupling Between Objects
+ */
 public class ComputeAverageCBO implements MeasureComputer {
 
+  /**
+   * Initializes the CBO Metric for Project-Wide Metrics
+   * @param def Instance of a MetricsComputerDefiniion Context
+   * @return The Metric Definition
+   */
   @Override
   public MeasureComputerDefinition define(MeasureComputerDefinitionContext def) {
     return def.newDefinitionBuilder()
@@ -21,6 +29,10 @@ public class ComputeAverageCBO implements MeasureComputer {
       .build();
   }
 
+  /**
+   * Computes the cumulative CBO metric.
+   * @param context MeasureComputerContext object. The cumulative metric gets added to this.
+   */
   @Override
   public void compute(MeasureComputerContext context) {
     // measure is already defined on files by {@link SetSizeOnFilesSensor}

@@ -11,8 +11,16 @@ import org.sonar.api.ce.measure.MeasureComputer;
 
 import static org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics.DATA_ACCESS_METRICS;
 
+/**
+ * Computes Cumulative Data Access Metrics
+ */
 public class ComputeAverageDAM implements MeasureComputer {
 
+  /**
+   * Initializes the DAM Metric for Project-Wide Metrics
+   * @param def Instance of a MetricsComputerDefiniion Context
+   * @return The Metric Definition
+   */
   @Override
   public MeasureComputerDefinition define(MeasureComputerDefinitionContext def) {
     return def.newDefinitionBuilder()
@@ -20,6 +28,10 @@ public class ComputeAverageDAM implements MeasureComputer {
       .build();
   }
 
+  /**
+   * Computes the cumulative DAM metric.
+   * @param context MeasureComputerContext object. The cumulative metric gets added to this.
+   */
   @Override
   public void compute(MeasureComputerContext context) {
     // measure is already defined on files by {@link SetSizeOnFilesSensor}
