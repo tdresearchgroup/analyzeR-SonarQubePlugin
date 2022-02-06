@@ -11,9 +11,16 @@ import org.sonar.api.ce.measure.Measure;
 import org.sonar.api.ce.measure.MeasureComputer;
 
 import static org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics.NUMBER_METHOD_CALLS;
-
+/**
+ * Computes Cumulative Number of Method Calls
+ */
 public class ComputeAverageNMC implements MeasureComputer {
 
+  /**
+   * Initializes the NMC Metric for Project-Wide Metrics
+   * @param def Instance of a MetricsComputerDefiniion Context
+   * @return The Metric Definition
+   */
   @Override
   public MeasureComputerDefinition define(MeasureComputerDefinitionContext def) {
     return def.newDefinitionBuilder()
@@ -21,6 +28,10 @@ public class ComputeAverageNMC implements MeasureComputer {
       .build();
   }
 
+  /**
+   * Computes the cumulative NMC metric.
+   * @param context MeasureComputerContext object. The cumulative metric gets added to this.
+   */
   @Override
   public void compute(MeasureComputerContext context) {
     // measure is already defined on files by {@link SetSizeOnFilesSensor}
