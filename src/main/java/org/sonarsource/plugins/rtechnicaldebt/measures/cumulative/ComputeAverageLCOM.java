@@ -25,14 +25,14 @@ public class ComputeAverageLCOM implements MeasureComputer {
     // measure is already defined on files by {@link SetSizeOnFilesSensor}
     // in scanner stack
     if (context.getComponent().getType() != Component.Type.FILE) {
-      int sum = 0;
+      double sum = 0;
       int count = 0;
       for (Measure child : context.getChildrenMeasures(LACK_COHESION_METHODS.key())) {
         sum += child.getIntValue();
         count++;
       }
-      int average = count == 0 ? 0 : sum / count;
-      context.addMeasure(LACK_COHESION_METHODS.key(), average);
+      double average = count == 0 ? 0 : sum / count;
+      context.addMeasure(LACK_COHESION_METHODS.key(),(float) average);
     }
   }
 }

@@ -26,14 +26,14 @@ public class ComputeAverageCBO implements MeasureComputer {
     // measure is already defined on files by {@link SetSizeOnFilesSensor}
     // in scanner stack
     if (context.getComponent().getType() != Component.Type.FILE) {
-      int sum = 0;
+      double sum = 0;
       int count = 0;
       for (Measure child : context.getChildrenMeasures(COUPLING_BETWEEN_OBJECTS.key())) {
         sum += child.getIntValue();
         count++;
       }
-      int average = count == 0 ? 0 : sum / count;
-      context.addMeasure(COUPLING_BETWEEN_OBJECTS.key(), average);
+      double average = count == 0 ? 0 : sum / count;
+      context.addMeasure(COUPLING_BETWEEN_OBJECTS.key(),(float) average);
     }
   }
 }
