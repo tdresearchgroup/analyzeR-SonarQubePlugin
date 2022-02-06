@@ -162,7 +162,6 @@ public class RMetricsSensor implements Sensor {
                 sensorContext.<Integer>newMeasure().withValue(fm.CAM).forMetric(RMetrics.COHESION_AMONG_METHODS).on(inputFile).save();
 
                 // Not available or Not Sure !
-                sensorContext.<Integer>newMeasure().withValue(fm.NSTAF).forMetric(RMetrics.NUMBER_STATIC_FIELDS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.RFC).forMetric(RMetrics.RESPONSE_FOR_CLASS).on(inputFile).save();
 
             }

@@ -49,16 +49,6 @@ public class RMetrics implements Metrics {
           .setOptimizedBestValue(true)
           .create();
 
-  public static final String NUMBER_STATIC_FIELDS_KEY = "NSTAF";
-  public static final Metric<Integer> NUMBER_STATIC_FIELDS = new Metric.Builder(NUMBER_STATIC_FIELDS_KEY, "Number of Static Fields", Metric.ValueType.INT)
-          .setDescription("Number of static fields in an application or module")
-          .setDirection(Metric.DIRECTION_WORST)
-          .setQualitative(false)
-          .setDomain(CATEGORY_SIZE)
-          .setBestValue(0.0)
-          .setOptimizedBestValue(true)
-          .create();
-
   public static final String NUMBER_METHOD_CALLS_KEY = "NMC";
   public static final Metric<Integer> NUMBER_METHOD_CALLS = new Metric.Builder(NUMBER_METHOD_CALLS_KEY,"Number of Method Calls", Metric.ValueType.INT)
           .setDescription("Number of function invocations")
