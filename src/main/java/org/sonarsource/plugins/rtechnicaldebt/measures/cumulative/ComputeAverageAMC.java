@@ -13,8 +13,17 @@ import org.sonar.api.ce.measure.MeasureComputer;
 
 import static org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics.AVERAGE_METHOD_COMPLEXITY;
 
+/**
+ * Computes Average Method Complexity for Project Wide Metrics
+ */
+
 public class ComputeAverageAMC implements MeasureComputer {
 
+  /**
+   * Initializes the AMC Metric for Project-Wide Metrics
+   * @param def Instance of a MetricsComputerDefiniion Context
+   * @return Definition for AMC.
+   */
   @Override
   public MeasureComputerDefinition define(MeasureComputerDefinitionContext def) {
     return def.newDefinitionBuilder()
@@ -22,6 +31,10 @@ public class ComputeAverageAMC implements MeasureComputer {
       .build();
   }
 
+  /**
+   * Computes the AMC metric.
+   * @param context MeasureComputerContext object. The AMC average gets added to this.
+   */
   @Override
   public void compute(MeasureComputerContext context) {
     // measure is already defined on files by {@link SetSizeOnFilesSensor}
