@@ -22,15 +22,15 @@ public class RFileMetric {
                 ", NMCE=" + NMCE +
                 ", WMC=" + WMC +
                 ", RFC=" + RFC +
+                ", NPRIF=" + NPRIF +
+                ", NPRIM=" + NPRIM +
+                ", DAM=" + DAM +
+                ", AMC=" + AMC +
+                ", MI=" + MI +
                 ", CBO=" + CBO +
                 ", Ca=" + Ca +
                 ", Ce=" + Ce +
                 ", LCOM=" + LCOM +
-                ", DAM=" + DAM +
-                ", NPRIF=" + NPRIF +
-                ", NPRIM=" + NPRIM +
-                ", AMC=" + AMC +
-                ", MI=" + MI +
                 '}';
     }
 }
