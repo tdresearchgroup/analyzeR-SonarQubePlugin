@@ -159,7 +159,6 @@ public class RMetricsSensor implements Sensor {
 
                 // Set the Complexity Metrics
                 sensorContext.<Integer>newMeasure().withValue(fm.LCOM).forMetric(RMetrics.LACK_COHESION_METHODS).on(inputFile).save();
-                sensorContext.<Integer>newMeasure().withValue(fm.CAM).forMetric(RMetrics.COHESION_AMONG_METHODS).on(inputFile).save();
 
                 // Not available or Not Sure !
                 sensorContext.<Integer>newMeasure().withValue(fm.RFC).forMetric(RMetrics.RESPONSE_FOR_CLASS).on(inputFile).save();

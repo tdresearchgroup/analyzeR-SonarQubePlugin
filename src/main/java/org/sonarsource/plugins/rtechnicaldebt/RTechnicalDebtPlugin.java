@@ -35,7 +35,7 @@ public class RTechnicalDebtPlugin implements Plugin {
     context.addExtensions(ComputeAverageLOC.class,ComputeAverageNPM.class,ComputeAverageNPF.class,
             ComputeAverageNMC.class,ComputeAverageNMCI.class,ComputeAverageNMCE.class,ComputeAverageWMC.class,
             ComputeAverageRFC.class,ComputeAverageCBO.class,ComputeAverageCA.class,ComputeAverageCE.class,
-            ComputeAverageLCOM.class, ComputeAverageCAM.class,ComputeAverageNPRIF.class,ComputeAverageNPRIM.class,
+            ComputeAverageLCOM.class, ComputeAverageNPRIF.class,ComputeAverageNPRIM.class,
             ComputeAverageAMC.class,ComputeAverageMI.class,ComputeAverageDAM.class);
 
 
