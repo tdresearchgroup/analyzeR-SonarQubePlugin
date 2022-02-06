@@ -31,6 +31,10 @@ public class RMetricsSensor implements Sensor {
     private static final Logger sensorLogger = Loggers.get(RMetricsSensor.class);
 
 
+    /**
+     * Setting up a SensorDescriptor object for the sensor.
+     * @param sensorDescriptor Descriptor of the R sensor, set a name for it.
+     */
     @Override
     public void describe(SensorDescriptor sensorDescriptor) {
         sensorLogger.info("Describe()");
@@ -88,7 +92,6 @@ public class RMetricsSensor implements Sensor {
         }
     }
 
-
     /**
      * Parses the the metrics file into an RProjectMetric object.
      * @param filename Filename of the metrics file, using a GSON object.
@@ -122,10 +125,10 @@ public class RMetricsSensor implements Sensor {
     }
 
     /**
-     *
-     * @param sensorContext
-     * @param data
-     * @param inputFile
+     * Update Metrics for the SensorContext.
+     * @param sensorContext The sensorContext for the plugin. The measures get added to it.
+     * @param data a RProjectMetric instance,
+     * @param inputFile The inputfile containing the metrics.
      */
     public void updateMetrics(SensorContext sensorContext, RProjectMetric data,InputFile inputFile){
         String filename = inputFile.toString();
