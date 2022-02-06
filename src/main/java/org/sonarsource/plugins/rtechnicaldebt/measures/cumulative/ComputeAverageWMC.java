@@ -5,7 +5,6 @@
 package org.sonarsource.plugins.rtechnicaldebt.measures.cumulative;
 
 import org.sonar.api.ce.measure.Component;
-
 import org.sonar.api.ce.measure.Measure;
 import org.sonar.api.ce.measure.MeasureComputer;
 

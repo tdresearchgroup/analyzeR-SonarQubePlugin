@@ -86,7 +86,11 @@ public class RMetricsSensor implements Sensor {
     }
 
 
-
+    /**
+     * Parses the the metrics file into an RProjectMetric object.
+     * @param filename Filename of the metrics file, using a GSON object.
+     * @return RProjectMetric object
+     */
     public RProjectMetric parse(String  filename) {
 
         Gson gson = new Gson();
@@ -114,7 +118,12 @@ public class RMetricsSensor implements Sensor {
         return new RFileMetric();
     }
 
-
+    /**
+     *
+     * @param sensorContext
+     * @param data
+     * @param inputFile
+     */
     public void updateMetrics(SensorContext sensorContext, RProjectMetric data,InputFile inputFile){
         String filename = inputFile.toString();
         try
@@ -123,8 +132,6 @@ public class RMetricsSensor implements Sensor {
 
             if (fm != null) {
 
-                //
-                System.out.println("Metrics for file " + filename + " " + fm.toString());
                 // SET Size Metrics
                 sensorContext.<Integer>newMeasure().withValue(fm.LOC).forMetric(RMetrics.LINES_OF_CODE).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NMC).forMetric(RMetrics.NUMBER_METHOD_CALLS).on(inputFile).save();
@@ -135,7 +142,6 @@ public class RMetricsSensor implements Sensor {
 
 
                 // Set Encapsulation Metrics
-
                 sensorContext.<Float>newMeasure().withValue(fm.DAM).forMetric(RMetrics.DATA_ACCESS_METRICS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NPRIF).forMetric(RMetrics.NUMBER_PRIVATE_FIELDS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NPRIM).forMetric(RMetrics.NUMBER_PRIVATE_METHODS).on(inputFile).save();

@@ -1,8 +1,3 @@
-/*
-
-Metrics
-
- */
 /**
  * @author Pranav Chandramouli, University of Saskatchewan
  * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
@@ -11,7 +6,7 @@ package org.sonarsource.plugins.rtechnicaldebt.measures;
 
 public class RFileMetric {
     String filename;
-
+    // Defining all the file based metrics relevant to this project
     int LOC,NPM,NOF,NSTAF,NMC,NMCI,NMCE,WMC,RFC,CBO,Ca,Ce,LCOM,CAM,NPRIF,NPRIM;
     Float DAM,AMC,MI;
 

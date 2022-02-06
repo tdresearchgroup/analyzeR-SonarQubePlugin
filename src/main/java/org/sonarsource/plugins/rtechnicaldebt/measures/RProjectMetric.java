@@ -9,7 +9,8 @@ import java.util.List;
 
 public class RProjectMetric {
     String  ScriptVersion;
-    List<RFileMetric> metrics;  // LOAD THE Metrics
+    // List of metrics, which will be loaded in the sensor, this is project wide.
+    List<RFileMetric> metrics;
 
     @Override
     public String toString() {
