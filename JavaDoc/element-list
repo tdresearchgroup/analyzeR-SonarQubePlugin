@@ -1,0 +1,6 @@
+org.sonarsource.plugins.rtechnicaldebt
+org.sonarsource.plugins.rtechnicaldebt.languages
+org.sonarsource.plugins.rtechnicaldebt.measures
+org.sonarsource.plugins.rtechnicaldebt.measures.cumulative
+org.sonarsource.plugins.rtechnicaldebt.removethis.rules
+org.sonarsource.plugins.rtechnicaldebt.removethis.web

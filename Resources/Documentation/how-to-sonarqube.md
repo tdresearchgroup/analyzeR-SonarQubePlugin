@@ -42,7 +42,7 @@ pip install lxml
 ```
 
 #### Plug-In
-The plug-in requires 3 files, [found here](../../Script). Move all 3 to the project's root file.
+The plug-in requires 3 files, [found here](../../Parsing-Scripts). Move all 3 to the project's root file.
 * `RScanner.py` This is the file that generates the metrics.
 * `sonar-project.properties` This is a generic example. More on this later.
 * `sonar-scanner.sh` Run this bat file to run the scanner.
