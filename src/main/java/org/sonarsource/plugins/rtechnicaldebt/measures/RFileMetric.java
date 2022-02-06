@@ -4,6 +4,9 @@
  */
 package org.sonarsource.plugins.rtechnicaldebt.measures;
 
+/**
+ * Declares all the individual File Metrics.
+ */
 public class RFileMetric {
     String filename;
     // Defining all the file based metrics relevant to this project

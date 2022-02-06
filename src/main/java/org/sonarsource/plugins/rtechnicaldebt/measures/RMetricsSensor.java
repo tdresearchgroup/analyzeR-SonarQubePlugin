@@ -24,6 +24,9 @@ import java.util.Optional;
 
 import com.google.gson.Gson;
 
+/**
+ * Implementation of a SonarSensor to read the metrics file and extract metrics.
+ */
 public class RMetricsSensor implements Sensor {
     private static final Logger sensorLogger = Loggers.get(RMetricsSensor.class);
 
@@ -36,7 +39,7 @@ public class RMetricsSensor implements Sensor {
 
     /**
      * Running the Sensor for this project.
-     * Will read the metrics JSON, and
+     * Will read the metrics JSON.
      * @param sensorContext
      */
     @Override

@@ -13,6 +13,8 @@ import static java.util.Arrays.asList;
 
 /**
  * Definition of all metrics for R.
+ * At present, these are all relatively bare-bones. More detail can be added to these metrics as we understand these
+ * measures better.
  */
 public class RMetrics implements Metrics {
 
@@ -193,7 +195,7 @@ public class RMetrics implements Metrics {
           .create();
 
   /**
-   * Returns all the defined metrics as a list
+   * Returns all the defined metrics as a list.
    * @return List of Metrics
    */
   @Override
