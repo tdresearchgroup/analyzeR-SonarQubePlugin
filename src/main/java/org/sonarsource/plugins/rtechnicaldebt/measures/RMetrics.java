@@ -13,7 +13,6 @@ import static java.util.Arrays.asList;
 
 public class RMetrics implements Metrics {
 
-  // Metric Categories
   public static String CATEGORY_SIZE = "R Size Measures";
   public static String CATEGORY_COMPLEXITY = "R Complexity Measures";
   public static String CATEGORY_COUPLING = "R Coupling Measures";
@@ -211,7 +210,10 @@ public class RMetrics implements Metrics {
           .setOptimizedBestValue(true)
           .create();
 
-
+  /**
+   * Returns all the defined metrics as a list
+   * @return List of Metrics
+   */
   @Override
   public List<Metric> getMetrics() {
     return asList(LINES_OF_CODE ,NUMBER_PUBLIC_METHODS , NUMBER_PUBLIC_FIELDS , NUMBER_METHOD_CALLS ,  NUMBER_METHOD_CALLS_INTERNAL , NUMBER_METHOD_CALLS_EXTERNAL ,WEIGHTED_METHODS_PER_CLASS ,

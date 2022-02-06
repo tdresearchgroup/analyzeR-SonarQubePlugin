@@ -34,6 +34,11 @@ public class RMetricsSensor implements Sensor {
         sensorDescriptor.name("Technical Debt Sensor for the R Language").onlyOnLanguage(RLanguageDefinition.KEY);
     }
 
+    /**
+     * Running the Sensor for this project.
+     * Will read the metrics JSON, and
+     * @param sensorContext
+     */
     @Override
     public void execute(SensorContext sensorContext) {
         sensorLogger.info("Sensor execute()");
@@ -48,7 +53,6 @@ public class RMetricsSensor implements Sensor {
         // Skip missing entries
         if (!rscriptOutput.isPresent()){
             sensorLogger.warn("TechDebt Metrics file is not found -> ",rscriptOutput);
-            //System.out.println("TechDebt Metrics file is not found -> "+rscriptOutput);
         }
 
         else {
@@ -158,7 +162,6 @@ public class RMetricsSensor implements Sensor {
             }
         } catch (Exception e) {
             sensorLogger.warn("Error in readMetrics, which is required to get the measures for "+ filename + " " + e.getMessage());
-            //e.printStackTrace();
         }
     }
 }

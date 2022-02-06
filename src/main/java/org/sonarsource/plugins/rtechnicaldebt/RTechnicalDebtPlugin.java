@@ -11,17 +11,19 @@ import org.sonarsource.plugins.rtechnicaldebt.measures.*;
 import org.sonarsource.plugins.rtechnicaldebt.measures.cumulative.*;
 import org.sonarsource.plugins.rtechnicaldebt.removethis.rules.RRulesDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.removethis.web.RPluginPageDefinition;
-
 import static java.util.Arrays.asList;
 
 public class RTechnicalDebtPlugin implements Plugin {
-
   public static final String PROPERTY_FILE_SUFFIXES = "sonar.r.file.suffixes";
 
   public static final String PROPERTY_METRICS_FILE = "sonar.r.tdebt.output";
 
   private static final String FILENAME = "metrics.json";
 
+  /**
+   * Definition of the R Language for the TD plugin.
+   * @param context SonarQube Context.
+   */
   @Override
   public void define(Context context) {
 
@@ -29,24 +31,20 @@ public class RTechnicalDebtPlugin implements Plugin {
 
     context.addExtensions(RMetrics.class, RMetricsSensor.class);
 
-
-    // TODO -> Clean this up
-    // Average Metric for all metrics
+    // Adding all cumulative metrics to the SonarQube context.
     context.addExtensions(ComputeAverageLOC.class,ComputeAverageNPM.class,ComputeAverageNPF.class,
             ComputeAverageNMC.class,ComputeAverageNMCI.class,ComputeAverageNMCE.class,ComputeAverageWMC.class,
             ComputeAverageRFC.class,ComputeAverageCBO.class,ComputeAverageCA.class,ComputeAverageCE.class,
             ComputeAverageLCOM.class, ComputeAverageCAM.class,ComputeAverageNPRIF.class,ComputeAverageNPRIM.class,
             ComputeAverageAMC.class,ComputeAverageMI.class,ComputeAverageDAM.class);
 
-    // TODO - Int <-> Double <-> FLoat issues with ComputeAverageAMC.class,ComputeAverageMI.class,ComputeAverageDAM.class
 
     context.addExtension(RRulesDefinition.class);
 
     context.addExtension(RPluginPageDefinition.class);
 
-    // Adding Metrics File Output
-    // Adding R option on left side of admin page
-
+    // Adding R-Language suffixes to the plugin
+    // Defining the RScanner's output file in the SonarQube context.
     context.addExtensions(asList(
             PropertyDefinition.builder(PROPERTY_FILE_SUFFIXES)
                     .name("Suffixes for R")
