@@ -9,8 +9,6 @@ import org.sonar.api.config.PropertyDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.languages.RLanguageDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.measures.*;
 import org.sonarsource.plugins.rtechnicaldebt.measures.cumulative.*;
-import org.sonarsource.plugins.rtechnicaldebt.removethis.rules.RRulesDefinition;
-import org.sonarsource.plugins.rtechnicaldebt.removethis.web.RPluginPageDefinition;
 import static java.util.Arrays.asList;
 
 public class RTechnicalDebtPlugin implements Plugin {
@@ -39,9 +37,7 @@ public class RTechnicalDebtPlugin implements Plugin {
             ComputeAverageAMC.class,ComputeAverageMI.class,ComputeAverageDAM.class);
 
 
-    context.addExtension(RRulesDefinition.class);
-
-    context.addExtension(RPluginPageDefinition.class);
+    // context.addExtension(RRulesDefinition.class);
 
     // Adding R-Language suffixes to the plugin
     // Defining the RScanner's output file in the SonarQube context.

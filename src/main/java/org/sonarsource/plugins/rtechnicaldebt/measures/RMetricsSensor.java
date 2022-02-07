@@ -28,6 +28,10 @@ import com.google.gson.Gson;
  * Implementation of a SonarSensor to read the metrics file and extract metrics.
  */
 public class RMetricsSensor implements Sensor {
+
+    /**
+     * Logger to track any errors in sensor operation.
+     */
     private static final Logger sensorLogger = Loggers.get(RMetricsSensor.class);
 
 

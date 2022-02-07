@@ -13,6 +13,10 @@ public class RFileMetric {
     int LOC,NPM,NOF,NMC,NMCI,NMCE,WMC,RFC,NPRIF,NPRIM;
     Float DAM,AMC,MI,CBO,Ca,Ce,LCOM;
 
+    /**
+     * Generic toString function, was added for debugging, not used anywhere else.
+     * @return A string representation of all the metrics.
+     */
     @Override
     public String toString() {
         return "RFileMetric{" +

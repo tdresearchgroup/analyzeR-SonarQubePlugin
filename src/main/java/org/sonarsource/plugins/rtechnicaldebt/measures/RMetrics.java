@@ -204,6 +204,10 @@ public class RMetrics implements Metrics {
             AVERAGE_METHOD_COMPLEXITY , RESPONSE_FOR_CLASS ,COUPLING_BETWEEN_OBJECTS ,AFFERENT_COUPLING , EFFERENT_COUPLING , MARTINS_INSTABILITY , LACK_COHESION_METHODS, DATA_ACCESS_METRICS , NUMBER_PRIVATE_FIELDS ,NUMBER_PRIVATE_METHODS);
   }
 
+  /**
+   * Generic toString method to aid in troubleshooting
+   * @return A string representation of the R Metrics.
+   */
   @Override
   public String toString() {
     return super.toString();

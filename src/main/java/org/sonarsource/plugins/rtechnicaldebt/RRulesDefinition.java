@@ -3,7 +3,7 @@
  * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
  */
 
-package org.sonarsource.plugins.rtechnicaldebt.removethis.rules;
+package org.sonarsource.plugins.rtechnicaldebt;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -12,7 +12,6 @@ import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 import org.sonarsource.plugins.rtechnicaldebt.languages.RLanguageDefinition;
 
 public class RRulesDefinition implements RulesDefinition {
-  // TODO - Can this be removed? Not being used, as we don't have rules.
 
   private static final String PATH_TO_RULES_XML = "/example/r-rules.xml";
 
