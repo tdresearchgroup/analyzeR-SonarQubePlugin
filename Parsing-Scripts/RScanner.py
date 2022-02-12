@@ -83,6 +83,7 @@ def getNumLOC(root):
 r6_keywords = ['R6Class', 'if_any', 'map', 'reset', 'new']
 s4_keywords = ['setMethod', 'slot', 'setClass', 'representation', 'selectMethod', 'setGeneric', 'signature']
 
+
 def getFunctionCalls(root):
     """
     Gets a List of function calls
@@ -122,25 +123,35 @@ def getFunctionDefinitions(root):
     return list(set(result))
 
 
-# -----------
-# get the list of library packages
-# -----------
 def getLibPkg(root):
+    """
+    Gets Library packages used in the code.
+    :param root: Root node of an XML Element tree
+    :type root: XML ElementTree root node
+    :return: Library Packages
+    :rtype: List
+    """
     result = []
     # get the grandparent expr of SYMBOL_FUNCTION_CALL
     for item in root.findall('.//SYMBOL_FUNCTION_CALL[.=\'library\']/../..'):
         etags, etxt, elist = getChildList(item)
-        if (etags == ['expr', 'OP-LEFT-PAREN', 'expr', 'OP-RIGHT-PAREN']):
+        if etags == ['expr', 'OP-LEFT-PAREN', 'expr', 'OP-RIGHT-PAREN']:
             sym = findChild(elist[2], 'SYMBOL')
             result.append(sym)
 
-    return (list(set(result)))
+    return list(set(result))
 
 
-# -----------
-# XML Parse - find the list indices of functions matching the list of patterns
-# -----------
 def findSublistIndx(sl, l):
+    """
+    find the list indices of functions matching the list of patterns
+    :param sl: SubList
+    :type sl: List
+    :param l:
+    :type l: List
+    :return: Tuple positions
+    :rtype: List
+    """
     results = []
     sl_len = len(sl)
     for ind in (i for i, e in enumerate(l) if e == sl[0]):
@@ -151,21 +162,34 @@ def findSublistIndx(sl, l):
     return results
 
 
-# -----------
-# XML Parse - get the list of children , return elements,tags ,text
-# -----------
 def getChildList(item):
+    """
+    Get a list of an item's children
+    :param item:
+    :type item: Node
+    :return: Elements, Tag, and Text
+    :rtype:
+    """
     elist = list(item.iterfind('*'))
     etags = [elem.tag for elem in elist]
-    etxt = [elem.text for elem in elist]
+    etext = [elem.text for elem in elist]
 
-    return etags, etxt, elist
+    return etags, etext, elist
 
 
 # -----------
 # XML Parse - find a child with specific tag
 # -----------
 def findChild(item, tag):
+    """
+
+    :param item:
+    :type item:
+    :param tag:
+    :type tag:
+    :return:
+    :rtype:
+    """
     result = list(item.iterfind(tag))
     if (len(result)):
         return (result[0].text)
