@@ -605,7 +605,7 @@ def getCouplingMetrics(classdef):
     mi = {}
 
     for k in ce.keys():
-        if (ce[k] + ca[k]):
+        if ce[k] + ca[k]:
             mi[k] = ca[k] / (ca[k] + ce[k])
         else:
             mi[k] = 0
@@ -621,7 +621,7 @@ def getCouplingMetrics(classdef):
     result["CBO"] = cbo
     '''
 
-    if (len(ca)):
+    if len(ca):
         resultave["CA"] = sum(ca.values()) / len(ca)
         resultave["CE"] = sum(ce.values()) / len(ce)
         resultave["MI"] = sum(mi.values()) / len(mi)
