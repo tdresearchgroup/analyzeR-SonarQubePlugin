@@ -494,7 +494,7 @@ def main():
     result["metrics"] = metrics
 
     print("Generating  file metrics.json ...")
-    with open('../../../Downloads/metrics.json', 'w') as fp:
+    with open('../../../../Downloads/metrics.json', 'w') as fp:
         json.dump(result, fp)
 
 
