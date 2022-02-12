@@ -83,11 +83,14 @@ def getNumLOC(root):
 r6_keywords = ['R6Class', 'if_any', 'map', 'reset', 'new']
 s4_keywords = ['setMethod', 'slot', 'setClass', 'representation', 'selectMethod', 'setGeneric', 'signature']
 
-
-# ------
-# get the function calls 
-# -------------
 def getFunctionCalls(root):
+    """
+    Gets a List of function calls
+    :param root: Root node of an XML Element tree
+    :type root: XML ElementTree root node
+    :return: Function Calls
+    :rtype: List
+    """
     result = []
     for c in root.findall('.//SYMBOL_FUNCTION_CALL'):
         if (c.text in builtins) or (c.text in r6_keywords) or (c.text in s4_keywords):
@@ -101,15 +104,22 @@ def getFunctionCalls(root):
 # get the function definitions
 # ------------
 def getFunctionDefinitions(root):
+    """
+    Gets a list of function definitions
+    :param root: Root node of an XML Element tree
+    :type root: XML ElementTree root node
+    :return: Function Definitions
+    :rtype: List
+    """
     result = []
     for gp in root.findall('.//FUNCTION/../..'):
 
         etags, etxt, elist = getChildList(gp)
-        if (etags == ['expr', 'LEFT_ASSIGN', 'expr']):
+        if etags == ['expr', 'LEFT_ASSIGN', 'expr']:
             lhs = elist[0]
             sym = findChild(lhs, 'SYMBOL')
             result.append(sym)
-    return (list(set(result)))
+    return list(set(result))
 
 
 # -----------
