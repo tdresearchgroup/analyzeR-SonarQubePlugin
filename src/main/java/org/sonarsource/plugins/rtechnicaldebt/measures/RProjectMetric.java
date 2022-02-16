@@ -1,3 +1,8 @@
+/**
+ * @author Pranav Chandramouli, University of Saskatchewan
+ * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
+ */
+
 package org.sonarsource.plugins.rtechnicaldebt.measures;
 
 import java.util.List;
@@ -8,7 +13,6 @@ public class RProjectMetric {
     List<RClassMetric> classmetrics; // All class specific metrics
 
     RModuleMetric projectmetrics ;
-    //double CBO,CA,CE,LCOM,MI;        // Project average metrics
 
 
     @Override

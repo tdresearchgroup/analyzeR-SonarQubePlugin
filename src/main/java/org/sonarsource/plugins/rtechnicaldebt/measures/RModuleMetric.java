@@ -5,12 +5,9 @@
 
 package org.sonarsource.plugins.rtechnicaldebt.measures;
 
-import java.util.List;
-
 public class RModuleMetric {
 
-    double CBO,CA,CE,LCOM,MI;        // Project average metrics
-
+    double CBO,CA,CE,LCOM,MI;
 
     @Override
     public String toString() {
