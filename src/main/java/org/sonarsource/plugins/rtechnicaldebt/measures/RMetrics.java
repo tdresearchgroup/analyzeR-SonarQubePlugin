@@ -95,7 +95,7 @@ public class RMetrics implements Metrics {
           .create();
 
   public static final String AVERAGE_METHOD_COMPLEXITY_KEY = "AMC";
-  public static final Metric<Float> AVERAGE_METHOD_COMPLEXITY = new Metric.Builder(AVERAGE_METHOD_COMPLEXITY_KEY,"Average Method Complexity", Metric.ValueType.FLOAT)
+  public static final Metric<Double> AVERAGE_METHOD_COMPLEXITY = new Metric.Builder(AVERAGE_METHOD_COMPLEXITY_KEY,"Average Method Complexity", Metric.ValueType.FLOAT)
           .setDescription("Average of the Cyclomatic Complexity of all functions in the application or module")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)
@@ -115,7 +115,7 @@ public class RMetrics implements Metrics {
           .create();
 
   public static final String COUPLING_BETWEEN_OBJECTS_KEY = "CBO";
-  public static final Metric<Float> COUPLING_BETWEEN_OBJECTS = new Metric.Builder(COUPLING_BETWEEN_OBJECTS_KEY,"Coupling Between Object Classes", Metric.ValueType.FLOAT)
+  public static final Metric<Double> COUPLING_BETWEEN_OBJECTS = new Metric.Builder(COUPLING_BETWEEN_OBJECTS_KEY,"Coupling Between Object Classes", Metric.ValueType.FLOAT)
           .setDescription("Number of other modules or packages that an application or module is coupled too")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)
@@ -125,7 +125,7 @@ public class RMetrics implements Metrics {
           .create();
 
   public static final String AFFERENT_COUPLING_KEY = "CA";
-  public static final Metric<Float> AFFERENT_COUPLING = new Metric.Builder(AFFERENT_COUPLING_KEY,"Afferent Coupling", Metric.ValueType.FLOAT)
+  public static final Metric<Double> AFFERENT_COUPLING = new Metric.Builder(AFFERENT_COUPLING_KEY,"Afferent Coupling", Metric.ValueType.FLOAT)
           .setDescription("Measure of how many other applications use the specific application or module")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)
@@ -135,7 +135,7 @@ public class RMetrics implements Metrics {
           .create();
 
   public static final String EFFERENT_COUPLING_KEY = "CE";
-  public static final Metric<Float> EFFERENT_COUPLING = new Metric.Builder(EFFERENT_COUPLING_KEY,"Efferent Coupling", Metric.ValueType.FLOAT)
+  public static final Metric<Double> EFFERENT_COUPLING = new Metric.Builder(EFFERENT_COUPLING_KEY,"Efferent Coupling", Metric.ValueType.FLOAT)
           .setDescription("Measure of how many other modules or packages are used by the specific application or module")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)
@@ -145,7 +145,7 @@ public class RMetrics implements Metrics {
           .create();
 
   public static final String MARTINS_INSTABILITY_KEY = "MI";
-  public static final Metric<Float> MARTINS_INSTABILITY = new Metric.Builder(MARTINS_INSTABILITY_KEY,"Martin's Instability Measure", Metric.ValueType.FLOAT)
+  public static final Metric<Double> MARTINS_INSTABILITY = new Metric.Builder(MARTINS_INSTABILITY_KEY,"Martin's Instability Measure", Metric.ValueType.FLOAT)
           .setDescription("Ce/(Ce+Ca)")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)
@@ -155,7 +155,7 @@ public class RMetrics implements Metrics {
           .create();
 
   public static final String LACK_COHESION_METHODS_KEY = "LCOM";
-  public static final Metric<Float> LACK_COHESION_METHODS = new Metric.Builder(LACK_COHESION_METHODS_KEY,"Lack of Cohesion in Methods", Metric.ValueType.FLOAT)
+  public static final Metric<Double> LACK_COHESION_METHODS = new Metric.Builder(LACK_COHESION_METHODS_KEY,"Lack of Cohesion in Methods", Metric.ValueType.FLOAT)
           .setDescription("Difference between the number of function pairs without and with common non static fields")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)
@@ -185,7 +185,7 @@ public class RMetrics implements Metrics {
           .create();
 
   public static final String DATA_ACCESS_METRICS_KEY = "DAM";
-  public static final Metric<Float> DATA_ACCESS_METRICS = new Metric.Builder(DATA_ACCESS_METRICS_KEY,"Data Access Metrics", Metric.ValueType.FLOAT)
+  public static final Metric<Double> DATA_ACCESS_METRICS = new Metric.Builder(DATA_ACCESS_METRICS_KEY,"Data Access Metrics", Metric.ValueType.FLOAT)
           .setDescription("Ratio of the number of private fields to total number of fields")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(false)

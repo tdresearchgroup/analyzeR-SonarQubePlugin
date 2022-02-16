@@ -1,22 +1,19 @@
-/**
- * @author Pranav Chandramouli, University of Saskatchewan
- * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
+/*
+
+Metrics
+
  */
+
 package org.sonarsource.plugins.rtechnicaldebt.measures;
 
-/**
- * Declares all the individual File Metrics.
- */
 public class RFileMetric {
     String filename;
-    // Defining all the file based metrics relevant to this project
-    int LOC,NPM,NOF,NMC,NMCI,NMCE,WMC,RFC,NPRIF,NPRIM;
-    Float DAM,AMC,MI,CBO,Ca,Ce,LCOM;
 
-    /**
-     * Generic toString function, was added for debugging, not used anywhere else.
-     * @return A string representation of all the metrics.
-     */
+    int NSTAF,CAM ; // Not implemented
+    int LOC,NPM,NOF,NMC,NMCI,NMCE,WMC,RFC,NPRIF,NPRIM;
+    double DAM,AMC;
+
+
     @Override
     public String toString() {
         return "RFileMetric{" +
@@ -24,20 +21,15 @@ public class RFileMetric {
                 ", LOC=" + LOC +
                 ", NPM=" + NPM +
                 ", NOF=" + NOF +
-                ", NMC=" + NMC +
+                ",\n NMC=" + NMC +
                 ", NMCI=" + NMCI +
                 ", NMCE=" + NMCE +
                 ", WMC=" + WMC +
                 ", RFC=" + RFC +
+                ",\n DAM=" + DAM +
                 ", NPRIF=" + NPRIF +
                 ", NPRIM=" + NPRIM +
-                ", DAM=" + DAM +
                 ", AMC=" + AMC +
-                ", MI=" + MI +
-                ", CBO=" + CBO +
-                ", Ca=" + Ca +
-                ", Ce=" + Ce +
-                ", LCOM=" + LCOM +
                 '}';
     }
 }

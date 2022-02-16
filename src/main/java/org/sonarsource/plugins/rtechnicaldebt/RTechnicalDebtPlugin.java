@@ -32,9 +32,8 @@ public class RTechnicalDebtPlugin implements Plugin {
     // Adding all cumulative metrics to the SonarQube context.
     context.addExtensions(ComputeAverageLOC.class,ComputeAverageNPM.class,ComputeAverageNPF.class,
             ComputeAverageNMC.class,ComputeAverageNMCI.class,ComputeAverageNMCE.class,ComputeAverageWMC.class,
-            ComputeAverageRFC.class,ComputeAverageCBO.class,ComputeAverageCA.class,ComputeAverageCE.class,
-            ComputeAverageLCOM.class, ComputeAverageNPRIF.class,ComputeAverageNPRIM.class,
-            ComputeAverageAMC.class,ComputeAverageMI.class,ComputeAverageDAM.class);
+            ComputeAverageRFC.class, ComputeAverageNPRIF.class,ComputeAverageNPRIM.class,
+            ComputeAverageAMC.class,ComputeAverageDAM.class);
 
 
     // context.addExtension(RRulesDefinition.class);

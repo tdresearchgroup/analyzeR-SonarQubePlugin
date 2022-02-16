@@ -83,10 +83,10 @@ public class RMetricsSensor implements Sensor {
             }
 
 
+            updateProjectMetrics(sensorContext,data);
             ArrayList<InputFile> inputfiles = new ArrayList<>();
             fs.inputFiles(fs.predicates().and(fs.predicates().hasType(InputFile.Type.MAIN), fs.predicates().hasLanguage(RLanguageDefinition.KEY)))
                     .forEach(file -> {
-                        //countLines(sensorContext, file);
                         updateMetrics(sensorContext, data, file);
                         System.out.println("Processing File name " + file.toString());
 
@@ -118,10 +118,14 @@ public class RMetricsSensor implements Sensor {
         return new RProjectMetric();
     }
 
-    // find the file pacific
+    /**
+     * Find file specific metrics
+     * @param data
+     * @param filename
+     * @return an instance of a RFileMetric Object.
+     */
     public RFileMetric findFileMetric(RProjectMetric data,String  filename) {
         for (RFileMetric fm:data.metrics) {
-            //System.out.println("Loop File name " + fm.filename);
             if ( fm.filename.equals(filename))
                 return fm;
         }
@@ -131,7 +135,7 @@ public class RMetricsSensor implements Sensor {
     /**
      * Update Metrics for the SensorContext.
      * @param sensorContext The sensorContext for the plugin. The measures get added to it.
-     * @param data a RProjectMetric instance,
+     * @param data a RProjectMetric instance
      * @param inputFile The inputfile containing the metrics.
      */
     public void updateMetrics(SensorContext sensorContext, RProjectMetric data,InputFile inputFile){
@@ -152,31 +156,45 @@ public class RMetricsSensor implements Sensor {
 
 
                 // Set Encapsulation Metrics
-                sensorContext.<Float>newMeasure().withValue(fm.DAM).forMetric(RMetrics.DATA_ACCESS_METRICS).on(inputFile).save();
+                sensorContext.<Double>newMeasure().withValue(fm.DAM).forMetric(RMetrics.DATA_ACCESS_METRICS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NPRIF).forMetric(RMetrics.NUMBER_PRIVATE_FIELDS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NPRIM).forMetric(RMetrics.NUMBER_PRIVATE_METHODS).on(inputFile).save();
 
 
-                // Set the Coupling Metrics
-                sensorContext.<Float>newMeasure().withValue(fm.CBO).forMetric(RMetrics.COUPLING_BETWEEN_OBJECTS).on(inputFile).save();
-                sensorContext.<Float>newMeasure().withValue(fm.Ca).forMetric(RMetrics.AFFERENT_COUPLING).on(inputFile).save();
-                sensorContext.<Float>newMeasure().withValue(fm.Ce).forMetric(RMetrics.EFFERENT_COUPLING).on(inputFile).save();
-                sensorContext.<Float>newMeasure().withValue(fm.MI).forMetric(RMetrics.MARTINS_INSTABILITY).on(inputFile).save();
-
                 // Set the Complexity Metrics
                 sensorContext.<Integer>newMeasure().withValue(fm.WMC).forMetric(RMetrics.WEIGHTED_METHODS_PER_CLASS).on(inputFile).save();
-                sensorContext.<Float>newMeasure().withValue(fm.AMC).forMetric(RMetrics.AVERAGE_METHOD_COMPLEXITY).on(inputFile).save();
+                sensorContext.<Double>newMeasure().withValue(fm.AMC).forMetric(RMetrics.AVERAGE_METHOD_COMPLEXITY).on(inputFile).save();
 
                 // Set the Complexity Metrics
-                sensorContext.<Float>newMeasure().withValue(fm.LCOM).forMetric(RMetrics.LACK_COHESION_METHODS).on(inputFile).save();
-
-                // Not available or Not Sure !
                 sensorContext.<Integer>newMeasure().withValue(fm.RFC).forMetric(RMetrics.RESPONSE_FOR_CLASS).on(inputFile).save();
 
             }
         } catch (Exception e) {
             sensorLogger.warn("Error in readMetrics, which is required to get the measures for "+ filename + " " + e.getMessage());
         }
+    }
+
+
+    /**
+     * Updates Project-Wide Metrics for the functions
+     * @param context The sensorContext for the plugin. The measures get added to it.
+     * @param data a RProjectMetric instance
+     */
+    public void updateProjectMetrics(SensorContext context, RProjectMetric data) {
+
+
+        for (RClassMetric cm:data.classmetrics) {
+            System.out.println("Class " + cm.toString());
+
+        }
+
+        context.<Double>newMeasure().withValue(data.projectmetrics.CBO).forMetric(RMetrics.COUPLING_BETWEEN_OBJECTS).on(context.project()).save();
+        context.<Double>newMeasure().withValue(data.projectmetrics.CA).forMetric(RMetrics.AFFERENT_COUPLING).on(context.project()).save();
+        context.<Double>newMeasure().withValue(data.projectmetrics.CE).forMetric(RMetrics.EFFERENT_COUPLING).on(context.project()).save();
+        context.<Double>newMeasure().withValue(data.projectmetrics.MI).forMetric(RMetrics.MARTINS_INSTABILITY).on(context.project()).save();
+        context.<Double>newMeasure().withValue(data.projectmetrics.LCOM).forMetric(RMetrics.LACK_COHESION_METHODS).on(context.project()).save();
+
+
     }
 }
 
