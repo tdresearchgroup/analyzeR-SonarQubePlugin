@@ -16,3 +16,6 @@ python3 RScanner2.py "${PROJECTPATH}/*.R"
 
 echo "Running Sonar-Scanner now."
 # "${SONARSCANNERDIR}/bin/sonar-scanner" "-Dsonar.login=admin -Dsonar.password=admin22"
+
+
+# /Users/pranav/sonar-scanner/bin/sonar-scanner -Dsonar.login=admin -Dsonar.password=admin22
