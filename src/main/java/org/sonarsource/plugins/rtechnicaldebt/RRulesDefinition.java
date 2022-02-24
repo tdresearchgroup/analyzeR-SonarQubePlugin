@@ -1,8 +1,3 @@
-/**
- * @author Pranav Chandramouli, University of Saskatchewan
- * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
- */
-
 package org.sonarsource.plugins.rtechnicaldebt;
 
 import java.io.InputStream;
@@ -11,6 +6,10 @@ import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 import org.sonarsource.plugins.rtechnicaldebt.languages.RLanguageDefinition;
 
+/**
+ * @author Pranav Chandramouli, University of Saskatchewan
+ * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
+ */
 public class RRulesDefinition implements RulesDefinition {
 
   private static final String PATH_TO_RULES_XML = "/example/r-rules.xml";

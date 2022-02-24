@@ -1,7 +1,3 @@
-/**
- * @author Pranav Chandramouli, University of Saskatchewan
- * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
- */
 package org.sonarsource.plugins.rtechnicaldebt;
 
 import org.sonar.api.Plugin;
@@ -11,7 +7,14 @@ import org.sonarsource.plugins.rtechnicaldebt.measures.*;
 import org.sonarsource.plugins.rtechnicaldebt.measures.cumulative.*;
 import static java.util.Arrays.asList;
 
+/**
+ * @author Pranav Chandramouli, University of Saskatchewan
+ * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
+ *
+ * The main class of the plugin.
+ */
 public class RTechnicalDebtPlugin implements Plugin {
+
   public static final String PROPERTY_FILE_SUFFIXES = "sonar.r.file.suffixes";
 
   public static final String PROPERTY_METRICS_FILE = "sonar.r.tdebt.output";
