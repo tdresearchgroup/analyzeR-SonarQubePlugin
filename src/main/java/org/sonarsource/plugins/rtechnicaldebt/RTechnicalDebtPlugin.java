@@ -9,10 +9,9 @@ import org.sonarsource.plugins.rtechnicaldebt.measures.cumulative.*;
 import static java.util.Arrays.asList;
 
 /**
+ * The main class of the plugin.
  * @author Pranav Chandramouli, University of Saskatchewan
  * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
- *
- * The main class of the plugin.
  */
 public class RTechnicalDebtPlugin implements Plugin {
 
