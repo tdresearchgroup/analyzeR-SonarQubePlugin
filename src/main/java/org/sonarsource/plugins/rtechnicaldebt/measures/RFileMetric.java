@@ -11,7 +11,6 @@ public class RFileMetric {
     int LOC,NPM,NOF,NMC,NMCI,NMCE,WMC,RFC,NPRIF,NPRIM;
     double DAM,AMC;
 
-
     @Override
     public String toString() {
         return "RFileMetric{" +
