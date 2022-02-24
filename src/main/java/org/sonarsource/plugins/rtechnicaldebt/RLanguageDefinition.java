@@ -12,14 +12,12 @@ import org.sonar.api.resources.AbstractLanguage;
 public final class RLanguageDefinition extends AbstractLanguage {
 
   /**
-   * The Name of the language - R.
-   * This is displayed in the interface.
+   * The Name of the language, which is displayed in the interface.
    */
   public static final String NAME = "R";
 
   /**
-   * The key of the language - r
-   * This is used to retrieve the language behind the scenes. This is important as it is used to implement rules, etc
+   * The key of the language, which is used to retrieve the language. This is important as it is used to implement rules, etc
    */
   public static final String KEY = "r";
 

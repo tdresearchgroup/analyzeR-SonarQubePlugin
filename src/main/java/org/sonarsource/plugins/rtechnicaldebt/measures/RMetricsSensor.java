@@ -1,14 +1,15 @@
 package org.sonarsource.plugins.rtechnicaldebt.measures;
 
+import com.google.gson.Gson;
+import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.Sensor;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
-import org.sonarsource.plugins.rtechnicaldebt.RTechnicalDebtPlugin;
 import org.sonarsource.plugins.rtechnicaldebt.RLanguageDefinition;
-import org.sonar.api.batch.fs.FileSystem;
+import org.sonarsource.plugins.rtechnicaldebt.RTechnicalDebtPlugin;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,8 +17,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import com.google.gson.Gson;
 
 /**
  * @author Pranav Chandramouli, University of Saskatchewan
@@ -45,7 +44,7 @@ public class RMetricsSensor implements Sensor {
     /**
      * Running the Sensor for this project.
      * Will read the metrics JSON.
-     * @param sensorContext
+     * @param sensorContext The SonarQube sensor context. Metrics get added to this.
      */
     @Override
     public void execute(SensorContext sensorContext) {
@@ -117,8 +116,8 @@ public class RMetricsSensor implements Sensor {
 
     /**
      * Find file specific metrics
-     * @param data
-     * @param filename
+     * @param data RProjectMetric instance
+     * @param filename filename of the source file being analyzed.
      * @return an instance of a RFileMetric Object.
      */
     public RFileMetric findFileMetric(RProjectMetric data,String  filename) {
@@ -173,7 +172,7 @@ public class RMetricsSensor implements Sensor {
 
     /**
      * Updates Project-Wide Metrics for the functions
-     * @param context The sensorContext for the plugin. The measures get added to it.
+     * @param context The SonarQube sensor context. Metrics get added to this.
      * @param data a RProjectMetric instance
      */
     public void updateProjectMetrics(SensorContext context, RProjectMetric data) {
