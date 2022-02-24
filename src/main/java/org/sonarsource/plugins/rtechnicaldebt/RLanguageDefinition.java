@@ -4,13 +4,23 @@ import org.sonar.api.config.Configuration;
 import org.sonar.api.resources.AbstractLanguage;
 
 /**
+ * Definition of the R Language for the plugin.
+ * Definition contains a name and a key
  * @author Pranav Chandramouli, University of Saskatchewan
  * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
- * Definition of the R Language for the plugin.
  */
 public final class RLanguageDefinition extends AbstractLanguage {
 
+  /**
+   * The Name of the language - R.
+   * This is displayed in the interface.
+   */
   public static final String NAME = "R";
+
+  /**
+   * The key of the language - r
+   * This is used to retrieve the language behind the scenes. This is important as it is used to implement rules, etc
+   */
   public static final String KEY = "r";
 
   private final Configuration config;
