@@ -4,10 +4,10 @@ package org.sonarsource.plugins.rtechnicaldebt.measures;
  * @author Pranav Chandramouli, University of Saskatchewan
  * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
  * Implements per-file metrics for R source files.
+ * @see RMetrics for definitions of all metrics
  */
 public class RFileMetric {
     String filename;
-
     int LOC,NPM,NOF,NMC,NMCI,NMCE,WMC,RFC,NPRIF,NPRIM;
     double DAM,AMC;
 

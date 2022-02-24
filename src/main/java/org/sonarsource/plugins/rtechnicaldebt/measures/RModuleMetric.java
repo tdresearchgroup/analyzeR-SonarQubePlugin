@@ -1,6 +1,7 @@
 /**
  * @author Pranav Chandramouli, University of Saskatchewan
  * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
+ * @see RMetrics for definitions of all metrics
  */
 
 package org.sonarsource.plugins.rtechnicaldebt.measures;

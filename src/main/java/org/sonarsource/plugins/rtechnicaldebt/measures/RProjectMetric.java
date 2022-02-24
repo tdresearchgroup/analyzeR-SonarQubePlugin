@@ -6,6 +6,7 @@ import java.util.List;
  * @author Pranav Chandramouli, University of Saskatchewan
  * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
  * Instantiates
+ * @see RMetrics for definitions of all metrics
  */
 
 public class RProjectMetric {
