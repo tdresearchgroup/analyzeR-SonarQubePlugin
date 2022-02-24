@@ -1,9 +1,9 @@
 package org.sonarsource.plugins.rtechnicaldebt.measures;
 
-import java.util.List;
-
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metrics;
+
+import java.util.List;
 
 import static java.util.Arrays.asList;
 
@@ -17,13 +17,24 @@ import static java.util.Arrays.asList;
 public class RMetrics implements Metrics {
 
   /**
-   * Set up 5 Categories, known in SonarQube as Domains.
-   * Given conspicuous names to help separate them from the default SonarQube metrics.
+   * Category for Size Measures Calculated by the plugin.
    */
   public static String CATEGORY_SIZE = "R Size Measures";
+  /**
+   * Category for Complexity Measures Calculated by the plugin.
+   */
   public static String CATEGORY_COMPLEXITY = "R Complexity Measures";
+  /**
+   * Category for Coupling Measures Calculated by the plugin.
+   */
   public static String CATEGORY_COUPLING = "R Coupling Measures";
+  /**
+   * Category for Cohesion Measures Calculated by the plugin.
+   */
   public static String CATEGORY_COHESION = "R Cohesion Measures";
+  /**
+   * Category for Encapsulation Measures Calculated by the plugin.
+   */
   public static String CATEGORY_ENCAPSULATION = "R Encapsulation Measures";
 
   public static final String LINES_OF_CODE_KEY = "LOC";
