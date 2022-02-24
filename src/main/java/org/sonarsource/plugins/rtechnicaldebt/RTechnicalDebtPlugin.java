@@ -37,9 +37,6 @@ public class RTechnicalDebtPlugin implements Plugin {
             ComputeAverageRFC.class, ComputeAverageNPRIF.class,ComputeAverageNPRIM.class,
             ComputeAverageAMC.class,ComputeAverageDAM.class);
 
-
-    // context.addExtension(RRulesDefinition.class);
-
     // Adding R-Language suffixes to the plugin
     // Defining the RScanner's output file in the SonarQube context.
     context.addExtensions(asList(
