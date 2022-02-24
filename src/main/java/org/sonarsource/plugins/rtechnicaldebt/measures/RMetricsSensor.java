@@ -19,14 +19,14 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * Implementation of a SonarSensor to read the metrics file and extract metrics.
  * @author Pranav Chandramouli, University of Saskatchewan
  * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
- * Implementation of a SonarSensor to read the metrics file and extract metrics.
  */
 public class RMetricsSensor implements Sensor {
 
     /**
-     * Logger to track any errors in sensor operation.
+     * Logger instance for debugging.
      */
     private static final Logger sensorLogger = Loggers.get(RMetricsSensor.class);
 
