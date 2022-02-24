@@ -1,7 +1,3 @@
-/**
- * @author Pranav Chandramouli, University of Saskatchewan
- * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
- */
 package org.sonarsource.plugins.rtechnicaldebt.measures;
 
 import java.util.List;
@@ -12,12 +8,19 @@ import org.sonar.api.measures.Metrics;
 import static java.util.Arrays.asList;
 
 /**
+ * @author Pranav Chandramouli, University of Saskatchewan
+ * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
+ *
  * Definition of all metrics for R.
  * At present, these are all relatively bare-bones. More detail can be added to these metrics as we understand these
  * measures better.
  */
 public class RMetrics implements Metrics {
 
+  /**
+   * Set up 5 Categories, known in SonarQube as Domains.
+   * Given conspicuous names to help separate them from the default SonarQube metrics.
+   */
   public static String CATEGORY_SIZE = "R Size Measures";
   public static String CATEGORY_COMPLEXITY = "R Complexity Measures";
   public static String CATEGORY_COUPLING = "R Coupling Measures";
