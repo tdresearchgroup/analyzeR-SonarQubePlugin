@@ -146,6 +146,7 @@ public class RMetricsSensor implements Sensor {
 
             if (fm != null) {
 
+
                 // SET Size Metrics
                 sensorContext.<Integer>newMeasure().withValue(fm.LOC).forMetric(RMetrics.LINES_OF_CODE).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NMC).forMetric(RMetrics.NUMBER_METHOD_CALLS).on(inputFile).save();

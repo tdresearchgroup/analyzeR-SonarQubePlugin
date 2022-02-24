@@ -7,6 +7,7 @@ PROJECTPATH="$1"
 echo "Your SonarQube Scanner is installed in: $SONARSCANNERDIR"
 echo "Please change this in the script, if this is incorrect."
 echo "The current working directory: $PROJECTPATH and contains the following R files:"
+
 echo "$(find . -type f -name "${PROJECTPATH}/*.R")"
 
 echo "Running the R-Scanner for R files in $PROJECTPATH"
@@ -18,4 +19,4 @@ echo "Running Sonar-Scanner now."
 # "${SONARSCANNERDIR}/bin/sonar-scanner" "-Dsonar.login=admin -Dsonar.password=admin22"
 
 
-# /Users/pranav/sonar-scanner/bin/sonar-scanner -Dsonar.login=admin -Dsonar.password=admin22
+sonar-scanner -Dsonar.login=admin -Dsonar.password=admin22

@@ -1,8 +1,3 @@
-/**
- * @author Pranav Chandramouli, University of Saskatchewan
- * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
- */
-
 package org.sonarsource.plugins.rtechnicaldebt.languages;
 
 import org.sonar.api.config.Configuration;
@@ -10,6 +5,8 @@ import org.sonar.api.resources.AbstractLanguage;
 import org.sonarsource.plugins.rtechnicaldebt.RTechnicalDebtPlugin;
 
 /**
+ * @author Pranav Chandramouli, University of Saskatchewan
+ * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
  * Definition of the R Language for the plugin.
  */
 public final class RLanguageDefinition extends AbstractLanguage {
