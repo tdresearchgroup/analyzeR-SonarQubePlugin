@@ -2,8 +2,10 @@ package org.sonarsource.plugins.rtechnicaldebt;
 
 import org.sonar.api.Plugin;
 import org.sonar.api.config.PropertyDefinition;
-import org.sonarsource.plugins.rtechnicaldebt.measures.*;
+import org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics;
+import org.sonarsource.plugins.rtechnicaldebt.measures.RMetricsSensor;
 import org.sonarsource.plugins.rtechnicaldebt.measures.cumulative.*;
+
 import static java.util.Arrays.asList;
 
 /**
@@ -14,10 +16,19 @@ import static java.util.Arrays.asList;
  */
 public class RTechnicalDebtPlugin implements Plugin {
 
+  /**
+   * Property to be associated with suffixes of R files
+   */
   public static final String PROPERTY_FILE_SUFFIXES = "sonar.r.file.suffixes";
 
+  /**
+   * Property to be associated with the metrics file, that is produced by the RScanner.
+   */
   public static final String PROPERTY_METRICS_FILE = "sonar.r.tdebt.output";
 
+  /**
+   * Filename of the metrics file produced by the scanner.
+   */
   private static final String FILENAME = "metrics.json";
 
   /**
