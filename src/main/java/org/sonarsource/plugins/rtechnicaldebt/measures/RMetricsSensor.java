@@ -1,8 +1,3 @@
-/**
- * @author Pranav Chandramouli, University of Saskatchewan
- * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
- */
-
 package org.sonarsource.plugins.rtechnicaldebt.measures;
 
 import org.sonar.api.batch.fs.InputFile;
@@ -25,6 +20,8 @@ import java.util.Optional;
 import com.google.gson.Gson;
 
 /**
+ * @author Pranav Chandramouli, University of Saskatchewan
+ * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
  * Implementation of a SonarSensor to read the metrics file and extract metrics.
  */
 public class RMetricsSensor implements Sensor {
@@ -183,17 +180,19 @@ public class RMetricsSensor implements Sensor {
      */
     public void updateProjectMetrics(SensorContext context, RProjectMetric data) {
 
-
+        /**
+         * Print RClassMetrics to the console.
+         * @see RClassMetric
+         */
         for (RClassMetric cm:data.classmetrics) {
             System.out.println("Class " + cm.toString());
-
         }
 
-        context.<Double>newMeasure().withValue(data.projectmetrics.CBO).forMetric(RMetrics.COUPLING_BETWEEN_OBJECTS).on(context.project()).save();
-        context.<Double>newMeasure().withValue(data.projectmetrics.CA).forMetric(RMetrics.AFFERENT_COUPLING).on(context.project()).save();
-        context.<Double>newMeasure().withValue(data.projectmetrics.CE).forMetric(RMetrics.EFFERENT_COUPLING).on(context.project()).save();
-        context.<Double>newMeasure().withValue(data.projectmetrics.MI).forMetric(RMetrics.MARTINS_INSTABILITY).on(context.project()).save();
-        context.<Double>newMeasure().withValue(data.projectmetrics.LCOM).forMetric(RMetrics.LACK_COHESION_METHODS).on(context.project()).save();
+        context.<Double>newMeasure().withValue(data.moduleMetrics.CBO).forMetric(RMetrics.COUPLING_BETWEEN_OBJECTS).on(context.project()).save();
+        context.<Double>newMeasure().withValue(data.moduleMetrics.CA).forMetric(RMetrics.AFFERENT_COUPLING).on(context.project()).save();
+        context.<Double>newMeasure().withValue(data.moduleMetrics.CE).forMetric(RMetrics.EFFERENT_COUPLING).on(context.project()).save();
+        context.<Double>newMeasure().withValue(data.moduleMetrics.MI).forMetric(RMetrics.MARTINS_INSTABILITY).on(context.project()).save();
+        context.<Double>newMeasure().withValue(data.moduleMetrics.LCOM).forMetric(RMetrics.LACK_COHESION_METHODS).on(context.project()).save();
 
 
     }

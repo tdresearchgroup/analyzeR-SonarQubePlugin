@@ -1,23 +1,28 @@
-/**
- * @author Pranav Chandramouli, University of Saskatchewan
- * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
- */
-
 package org.sonarsource.plugins.rtechnicaldebt.measures;
 
 import java.util.List;
 
+/**
+ * @author Pranav Chandramouli, University of Saskatchewan
+ * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
+ * Instantiates
+ */
+
 public class RProjectMetric {
     String  ScriptVersion;
-    List<RFileMetric> metrics;       // LOAD THE file based Metrics
-    List<RClassMetric> classmetrics; // All class specific metrics
-
-    RModuleMetric projectmetrics ;
+    List<RFileMetric> metrics;
+    List<RClassMetric> classmetrics;
+    RModuleMetric moduleMetrics;
 
 
     @Override
     public String toString() {
-        return "Project = { "  + metrics.toString() + classmetrics.toString() + projectmetrics.toString() + '}';
+        return "RProjectMetric{" + '\n' +
+                "ScriptVersion='" + ScriptVersion + '\n' +
+                "metrics=" + metrics + '\n' +
+                "classmetrics=" + classmetrics + '\n' +
+                "projectmetrics=" + moduleMetrics + '\n' +
+                '}';
     }
 }
 
