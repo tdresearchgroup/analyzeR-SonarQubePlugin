@@ -12,7 +12,7 @@ import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 import org.sonarsource.plugins.rtechnicaldebt.RTechnicalDebtPlugin;
-import org.sonarsource.plugins.rtechnicaldebt.languages.RLanguageDefinition;
+import org.sonarsource.plugins.rtechnicaldebt.RLanguageDefinition;
 import org.sonar.api.batch.fs.FileSystem;
 
 import java.io.IOException;

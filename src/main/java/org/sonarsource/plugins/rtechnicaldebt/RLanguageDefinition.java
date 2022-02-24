@@ -1,4 +1,4 @@
-package org.sonarsource.plugins.rtechnicaldebt.languages;
+package org.sonarsource.plugins.rtechnicaldebt;
 
 import org.sonar.api.config.Configuration;
 import org.sonar.api.resources.AbstractLanguage;

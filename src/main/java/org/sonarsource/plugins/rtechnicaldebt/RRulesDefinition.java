@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
-import org.sonarsource.plugins.rtechnicaldebt.languages.RLanguageDefinition;
 
 /**
  * @author Pranav Chandramouli, University of Saskatchewan

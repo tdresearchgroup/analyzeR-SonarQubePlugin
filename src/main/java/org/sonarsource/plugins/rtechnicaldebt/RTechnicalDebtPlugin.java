@@ -2,7 +2,6 @@ package org.sonarsource.plugins.rtechnicaldebt;
 
 import org.sonar.api.Plugin;
 import org.sonar.api.config.PropertyDefinition;
-import org.sonarsource.plugins.rtechnicaldebt.languages.RLanguageDefinition;
 import org.sonarsource.plugins.rtechnicaldebt.measures.*;
 import org.sonarsource.plugins.rtechnicaldebt.measures.cumulative.*;
 import static java.util.Arrays.asList;
