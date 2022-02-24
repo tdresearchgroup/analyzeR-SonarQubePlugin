@@ -31,8 +31,7 @@ public class ComputeAverageNMC implements MeasureComputer {
    */
   @Override
   public void compute(MeasureComputerContext context) {
-    // measure is already defined on files by {@link SetSizeOnFilesSensor}
-    // in scanner stack
+
     if (context.getComponent().getType() != Component.Type.FILE) {
       int sum = 0;
       int count = 0;

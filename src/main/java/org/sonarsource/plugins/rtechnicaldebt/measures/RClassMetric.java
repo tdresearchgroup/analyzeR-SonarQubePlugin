@@ -2,7 +2,7 @@ package org.sonarsource.plugins.rtechnicaldebt.measures;
 
 /**
  * Implements Class metrics for each R class - CBO, Ca, CE, MI, LCOM
- * @see RMetrics for definitions of all metrics
+ * @see RMetrics Definitions of all metrics
  * @author Pranav Chandramouli, University of Saskatchewan
  * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
  */
