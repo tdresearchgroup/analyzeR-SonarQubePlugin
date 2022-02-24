@@ -1,15 +1,15 @@
+package org.sonarsource.plugins.rtechnicaldebt.measures;
+
 /**
  * @author Pranav Chandramouli, University of Saskatchewan
  * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
+ * Implements Class metrics for each R class - CBO, Ca, CE, MI, LCOM
+ * @see RMetrics for
  */
-
-package org.sonarsource.plugins.rtechnicaldebt.measures;
-
 public class RClassMetric {
     String  className;
     int CBO,Ca,Ce;
     double MI,LCOM;
-
 
     @Override
     public String toString() {
@@ -32,8 +32,5 @@ public class RClassMetric {
                 ", CE : " + Ce +
                 ", MI : " + MI +
                 ", LCOM : " + LCOM ;
-    }
-    public String getCBO() {
-        return  className + "(" + CBO + ')';
     }
 }
