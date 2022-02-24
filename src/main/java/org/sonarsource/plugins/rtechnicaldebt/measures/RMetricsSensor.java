@@ -143,7 +143,6 @@ public class RMetricsSensor implements Sensor {
 
             if (fm != null) {
 
-
                 // SET Size Metrics
                 sensorContext.<Integer>newMeasure().withValue(fm.LOC).forMetric(RMetrics.LINES_OF_CODE).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NMC).forMetric(RMetrics.NUMBER_METHOD_CALLS).on(inputFile).save();
@@ -151,7 +150,6 @@ public class RMetricsSensor implements Sensor {
                 sensorContext.<Integer>newMeasure().withValue(fm.NMCE).forMetric(RMetrics.NUMBER_METHOD_CALLS_EXTERNAL).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NPM).forMetric(RMetrics.NUMBER_PUBLIC_METHODS).on(inputFile).save();
                 sensorContext.<Integer>newMeasure().withValue(fm.NOF).forMetric(RMetrics.NUMBER_PUBLIC_FIELDS).on(inputFile).save();
-
 
                 // Set Encapsulation Metrics
                 sensorContext.<Double>newMeasure().withValue(fm.DAM).forMetric(RMetrics.DATA_ACCESS_METRICS).on(inputFile).save();

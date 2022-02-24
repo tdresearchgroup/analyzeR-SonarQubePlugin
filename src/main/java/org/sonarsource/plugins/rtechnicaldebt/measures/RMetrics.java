@@ -8,12 +8,11 @@ import org.sonar.api.measures.Metrics;
 import static java.util.Arrays.asList;
 
 /**
- * @author Pranav Chandramouli, University of Saskatchewan
- * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
- *
  * Definition of all metrics for R.
  * At present, these are all relatively bare-bones. More detail can be added to these metrics as we understand these
  * measures better.
+ * @author Pranav Chandramouli, University of Saskatchewan
+ * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
  */
 public class RMetrics implements Metrics {
 
