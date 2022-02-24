@@ -2,7 +2,6 @@ package org.sonarsource.plugins.rtechnicaldebt;
 
 import org.sonar.api.config.Configuration;
 import org.sonar.api.resources.AbstractLanguage;
-import org.sonarsource.plugins.rtechnicaldebt.RTechnicalDebtPlugin;
 
 /**
  * @author Pranav Chandramouli, University of Saskatchewan
