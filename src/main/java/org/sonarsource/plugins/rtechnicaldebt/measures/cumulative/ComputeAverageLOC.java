@@ -1,10 +1,8 @@
 package org.sonarsource.plugins.rtechnicaldebt.measures.cumulative;
 
 import org.sonar.api.ce.measure.Component;
-
 import org.sonar.api.ce.measure.Measure;
 import org.sonar.api.ce.measure.MeasureComputer;
-
 
 import static org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics.LINES_OF_CODE;
 

@@ -1,18 +1,15 @@
-/**
- * @author Pranav Chandramouli, University of Saskatchewan
- * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
- */
-
 package org.sonarsource.plugins.rtechnicaldebt.measures.cumulative;
 
 import org.sonar.api.ce.measure.Component;
-
 import org.sonar.api.ce.measure.Measure;
 import org.sonar.api.ce.measure.MeasureComputer;
 
 import static org.sonarsource.plugins.rtechnicaldebt.measures.RMetrics.NUMBER_METHOD_CALLS;
+
 /**
- * Computes Cumulative Number of Method Calls
+ * Measure Computer to compute Cumulative Number of Method Calls
+ * @author Pranav Chandramouli, University of Saskatchewan
+ * Supervised by Dr. Melina Vidoni and Dr. Zadia Codabux
  */
 public class ComputeAverageNMC implements MeasureComputer {
 
