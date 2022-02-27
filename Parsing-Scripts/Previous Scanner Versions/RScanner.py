@@ -29,7 +29,7 @@ def printpath(fname):
 
 """
 # Get the list of built in keywords by parsing the RLanguageDefinition command output in 'builtin.log'
-def getBuiltIns():
+def get_built_ins():
     result = []
     with open('builtin.log') as f:
         for line in f:
@@ -37,7 +37,7 @@ def getBuiltIns():
             result.append(flist[1].replace('\"',''))
             result.append(flist[2].replace('\"',''))
     return result
-    print(getBuiltIns)
+    print(get_built_ins)
 """
 
 

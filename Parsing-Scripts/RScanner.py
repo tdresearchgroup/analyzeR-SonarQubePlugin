@@ -10,7 +10,7 @@ from lxml import etree
 ScriptVersion = "1.0"
 
 
-def printpath(fname):
+def print_xml_path(fname):
     """
     Debug routine to print the XML Path
     :param fname:
@@ -24,7 +24,7 @@ def printpath(fname):
             print(xmldoc.getpath(node) + " " + node.text)
 
 
-def getBuiltIns():
+def get_built_ins():
     """
     Get the list of built-in keywords by parsing the R command output in 'builtin.log'
     :return: List of built-in keywords
@@ -39,10 +39,10 @@ def getBuiltIns():
     return result
 
 
-builtins = getBuiltIns()
+builtins = get_built_ins()
 
 
-def getNumComments(root):
+def get_num_comments(root):
     """
     Gets Lines of comments in code
     :param root: Root node of an XML Element tree
@@ -59,9 +59,9 @@ def getNumComments(root):
     return (linecount)
 
 
-def getNumLOC(root):
+def get_num_loc(root):
     """
-    Gets Lines of code
+    Gets Number of Lines of code
     :param root: Root node of an XML Element tree
     :type root: XML ElementTree root node
     :return: Number of lines of code
@@ -79,7 +79,7 @@ r6_keywords = ['R6Class', 'if_any', 'map', 'reset', 'new']
 s4_keywords = ['setMethod', 'slot', 'setClass', 'representation', 'selectMethod', 'setGeneric', 'signature']
 
 
-def getFunctionCalls(root):
+def get_function_calls(root):
     """
     Gets a List of function calls
     :param root: Root node of an XML Element tree
@@ -93,13 +93,10 @@ def getFunctionCalls(root):
             pass
         else:
             result.append(c.text)
-    return (list(set(result)))
+    return list(set(result))
 
 
-# -----------
-# get the function definitions
-# ------------
-def getFunctionDefinitions(root):
+def get_function_definitions(root):
     """
     Gets a list of function definitions
     :param root: Root node of an XML Element tree
@@ -110,15 +107,15 @@ def getFunctionDefinitions(root):
     result = []
     for gp in root.findall('.//FUNCTION/../..'):
 
-        etags, etxt, elist = getChildList(gp)
+        etags, etxt, elist = get_child_list(gp)
         if etags == ['expr', 'LEFT_ASSIGN', 'expr']:
             lhs = elist[0]
-            sym = findChild(lhs, 'SYMBOL')
+            sym = find_child(lhs, 'SYMBOL')
             result.append(sym)
     return list(set(result))
 
 
-def getLibPkg(root):
+def get_library_packages(root):
     """
     Gets Library packages used in the code.
     :param root: Root node of an XML Element tree
@@ -129,41 +126,41 @@ def getLibPkg(root):
     result = []
     # get the grandparent expr of SYMBOL_FUNCTION_CALL
     for item in root.findall('.//SYMBOL_FUNCTION_CALL[.=\'library\']/../..'):
-        etags, etxt, elist = getChildList(item)
+        etags, etxt, elist = get_child_list(item)
         if etags == ['expr', 'OP-LEFT-PAREN', 'expr', 'OP-RIGHT-PAREN']:
-            sym = findChild(elist[2], 'SYMBOL')
+            sym = find_child(elist[2], 'SYMBOL')
             result.append(sym)
 
     return list(set(result))
 
 
-def findSublistIndx(sl, l):
+def find_sublist_index(sublist, patterns_list):
     """
     find the list indices of functions matching the list of patterns
-    :param sl: SubList
-    :type sl: List
-    :param l:
-    :type l: List
+    :param sublist: SubList
+    :type sublist: List
+    :param patterns_list: List of Patterns
+    :type patterns_list: List
     :return: Tuple positions
     :rtype: List
     """
     results = []
-    sl_len = len(sl)
-    for ind in (i for i, e in enumerate(l) if e == sl[0]):
-        if l[ind:ind + sl_len] == sl:
+    sl_len = len(sublist)
+    for ind in (i for i, e in enumerate(patterns_list) if e == sublist[0]):
+        if patterns_list[ind:ind + sl_len] == sublist:
             results.append((ind, ind + sl_len - 1))
 
     # return a list of tuple positions 
     return results
 
 
-def getChildList(item):
+def get_child_list(item):
     """
     Get a list of an item's children
-    :param item:
+    :param item: Node to be queried.
     :type item: Node
     :return: Elements, Tag, and Text
-    :rtype:
+    :rtype: List, List, List
     """
     elist = list(item.iterfind('*'))
     etags = [elem.tag for elem in elist]
@@ -172,75 +169,92 @@ def getChildList(item):
     return etags, etext, elist
 
 
-# -----------
-# XML Parse -
-# -----------
-def findChild(item, tag):
+def find_child(item, tag):
     """
     find a child with specific tag
-    :param item:
-    :type item:
-    :param tag:
-    :type tag:
+    :param item: Node to be queried.
+    :type item: Node
+    :param tag: Tag to be queried
+    :type tag: String
     :return:
     :rtype:
     """
     result = list(item.iterfind(tag))
-    if (len(result)):
-        return (result[0].text)
+    if len(result):
+        return result[0].text
     else:
         return ""
 
 
-# -----------
-# XML Parse - find a child with specific tag
-# -----------
-def findChildrenWithTag(item, tag):
+def find_children_with_tag(item, tag):
+    """
+    find children with specific tag
+    :param item: Node to be queried.
+    :type item: Node
+    :param tag: Tag to be queried
+    :type tag: String
+    :return: List of children with the tag
+    :rtype: List
+    """
     result = list(item.iterfind(tag))
     for i in item.findall(tag):
         ET.dump(i)
-    # print(result)
     lst = []
-    if (len(result)):
-        # print(len(result))
+    if len(result):
         for i in range(len(result)):
-            # print(result[i].text)
             lst.append(result[i].text)
-        # print(lst)
 
-        return (lst)
+        return lst
     else:
         return ""
 
 
-# -----------
-# XML Parse - find a grndchild with specific tag
-# -----------
-def findGrandChildren(item, tag):
+def find_grand_children(item, tag):
+    """
+    find grandchildren with specific tag
+    :param item: Node to be queried.
+    :type item: Node
+    :param tag: Tag to be queried
+    :type tag: String
+    :return: List of children with the tag
+    :rtype: List
+    """
     children = list(item.iterfind('*'))
     result = []
     for item in children:
-        txt = findChild(item, tag)
+        txt = find_child(item, tag)
         if txt != "":
             result.append(txt)
     return result
 
 
-# -----------
-# XML Parse - find the children matching tag , return first item
-# -----------
-def findChildItem(item, tag):
+def find_child_item(item, tag):
+    """
+    find the children matching tag , return first item
+    :param item: Node to be queried.
+    :type item: Node
+    :param tag: Tag to be queried
+    :type tag: String
+    :return: List of children with the tag
+    :rtype: List
+    """
     result = list(item.iterfind(tag))
-    if (len(result)):
-        return (result[0])
+    if len(result):
+        return result[0]
     else:
         return ""
 
 
-# -----------
-# XML Parse - find the children matching tag , return list
-# -----------
-def findChildren(item, tag):
+def find_children(item, tag):
+    """
+    find the children matching tag , return list
+    :param item: Node to be queried.
+    :type item: Node
+    :param tag: Tag to be queried
+    :type tag: String
+    :return: List of children with the tag
+    :rtype: List
+    """
     result = list(item.iterfind(tag))
     if (len(result)):
         return (result)
@@ -248,24 +262,37 @@ def findChildren(item, tag):
         return []
 
 
-def getCallList(itemlist):
+def get_call_list(itemlist):
+    """
+    Get a list of calls. This is used for getting a list of function calls, from an item.
+    :param itemlist: items whose calls must be returned.
+    :type itemlist: List
+    :return: List of calls
+    :rtype: List
+    """
     calllist = []
     for item in itemlist:
-        calls = getFunctionCalls(item)
+        calls = get_function_calls(item)
         calllist.extend(calls)
 
-    # print(calllist)
     return calllist
 
 
-def getAccessList(itemlist):
+def get_access_list(itemlist):
+    """
+
+    :param itemlist:
+    :type itemlist:
+    :return:
+    :rtype:
+    """
     result = []
     i = 0
     for item in itemlist:
 
         for id in item.findall('.//expr'):
-            etags, etxt, elist = getChildList(id)
-            indxs = findSublistIndx(['OP-DOLLAR', 'SYMBOL'], etags)
+            etags, etxt, elist = get_child_list(id)
+            indxs = find_sublist_index(['OP-DOLLAR', 'SYMBOL'], etags)
             for i in range(len(indxs)):
                 a, b = indxs[i]
                 result.append(etxt[a + 1])
@@ -281,11 +308,10 @@ def sublist(lst1, lst2):
 
 # Find All members which are object type by checking the new  
 def getObjectFields(item):
-    
-    objlist = [] 
-    
+    objlist = []
+
     # find if a new Object/class is created 
-    for it in item.findall('./expr/expr/expr/SYMBOL_FUNCTION_CALL[.=\'new\']/..'):  
+    for it in item.findall('./expr/expr/expr/SYMBOL_FUNCTION_CALL[.=\'new\']/..'):
         obj = it.find('./expr/SYMBOL').text
         objlist.append(obj)
 
@@ -301,21 +327,21 @@ def processR6ClassSeq(item):
     result = {}
     result_count = {}
 
-    etags, etxt, elist = getChildList(item)
+    etags, etxt, elist = get_child_list(item)
     if (etags == ['expr', 'LEFT_ASSIGN', 'expr']):
         lhs = elist[0]
         rhs = elist[2]
 
-        sym = findChild(lhs, 'SYMBOL')
+        sym = find_child(lhs, 'SYMBOL')
         # print(sym)
 
-        etags, etxt, elist = getChildList(rhs)
+        etags, etxt, elist = get_child_list(rhs)
 
     members = {}
     accessors = {}
     methodacc = {}
     count = {}  # dictionary to hold the count of methods , fields
-    indxs = findSublistIndx(['SYMBOL_SUB', 'EQ_SUB', 'expr'], etags)
+    indxs = find_sublist_index(['SYMBOL_SUB', 'EQ_SUB', 'expr'], etags)
     # print(indxs)
     for i in range(len(indxs)):
         inhlist = []
@@ -324,10 +350,10 @@ def processR6ClassSeq(item):
         mtype = etxt[a]  # public , private or active declarations
 
         if (mtype == 'inherit'):
-            subclass = findChild(elist[b], 'SYMBOL')
+            subclass = find_child(elist[b], 'SYMBOL')
             inhlist.append(subclass)
 
-        tag, txt, el = getChildList(elist[b])
+        tag, txt, el = get_child_list(elist[b])
         method_cnt = 0
         field_cnt = 0
 
@@ -338,20 +364,20 @@ def processR6ClassSeq(item):
         calllist = []
         objfields = []
 
-        i2 = findSublistIndx(['SYMBOL_SUB', 'EQ_SUB', 'expr'], tag)
+        i2 = find_sublist_index(['SYMBOL_SUB', 'EQ_SUB', 'expr'], tag)
         for i in range(len(i2)):
             a, b = i2[i]
             line1 = el[b].get("line1")
             line2 = el[b].get("line2")
-            tag3, txt3, el3 = getChildList(el[b])
+            tag3, txt3, el3 = get_child_list(el[b])
             if (tag3[0] == 'FUNCTION'):
                 fname = txt[a]
                 # print(f"Method    :  {fname} {line1} {line2}")
                 calllist.append(fname)
                 memfunc.append((fname, line1, line2))
                 method_cnt = method_cnt + 1
-                calls = getCallList(el3)
-                alist = getAccessList(el3)
+                calls = get_call_list(el3)
+                alist = get_access_list(el3)
                 methodacc[fname] = alist
                 calllist.extend(calls)
 
@@ -390,66 +416,68 @@ def processR6ClassSeq(item):
             count[mtype] = (field_cnt, method_cnt)
 
     result[sym] = members
-    
 
     # Returns two dictionaries
 
     return result
 
 
-def getS4FunctionDetails(carray,item):
+def getS4FunctionDetails(carray, item):
     found = False
-    etags,etxt,elist = getChildList(item)
-    
-    idx = findSublistIndx(['OP-LEFT-PAREN', 'expr', 'OP-COMMA', 'expr', 'OP-COMMA','expr'],etags)
-    idx2 = findSublistIndx(['OP-LEFT-PAREN', 'expr', 'OP-COMMA', 'SYMBOL_SUB', 'EQ_SUB','expr', 'OP-COMMA','SYMBOL_SUB', 'EQ_SUB','expr'],etags)
-    
+    etags, etxt, elist = get_child_list(item)
+
+    idx = find_sublist_index(['OP-LEFT-PAREN', 'expr', 'OP-COMMA', 'expr', 'OP-COMMA', 'expr'], etags)
+    idx2 = find_sublist_index(
+        ['OP-LEFT-PAREN', 'expr', 'OP-COMMA', 'SYMBOL_SUB', 'EQ_SUB', 'expr', 'OP-COMMA', 'SYMBOL_SUB', 'EQ_SUB',
+         'expr'], etags)
+
     if (len(idx)):
-        a,b = idx[0]
-        sym = findChild(elist[a+1],'STR_CONST')
+        a, b = idx[0]
+        sym = find_child(elist[a + 1], 'STR_CONST')
         if (sym != ''):
             func = stringWithoutQuote(sym)
-        symlst = findGrandChildren(elist[a+3],'STR_CONST')
+        symlst = find_grand_children(elist[a + 3], 'STR_CONST')
         if (len(symlst)):
             cname = stringWithoutQuote(symlst[0])
 
         line1 = elist[b].get("line1")
         line2 = elist[b].get("line2")
-        tag3, txt3, el3 = getChildList(elist[b])
+        tag3, txt3, el3 = get_child_list(elist[b])
         if (tag3[0] == 'FUNCTION'):
             found = True
     elif len(idx2):
-        a,b = idx2[0]
-        sym = findChild(elist[a+1],'STR_CONST')
+        a, b = idx2[0]
+        sym = find_child(elist[a + 1], 'STR_CONST')
         if (sym != ''):
             func = stringWithoutQuote(sym)
-        symlst = findGrandChildren(elist[a+5],'STR_CONST')
+        symlst = find_grand_children(elist[a + 5], 'STR_CONST')
         if (len(symlst)):
             cname = stringWithoutQuote(symlst[0])
 
         line1 = elist[b].get("line1")
         line2 = elist[b].get("line2")
-        tag3, txt3, el3 = getChildList(elist[b])
+        tag3, txt3, el3 = get_child_list(elist[b])
         if (tag3[0] == 'FUNCTION'):
-            found = True 
+            found = True
 
     if (found):
         for i in range(len(carray)):
             if (cname in carray[i].keys()):
-                carray[i][cname]["public"]["methods"].append((func,line1,line2))
-#-----------
+                carray[i][cname]["public"]["methods"].append((func, line1, line2))
+
+
+# -----------
 # Returns a list of class definitions of S4 type 
-#-----------
+# -----------
 
 def getS4ClassDef(root):
-
     result = []
-    
+
     classfields = {}
-    count = {}    # dictionary to hold the count of methods , fields
-    
+    count = {}  # dictionary to hold the count of methods , fields
+
     memdict = {}
-    methods = [] 
+    methods = []
     members = []
     inherits = []
     tlst = ['expr', 'OP-LEFT-PAREN', 'expr']
@@ -458,14 +486,14 @@ def getS4ClassDef(root):
 
     # get the grandparent expr of SYMBOL_FUNCTION_CALL
     for item in root.findall('.//SYMBOL_FUNCTION_CALL[.=\'setClass\']/../..'):
-        etags,etxt,elist = getChildList(item)
+        etags, etxt, elist = get_child_list(item)
 
         memdict = {}
         dct = {}
         members = []
         inherits = []
-        objfields = [] 
-        idx = findSublistIndx(tlst,etags)
+        objfields = []
+        idx = find_sublist_index(tlst, etags)
 
         memdict["methods"] = []
         memdict["fields"] = []
@@ -476,71 +504,63 @@ def getS4ClassDef(root):
         classfields["inherit"] = []
         classfields["objects"] = []
         if (len(idx)):
-            a,b = idx[0]
-            sym = findChild(elist[b],'STR_CONST')
+            a, b = idx[0]
+            sym = find_child(elist[b], 'STR_CONST')
             classname = stringWithoutQuote(sym)
             classlist.append(classname)
 
             rep = item.find('.//SYMBOL_FUNCTION_CALL[.=\'representation\']/../..')
             if (rep):
-                etags2,etxt2,elist2 = getChildList(rep)
+                etags2, etxt2, elist2 = get_child_list(rep)
 
-                idx = findSublistIndx(['SYMBOL_SUB','EQ_SUB','expr'],etags2)
+                idx = find_sublist_index(['SYMBOL_SUB', 'EQ_SUB', 'expr'], etags2)
                 for i in range(len(idx)):
-                    a,b = idx[i]
+                    a, b = idx[i]
                     members.append(etxt2[a])
 
-                    objtype = findChild(elist2[b],'STR_CONST')
+                    objtype = find_child(elist2[b], 'STR_CONST')
                     objtype = stringWithoutQuote(objtype)
-                    
+
                     if objtype in classlist:
                         if objtype not in objfields:
                             objfields.append(objtype)
-                        
+
             rep = item.find('.//SYMBOL_SUB[.=\'slots\']/..')
             if (rep):
 
-                etags2,etxt2,elist2 = getChildList(rep)
+                etags2, etxt2, elist2 = get_child_list(rep)
 
-                idx = findSublistIndx(['SYMBOL_SUB','EQ_SUB','expr'],etags2)
+                idx = find_sublist_index(['SYMBOL_SUB', 'EQ_SUB', 'expr'], etags2)
                 for i in range(len(idx)):
-                    a,b = idx[i]
-                    slots = findChildren(elist2[b],'SYMBOL_SUB')
+                    a, b = idx[i]
+                    slots = find_children(elist2[b], 'SYMBOL_SUB')
                     for slot in slots:
                         members.append(slot.text)
 
-
-            idx = findSublistIndx(['SYMBOL_SUB','EQ_SUB','expr'],etags)    
+            idx = find_sublist_index(['SYMBOL_SUB', 'EQ_SUB', 'expr'], etags)
             for i in range(len(idx)):
-                a,b = idx[i]
-                sym = findChild(elist[b],'STR_CONST')
+                a, b = idx[i]
+                sym = find_child(elist[b], 'STR_CONST')
                 if (sym != ''):
                     inherits.append(stringWithoutQuote(sym))
-    
-        
+
             memdict["fields"].extend(members)
-           
-            classfields["public"] = memdict 
+
+            classfields["public"] = memdict
             classfields["inherit"].extend(inherits)
             classfields["objects"].extend(objfields)
-            
+
             dct[classname] = deepcopy(classfields)
 
             result.append(deepcopy(dct))
 
-
     for item in root.findall('.//SYMBOL_FUNCTION_CALL[.=\'setMethod\']/../..'):
-        getS4FunctionDetails(result,item)
-        
-        
+        getS4FunctionDetails(result, item)
+
     for item in root.findall('.//SYMBOL_FUNCTION_CALL[.=\'setReplaceMethod\']/../..'):
-        getS4FunctionDetails(result,item)
-    
+        getS4FunctionDetails(result, item)
 
     return result
-        
-
-        
 
 
 # -----------
@@ -552,12 +572,12 @@ def getClassDef(root):
     result = []
     # get the grandparent expr of SYMBOL_FUNCTION_CALL
     for item in root.findall('.//SYMBOL_FUNCTION_CALL[.=\'R6Class\']/../../..'):
-        f= processR6ClassSeq(item)
+        f = processR6ClassSeq(item)
         result.append(f)
-    
+
     r = getS4ClassDef(root)
     if (len(r)):
-            result.extend(r)
+        result.extend(r)
     # Return the list of classdefinitions
     return result
 
@@ -596,8 +616,6 @@ def printdict(hdr, pdictlist, f):
 
 def intersection(lst1, lst2):
     return list(set(lst1) & set(lst2))
-
-
 
 
 def readSrcLines(content, start, end):
@@ -802,18 +820,16 @@ def processxml(filename, actualfilename=""):
 
     basefile = getbasefile(fname)
 
-
-
     # print("-"*50)
     tree = ET.parse(filename)
     root = tree.getroot()
 
     getS4ClassDef(root)
-    
-    loc = getNumLOC(root)
 
-    fcalls = getFunctionCalls(root)
-    fdef = getFunctionDefinitions(root)
+    loc = get_num_loc(root)
+
+    fcalls = get_function_calls(root)
+    fdef = get_function_definitions(root)
 
     ifuncs = intersection(fdef, fcalls)
 
@@ -821,7 +837,7 @@ def processxml(filename, actualfilename=""):
     internalcalls = len(ifuncs)
     externalcalls = (numcalls - internalcalls)
 
-    lpkg = getLibPkg(root)
+    lpkg = get_library_packages(root)
 
     cdef = getClassDef(root)
 
@@ -918,7 +934,7 @@ def main():
                     print(cmd.stderr)
                 else:
                     cdef, filemetric = processxml("temp.xml", arg)
-                    #printpath("temp.xml")
+                    # print_xml_path("temp.xml")
                     metrics.append(filemetric)
                     classdef.extend(cdef)
 

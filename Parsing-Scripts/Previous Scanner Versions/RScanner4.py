@@ -36,7 +36,7 @@ def getBuiltIns():
             result.append(flist[2].replace('\"',''))
     return result
 
-#builtins = getBuiltIns()
+#builtins = get_built_ins()
         
 
 
