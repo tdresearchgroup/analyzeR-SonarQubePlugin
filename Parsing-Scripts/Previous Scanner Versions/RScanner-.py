@@ -4,11 +4,16 @@ import re
 import subprocess
 import sys
 import xml.etree.ElementTree as ET
-from copy import deepcopy
 from lxml import etree
 
-ScriptVersion = "1.0"
+# metrics http://www.virtualmachinery.com/sidebar3.htm
 
+ScriptVersion = "0.4"
+
+
+# TO DO
+# method invocations of classname::methodname to be prefixed with classname <SYMBOL_PACKAGE>
+#
 
 def printpath(fname):
     """
@@ -173,11 +178,11 @@ def getChildList(item):
 
 
 # -----------
-# XML Parse -
+# XML Parse - find a child with specific tag
 # -----------
 def findChild(item, tag):
     """
-    find a child with specific tag
+
     :param item:
     :type item:
     :param tag:
@@ -279,16 +284,28 @@ def sublist(lst1, lst2):
     return ls1 == ls2
 
 
-# Find All members which are object type by checking the new  
 def getObjectFields(item):
-    
-    objlist = [] 
-    
-    # find if a new Object/class is created 
-    for it in item.findall('./expr/expr/expr/SYMBOL_FUNCTION_CALL[.=\'new\']/..'):  
-        obj = it.find('./expr/SYMBOL').text
-        objlist.append(obj)
+    objlist = []
+    if (item.tag == "expr"):
+        etags, etxt, elist = getChildList(item)
+        for i in range(len(elist)):
+            if (elist[i].tag == "expr"):
+                et2, txt2, el2 = getChildList(elist[i])
 
+                if (et2 == ['expr', 'LEFT_ASSIGN', 'expr']):
+                    et3, txt3, el3 = getChildList(el2[2])
+
+                    if (sublist(['expr', 'OP-LEFT-PAREN'], et3)):
+                        et4, txt4, el4 = getChildList(el3[0])
+
+                        indxs = findSublistIndx(['expr', 'OP-DOLLAR', 'SYMBOL_FUNCTION_CALL'], et4)
+
+                        for i in range(len(indxs)):
+                            a, b = indxs[i]
+                            obj = findChild(el4[a], 'SYMBOL')
+                            objlist.append(obj)
+
+    # print(objlist)
     return objlist
 
 
@@ -390,157 +407,10 @@ def processR6ClassSeq(item):
             count[mtype] = (field_cnt, method_cnt)
 
     result[sym] = members
-    
-
+    result_count[sym] = count
+    # print(result)
     # Returns two dictionaries
-
-    return result
-
-
-def getS4FunctionDetails(carray,item):
-    found = False
-    etags,etxt,elist = getChildList(item)
-    
-    idx = findSublistIndx(['OP-LEFT-PAREN', 'expr', 'OP-COMMA', 'expr', 'OP-COMMA','expr'],etags)
-    idx2 = findSublistIndx(['OP-LEFT-PAREN', 'expr', 'OP-COMMA', 'SYMBOL_SUB', 'EQ_SUB','expr', 'OP-COMMA','SYMBOL_SUB', 'EQ_SUB','expr'],etags)
-    
-    if (len(idx)):
-        a,b = idx[0]
-        sym = findChild(elist[a+1],'STR_CONST')
-        if (sym != ''):
-            func = stringWithoutQuote(sym)
-        symlst = findGrandChildren(elist[a+3],'STR_CONST')
-        if (len(symlst)):
-            cname = stringWithoutQuote(symlst[0])
-
-        line1 = elist[b].get("line1")
-        line2 = elist[b].get("line2")
-        tag3, txt3, el3 = getChildList(elist[b])
-        if (tag3[0] == 'FUNCTION'):
-            found = True
-    elif len(idx2):
-        a,b = idx2[0]
-        sym = findChild(elist[a+1],'STR_CONST')
-        if (sym != ''):
-            func = stringWithoutQuote(sym)
-        symlst = findGrandChildren(elist[a+5],'STR_CONST')
-        if (len(symlst)):
-            cname = stringWithoutQuote(symlst[0])
-
-        line1 = elist[b].get("line1")
-        line2 = elist[b].get("line2")
-        tag3, txt3, el3 = getChildList(elist[b])
-        if (tag3[0] == 'FUNCTION'):
-            found = True 
-
-    if (found):
-        for i in range(len(carray)):
-            if (cname in carray[i].keys()):
-                carray[i][cname]["public"]["methods"].append((func,line1,line2))
-#-----------
-# Returns a list of class definitions of S4 type 
-#-----------
-
-def getS4ClassDef(root):
-
-    result = []
-    
-    classfields = {}
-    count = {}    # dictionary to hold the count of methods , fields
-    
-    memdict = {}
-    methods = [] 
-    members = []
-    inherits = []
-    tlst = ['expr', 'OP-LEFT-PAREN', 'expr']
-
-    classlist = []
-
-    # get the grandparent expr of SYMBOL_FUNCTION_CALL
-    for item in root.findall('.//SYMBOL_FUNCTION_CALL[.=\'setClass\']/../..'):
-        etags,etxt,elist = getChildList(item)
-
-        memdict = {}
-        dct = {}
-        members = []
-        inherits = []
-        objfields = [] 
-        idx = findSublistIndx(tlst,etags)
-
-        memdict["methods"] = []
-        memdict["fields"] = []
-        memdict["methodcalls"] = []
-        memdict["access"] = {}  # this dictionary has fields to method mapping
-        memdict["methodaccess"] = {}  # this dictionary has method to fields access
-
-        classfields["inherit"] = []
-        classfields["objects"] = []
-        if (len(idx)):
-            a,b = idx[0]
-            sym = findChild(elist[b],'STR_CONST')
-            classname = stringWithoutQuote(sym)
-            classlist.append(classname)
-
-            rep = item.find('.//SYMBOL_FUNCTION_CALL[.=\'representation\']/../..')
-            if (rep):
-                etags2,etxt2,elist2 = getChildList(rep)
-
-                idx = findSublistIndx(['SYMBOL_SUB','EQ_SUB','expr'],etags2)
-                for i in range(len(idx)):
-                    a,b = idx[i]
-                    members.append(etxt2[a])
-
-                    objtype = findChild(elist2[b],'STR_CONST')
-                    objtype = stringWithoutQuote(objtype)
-                    
-                    if objtype in classlist:
-                        if objtype not in objfields:
-                            objfields.append(objtype)
-                        
-            rep = item.find('.//SYMBOL_SUB[.=\'slots\']/..')
-            if (rep):
-
-                etags2,etxt2,elist2 = getChildList(rep)
-
-                idx = findSublistIndx(['SYMBOL_SUB','EQ_SUB','expr'],etags2)
-                for i in range(len(idx)):
-                    a,b = idx[i]
-                    slots = findChildren(elist2[b],'SYMBOL_SUB')
-                    for slot in slots:
-                        members.append(slot.text)
-
-
-            idx = findSublistIndx(['SYMBOL_SUB','EQ_SUB','expr'],etags)    
-            for i in range(len(idx)):
-                a,b = idx[i]
-                sym = findChild(elist[b],'STR_CONST')
-                if (sym != ''):
-                    inherits.append(stringWithoutQuote(sym))
-    
-        
-            memdict["fields"].extend(members)
-           
-            classfields["public"] = memdict 
-            classfields["inherit"].extend(inherits)
-            classfields["objects"].extend(objfields)
-            
-            dct[classname] = deepcopy(classfields)
-
-            result.append(deepcopy(dct))
-
-
-    for item in root.findall('.//SYMBOL_FUNCTION_CALL[.=\'setMethod\']/../..'):
-        getS4FunctionDetails(result,item)
-        
-        
-    for item in root.findall('.//SYMBOL_FUNCTION_CALL[.=\'setReplaceMethod\']/../..'):
-        getS4FunctionDetails(result,item)
-    
-
-    return result
-        
-
-        
+    return result, result_count
 
 
 # -----------
@@ -550,16 +420,15 @@ def getS4ClassDef(root):
 
 def getClassDef(root):
     result = []
+    result_count = []
     # get the grandparent expr of SYMBOL_FUNCTION_CALL
     for item in root.findall('.//SYMBOL_FUNCTION_CALL[.=\'R6Class\']/../../..'):
-        f= processR6ClassSeq(item)
+        f, c = processR6ClassSeq(item)
         result.append(f)
-    
-    r = getS4ClassDef(root)
-    if (len(r)):
-            result.extend(r)
-    # Return the list of classdefinitions
-    return result
+        result_count.append(c)
+
+    # Return the list of functions and count 
+    return result, result_count
 
 
 def stringWithoutQuote(str):
@@ -596,8 +465,6 @@ def printdict(hdr, pdictlist, f):
 
 def intersection(lst1, lst2):
     return list(set(lst1) & set(lst2))
-
-
 
 
 def readSrcLines(content, start, end):
@@ -747,6 +614,13 @@ def getCouplingMetrics(classdef):
         data = {"CA": ca[k], "CE": ce[k], "CBO": cbo[k], "MI": mi[k]}
         result[k] = data
 
+    '''
+    result["CA"]=ca
+    result["CE"]=ce
+    result["MI"]= mi
+    result["CBO"] = cbo
+    '''
+
     if len(ca):
         resultave["CA"] = sum(ca.values()) / len(ca)
         resultave["CE"] = sum(ce.values()) / len(ce)
@@ -802,14 +676,10 @@ def processxml(filename, actualfilename=""):
 
     basefile = getbasefile(fname)
 
-
-
     # print("-"*50)
     tree = ET.parse(filename)
     root = tree.getroot()
 
-    getS4ClassDef(root)
-    
     loc = getNumLOC(root)
 
     fcalls = getFunctionCalls(root)
@@ -823,7 +693,7 @@ def processxml(filename, actualfilename=""):
 
     lpkg = getLibPkg(root)
 
-    cdef = getClassDef(root)
+    cdef, count = getClassDef(root)
 
     # getS4ClassDef(root)
 
@@ -840,17 +710,24 @@ def processxml(filename, actualfilename=""):
     methodcallcount = 0
 
     # print(cdef)
-
+    # print(count)
     for i in range(len(cdef)):
         cname = list(cdef[i].keys())[0]
-        val = cdef[i][cname]
 
+        # print(count[i])
+        val = count[i][cname]
+        # print(val)
+
+        # print(cdef[i])
         if ("public" in val.keys()):
-            total_pub_fields = total_pub_fields + len(val["public"]["fields"])
-            total_pub_methods = total_pub_methods + len(val["public"]["methods"])
+            pnum = val["public"]
+            total_pub_fields = total_pub_fields + pnum[0]
+            total_pub_methods = total_pub_methods + pnum[1]
+
         if ("private" in val.keys()):
-            total_pri_fields = total_pri_fields + len(val["private"]["fields"])
-            total_pri_methods = total_pri_methods + len(val["private"]["methods"])
+            pnum = val["private"]
+            total_pri_fields = total_pri_fields + pnum[0]
+            total_pri_methods = total_pri_methods + pnum[1]
 
         if (total_pri_fields + total_pub_fields):
             dam = total_pri_fields / (total_pri_fields + total_pub_fields)
@@ -918,7 +795,6 @@ def main():
                     print(cmd.stderr)
                 else:
                     cdef, filemetric = processxml("temp.xml", arg)
-                    #printpath("temp.xml")
                     metrics.append(filemetric)
                     classdef.extend(cdef)
 
