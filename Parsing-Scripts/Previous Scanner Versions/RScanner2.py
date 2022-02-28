@@ -386,7 +386,7 @@ def processxml(filename,actualfilename=""):
     
     cdef , count = getClassDef(root)
 
-    #getS4ClassDef(root)
+    #get_s4_class_definitions(root)
 
     total_pub_fields = 0 
     total_pri_fields = 0 
@@ -476,7 +476,7 @@ def main():
     result = {}
 
     metrics = []
-    result["ScriptVersion"] = ScriptVersion
+    result["SCRIPT_VERSION"] = ScriptVersion
 
     if __name__ == "__main__":
         #print(f"Arguments count: {len(sys.argv)}")

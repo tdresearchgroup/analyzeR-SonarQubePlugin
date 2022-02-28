@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 from copy import deepcopy
 from lxml import etree
 
-ScriptVersion = "1.0"
+SCRIPT_VERSION = "1.0"
 
 
 def print_xml_path(fname):
@@ -280,11 +280,12 @@ def get_call_list(itemlist):
 
 def get_access_list(itemlist):
     """
-
-    :param itemlist:
-    :type itemlist:
-    :return:
-    :rtype:
+    gets the list of objects(class members) accessed by a function
+    This is used for the coupling metrics
+    :param itemlist: items
+    :type itemlist: List
+    :return: List of objects accessed by a function
+    :rtype: List
     """
     result = []
     i = 0
@@ -306,8 +307,14 @@ def sublist(lst1, lst2):
     return ls1 == ls2
 
 
-# Find All members which are object type by checking the new  
-def getObjectFields(item):
+def get_object_fields(item):
+    """
+    Find All members which are object type by checking the new
+    :param item: Node to be queried.
+    :type item: Node
+    :return: List of objects
+    :rtype: List
+    """
     objlist = []
 
     # find if a new Object/class is created 
@@ -318,12 +325,14 @@ def getObjectFields(item):
     return objlist
 
 
-# -----------
-# 
-# Returns a list of class definitions of R6 class Type 
-# -----------
-
-def processR6ClassSeq(item):
+def get_r6_class_definitions(item):
+    """
+    Returns a list of class definitions of R6 class Type
+    :param item: Node to be queried.
+    :type item: Node
+    :return: list of class definitions
+    :rtype: List
+    """
     result = {}
     result_count = {}
 
@@ -388,7 +397,7 @@ def processR6ClassSeq(item):
                 if (fname == "initialize"):
                     for j in range(len(el3)):
                         # ET.dump(el3[j])
-                        objfields.extend(getObjectFields(el3[j]))
+                        objfields.extend(get_object_fields(el3[j]))
                 # print(calls)
             else:
                 # print(f"Member    :  {txt[a]}")
@@ -422,7 +431,14 @@ def processR6ClassSeq(item):
     return result
 
 
-def getS4FunctionDetails(carray, item):
+def get_s4_function_details(carray, item):
+    """
+    Gets function details for S4 Class Functions
+    Details are appended to carray
+    :param item: Node to be queried.
+    :type item: Node
+    :return: None
+    """
     found = False
     etags, etxt, elist = get_child_list(item)
 
@@ -466,11 +482,14 @@ def getS4FunctionDetails(carray, item):
                 carray[i][cname]["public"]["methods"].append((func, line1, line2))
 
 
-# -----------
-# Returns a list of class definitions of S4 type 
-# -----------
-
-def getS4ClassDef(root):
+def get_s4_class_definitions(root):
+    """
+    Gets a list of S4 Class definitions
+    :param root: Node Being Queried
+    :type root: Node
+    :return:  a list of class definitions of S4 type
+    :rtype: List
+    """
     result = []
 
     classfields = {}
@@ -555,30 +574,32 @@ def getS4ClassDef(root):
             result.append(deepcopy(dct))
 
     for item in root.findall('.//SYMBOL_FUNCTION_CALL[.=\'setMethod\']/../..'):
-        getS4FunctionDetails(result, item)
+        get_s4_function_details(result, item)
 
     for item in root.findall('.//SYMBOL_FUNCTION_CALL[.=\'setReplaceMethod\']/../..'):
-        getS4FunctionDetails(result, item)
+        get_s4_function_details(result, item)
 
     return result
 
-
-# -----------
-# get the class definitions
-# calls processR6 
-# -----------
-
-def getClassDef(root):
+def get_class_definitions(root):
+    """
+    get the class definitions
+    Calls s4 and r6 processsing functions
+    :param root: Node Being Queried
+    :type root: Node
+    :return: List of class definitions
+    :rtype:
+    """
     result = []
     # get the grandparent expr of SYMBOL_FUNCTION_CALL
     for item in root.findall('.//SYMBOL_FUNCTION_CALL[.=\'R6Class\']/../../..'):
-        f = processR6ClassSeq(item)
+        f = get_r6_class_definitions(item)
         result.append(f)
 
-    r = getS4ClassDef(root)
+    r = get_s4_class_definitions(root)
     if (len(r)):
         result.extend(r)
-    # Return the list of classdefinitions
+    # Return the list of class definitions
     return result
 
 
@@ -824,7 +845,7 @@ def processxml(filename, actualfilename=""):
     tree = ET.parse(filename)
     root = tree.getroot()
 
-    getS4ClassDef(root)
+    get_s4_class_definitions(root)
 
     loc = get_num_loc(root)
 
@@ -839,9 +860,9 @@ def processxml(filename, actualfilename=""):
 
     lpkg = get_library_packages(root)
 
-    cdef = getClassDef(root)
+    cdef = get_class_definitions(root)
 
-    # getS4ClassDef(root)
+    # get_s4_class_definitions(root)
 
     total_pub_fields = 0
     total_pri_fields = 0
@@ -916,7 +937,7 @@ def main():
     result = {}
 
     metrics = []
-    result["ScriptVersion"] = ScriptVersion
+    result["SCRIPT_VERSION"] = SCRIPT_VERSION
 
     classdef = []
 
