@@ -7,7 +7,19 @@ import xml.etree.ElementTree as ET
 from copy import deepcopy
 from lxml import etree
 
+"""
+Script Version, might be useful for debugging.
+"""
 SCRIPT_VERSION = "1.0"
+"""
+List of R6 System keyboards
+"""
+R6_KEYWORDS = ['R6Class', 'if_any', 'map', 'reset', 'new']
+"""
+List of S4 System Keywords
+"""
+S4_KEYWORDS = ['setMethod', 'slot', 'setClass', 'representation', 'selectMethod', 'setGeneric', 'signature']
+
 
 
 def print_xml_path(fname):
@@ -74,11 +86,6 @@ def get_num_loc(root):
     elist = list(set(elist))
     return (len(elist))
 
-
-r6_keywords = ['R6Class', 'if_any', 'map', 'reset', 'new']
-s4_keywords = ['setMethod', 'slot', 'setClass', 'representation', 'selectMethod', 'setGeneric', 'signature']
-
-
 def get_function_calls(root):
     """
     Gets a List of function calls
@@ -89,7 +96,7 @@ def get_function_calls(root):
     """
     result = []
     for c in root.findall('.//SYMBOL_FUNCTION_CALL'):
-        if (c.text in builtins) or (c.text in r6_keywords) or (c.text in s4_keywords):
+        if (c.text in builtins) or (c.text in R6_KEYWORDS) or (c.text in S4_KEYWORDS):
             pass
         else:
             result.append(c.text)
@@ -451,10 +458,10 @@ def get_s4_function_details(carray, item):
         a, b = idx[0]
         sym = find_child(elist[a + 1], 'STR_CONST')
         if (sym != ''):
-            func = stringWithoutQuote(sym)
+            func = get_string_without_quotes(sym)
         symlst = find_grand_children(elist[a + 3], 'STR_CONST')
         if (len(symlst)):
-            cname = stringWithoutQuote(symlst[0])
+            cname = get_string_without_quotes(symlst[0])
 
         line1 = elist[b].get("line1")
         line2 = elist[b].get("line2")
@@ -465,10 +472,10 @@ def get_s4_function_details(carray, item):
         a, b = idx2[0]
         sym = find_child(elist[a + 1], 'STR_CONST')
         if (sym != ''):
-            func = stringWithoutQuote(sym)
+            func = get_string_without_quotes(sym)
         symlst = find_grand_children(elist[a + 5], 'STR_CONST')
         if (len(symlst)):
-            cname = stringWithoutQuote(symlst[0])
+            cname = get_string_without_quotes(symlst[0])
 
         line1 = elist[b].get("line1")
         line2 = elist[b].get("line2")
@@ -525,7 +532,7 @@ def get_s4_class_definitions(root):
         if (len(idx)):
             a, b = idx[0]
             sym = find_child(elist[b], 'STR_CONST')
-            classname = stringWithoutQuote(sym)
+            classname = get_string_without_quotes(sym)
             classlist.append(classname)
 
             rep = item.find('.//SYMBOL_FUNCTION_CALL[.=\'representation\']/../..')
@@ -538,7 +545,7 @@ def get_s4_class_definitions(root):
                     members.append(etxt2[a])
 
                     objtype = find_child(elist2[b], 'STR_CONST')
-                    objtype = stringWithoutQuote(objtype)
+                    objtype = get_string_without_quotes(objtype)
 
                     if objtype in classlist:
                         if objtype not in objfields:
@@ -561,7 +568,7 @@ def get_s4_class_definitions(root):
                 a, b = idx[i]
                 sym = find_child(elist[b], 'STR_CONST')
                 if (sym != ''):
-                    inherits.append(stringWithoutQuote(sym))
+                    inherits.append(get_string_without_quotes(sym))
 
             memdict["fields"].extend(members)
 
@@ -580,6 +587,7 @@ def get_s4_class_definitions(root):
         get_s4_function_details(result, item)
 
     return result
+
 
 def get_class_definitions(root):
     """
@@ -603,14 +611,21 @@ def get_class_definitions(root):
     return result
 
 
-def stringWithoutQuote(str):
+def get_string_without_quotes(str):
+    """
+    Helper function to return a string without the quotes
+    :param str: Input String
+    :type str: String
+    :return: String with quotes replaced
+    :rtype: String
+    """
     return str.replace('"', '')
 
 
-# TO DO S4 - Parse setClassUnion
-# https://r6.r-lib.org/reference/R6Class.html
-
-def getbasefile(filepath):
+def get_base_file(filepath):
+    """
+    Returns the Base file from a filepath
+    """
     filepath = filepath.split(".")[0]
     flist = filepath.split("/")
     if (len(flist) == 2):
@@ -619,14 +634,20 @@ def getbasefile(filepath):
         return flist[0]
 
 
-def printlist(hdr, plist, f):
+def print_list(hdr, plist, f):
+    """
+    Helper/Debugging function to print a list in an aesthetic way.
+    """
     f.writelines(hdr + "\n")
     for i in range(len(plist)):
         f.writelines(f"\t {plist[i]}\n")
     f.write("\n")
 
 
-def printdict(hdr, pdictlist, f):
+def print_dict(hdr, pdictlist, f):
+    """
+    Helper/Debugging function to print a dictionary in an aesthetic way.
+    """
     f.writelines(hdr + "\n")
 
     dict_str = pprint.pformat(pdictlist)
@@ -636,17 +657,27 @@ def printdict(hdr, pdictlist, f):
 
 
 def intersection(lst1, lst2):
+    """
+    Returns the intersection of two lists.
+    """
     return list(set(lst1) & set(lst2))
 
 
-def readSrcLines(content, start, end):
-    # print(content[end])
-    txt = "".join(content[start - 1:end])
-    # print(txt)
-    # ftxt = re.split('=(\s)function',txt,1)
-    # print(ftxt)
+def read_source_lines(content, start, end):
+    """
+    Reads Lines from source and returns the lines as a string
+    :param content: Content of the Source File
+    :type content: String
+    :param start: Start Index
+    :type start: Index
+    :param end: End Index
+    :type end: Index
+    :return: function text
+    :rtype: String
+    """
 
-    # functxt = "function"+ txt.split("= function")[1]
+    txt = "".join(content[start - 1:end])
+
     functxt = re.split('= *function', txt, 1)
     if (len(functxt) == 2):
         functxt = "function" + functxt[1]
@@ -660,10 +691,16 @@ def readSrcLines(content, start, end):
     return functxt
 
 
-# Run cyclocomp on extracted function text
-def getComplexity(string):
+def calc_cyclocomp(function_text):
+    """
+    Runs cyclocomp on extracted function text.
+    :param function_text: Function Text
+    :type function_text: String
+    :return: Cyclomatic Complexity of the text
+    :rtype: Int
+    """
     qstr = r'\".*\"'  # remove quoted strings
-    string = re.sub(qstr, '', string)
+    string = re.sub(qstr, '', function_text)
 
     string = "\"" + string + "\""
 
@@ -678,7 +715,14 @@ def getComplexity(string):
     return (int(routput))
 
 
-def getCohesionMetrics(classdef):
+def get_cohesion_metrics(classdef):
+    """
+    Calculates cohesion metrics for classdefinitions
+    :param classdef: the class definition in question
+    :type classdef:
+    :return: LCOM dictionary and the average
+    :rtype: Dictionary, Float
+    """
     result = {}
 
     for i in range(len(classdef)):
@@ -717,8 +761,14 @@ def getCohesionMetrics(classdef):
     return result, ave
 
 
-def getCouplingMetrics(classdef):
-    # print(classdef)
+def get_coupling_metrics(classdef):
+    """
+    Gets Coupling Metrics for a class definition
+    :param classdef: the class definition in question
+    :type classdef:
+    :return: Coupling Metrics and Average Coupling Metrics
+    :rtype: Dictionary, Dictionary
+    """
     result = {}
     resultave = {}
 
@@ -801,11 +851,17 @@ def getCouplingMetrics(classdef):
     return result, resultave
 
 
-def processInterClass(cdef):
+def process_interclass_metrics(cdef):
+    """
+    Use previously defined functions to process interclass metrics - project level and class-level
+    :param cdef: Class definitions
+    :type cdef:
+    :return:  project level and class level metrics
+    """
     prmetrics = {}
     result = []
-    cm, cmave = getCouplingMetrics(cdef)
-    coh, ave = getCohesionMetrics(cdef)
+    cm, cmave = get_coupling_metrics(cdef)
+    coh, ave = get_cohesion_metrics(cdef)
 
     for k in cm.keys():
         d = {}
@@ -824,22 +880,31 @@ def processInterClass(cdef):
         prmetrics[k] = cmave[k]
     prmetrics["LCOM"] = ave
 
-    return prmetrics, result  # return project level and class level metrics
+    return prmetrics, result
 
 
 def processxml(filename, actualfilename=""):
+    """
+    Processes an XML file, using other functions
+    :param filename: XML Filename
+    :type filename: String
+    :param actualfilename:
+    :type actualfilename: String
+    :return: ClassDefinitions and Metrics
+    :rtype: List, Dictionary
+    """
     with open(actualfilename) as f:
         content = f.readlines()
     metrics = {}
 
     if (actualfilename):
         fname = actualfilename
-        basefile = getbasefile(actualfilename)
+        basefile = get_base_file(actualfilename)
     else:
         fname = filename
-        basefile = getbasefile(filename)
+        basefile = get_base_file(filename)
 
-    basefile = getbasefile(fname)
+    basefile = get_base_file(fname)
 
     # print("-"*50)
     tree = ET.parse(filename)
@@ -908,8 +973,8 @@ def processxml(filename, actualfilename=""):
                     start = int(line1)
                     end = int(line2)
 
-                    functxt = readSrcLines(content, start, end)
-                    c = getComplexity(functxt)
+                    functxt = read_source_lines(content, start, end)
+                    c = calc_cyclocomp(functxt)
 
                     totalcomplexity = totalcomplexity + c
                     methodcount = methodcount + 1
@@ -934,6 +999,10 @@ def processxml(filename, actualfilename=""):
 
 
 def main():
+    """
+    Main function, that reads commandline arguments, calls the parsing script, and then calls the metrics
+    calculations on the parsed xml
+    """
     result = {}
 
     metrics = []
@@ -959,7 +1028,7 @@ def main():
                     metrics.append(filemetric)
                     classdef.extend(cdef)
 
-    prmetrics, classmetrics = processInterClass(classdef)
+    prmetrics, classmetrics = process_interclass_metrics(classdef)
 
     result["metrics"] = metrics
     result["projectmetrics"] = prmetrics

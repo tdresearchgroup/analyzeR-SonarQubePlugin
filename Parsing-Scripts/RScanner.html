@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module RScanner</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>RScanner</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/pranav/Documents/R-Plugin-pydoc/Parsing-Scripts/RScanner.py">/Users/pranav/Documents/R-Plugin-pydoc/Parsing-Scripts/RScanner.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="xml.etree.ElementTree.html">xml.etree.ElementTree</a><br>
+<a href="lxml.etree.html">lxml.etree</a><br>
+</td><td width="25%" valign=top><a href="json.html">json</a><br>
+<a href="pprint.html">pprint</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+<a href="subprocess.html">subprocess</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-calc_cyclocomp"><strong>calc_cyclocomp</strong></a>(function_text)</dt><dd><tt>Runs&nbsp;cyclocomp&nbsp;on&nbsp;extracted&nbsp;function&nbsp;text.<br>
+:param&nbsp;function_text:&nbsp;Function&nbsp;Text<br>
+:type&nbsp;function_text:&nbsp;String<br>
+:return:&nbsp;Cyclomatic&nbsp;Complexity&nbsp;of&nbsp;the&nbsp;text<br>
+:rtype:&nbsp;Int</tt></dd></dl>
+ <dl><dt><a name="-find_child"><strong>find_child</strong></a>(item, tag)</dt><dd><tt>find&nbsp;a&nbsp;child&nbsp;with&nbsp;specific&nbsp;tag<br>
+:param&nbsp;item:&nbsp;Node&nbsp;to&nbsp;be&nbsp;queried.<br>
+:type&nbsp;item:&nbsp;Node<br>
+:param&nbsp;tag:&nbsp;Tag&nbsp;to&nbsp;be&nbsp;queried<br>
+:type&nbsp;tag:&nbsp;String<br>
+:return:<br>
+:rtype:</tt></dd></dl>
+ <dl><dt><a name="-find_child_item"><strong>find_child_item</strong></a>(item, tag)</dt><dd><tt>find&nbsp;the&nbsp;children&nbsp;matching&nbsp;tag&nbsp;,&nbsp;return&nbsp;first&nbsp;item<br>
+:param&nbsp;item:&nbsp;Node&nbsp;to&nbsp;be&nbsp;queried.<br>
+:type&nbsp;item:&nbsp;Node<br>
+:param&nbsp;tag:&nbsp;Tag&nbsp;to&nbsp;be&nbsp;queried<br>
+:type&nbsp;tag:&nbsp;String<br>
+:return:&nbsp;List&nbsp;of&nbsp;children&nbsp;with&nbsp;the&nbsp;tag<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-find_children"><strong>find_children</strong></a>(item, tag)</dt><dd><tt>find&nbsp;the&nbsp;children&nbsp;matching&nbsp;tag&nbsp;,&nbsp;return&nbsp;list<br>
+:param&nbsp;item:&nbsp;Node&nbsp;to&nbsp;be&nbsp;queried.<br>
+:type&nbsp;item:&nbsp;Node<br>
+:param&nbsp;tag:&nbsp;Tag&nbsp;to&nbsp;be&nbsp;queried<br>
+:type&nbsp;tag:&nbsp;String<br>
+:return:&nbsp;List&nbsp;of&nbsp;children&nbsp;with&nbsp;the&nbsp;tag<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-find_children_with_tag"><strong>find_children_with_tag</strong></a>(item, tag)</dt><dd><tt>find&nbsp;children&nbsp;with&nbsp;specific&nbsp;tag<br>
+:param&nbsp;item:&nbsp;Node&nbsp;to&nbsp;be&nbsp;queried.<br>
+:type&nbsp;item:&nbsp;Node<br>
+:param&nbsp;tag:&nbsp;Tag&nbsp;to&nbsp;be&nbsp;queried<br>
+:type&nbsp;tag:&nbsp;String<br>
+:return:&nbsp;List&nbsp;of&nbsp;children&nbsp;with&nbsp;the&nbsp;tag<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-find_grand_children"><strong>find_grand_children</strong></a>(item, tag)</dt><dd><tt>find&nbsp;grandchildren&nbsp;with&nbsp;specific&nbsp;tag<br>
+:param&nbsp;item:&nbsp;Node&nbsp;to&nbsp;be&nbsp;queried.<br>
+:type&nbsp;item:&nbsp;Node<br>
+:param&nbsp;tag:&nbsp;Tag&nbsp;to&nbsp;be&nbsp;queried<br>
+:type&nbsp;tag:&nbsp;String<br>
+:return:&nbsp;List&nbsp;of&nbsp;children&nbsp;with&nbsp;the&nbsp;tag<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-find_sublist_index"><strong>find_sublist_index</strong></a>(sublist, patterns_list)</dt><dd><tt>find&nbsp;the&nbsp;list&nbsp;indices&nbsp;of&nbsp;functions&nbsp;matching&nbsp;the&nbsp;list&nbsp;of&nbsp;patterns<br>
+:param&nbsp;sublist:&nbsp;SubList<br>
+:type&nbsp;sublist:&nbsp;List<br>
+:param&nbsp;patterns_list:&nbsp;List&nbsp;of&nbsp;Patterns<br>
+:type&nbsp;patterns_list:&nbsp;List<br>
+:return:&nbsp;Tuple&nbsp;positions<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-get_access_list"><strong>get_access_list</strong></a>(itemlist)</dt><dd><tt>gets&nbsp;the&nbsp;list&nbsp;of&nbsp;objects(class&nbsp;members)&nbsp;accessed&nbsp;by&nbsp;a&nbsp;function<br>
+This&nbsp;is&nbsp;used&nbsp;for&nbsp;the&nbsp;coupling&nbsp;metrics<br>
+:param&nbsp;itemlist:&nbsp;items<br>
+:type&nbsp;itemlist:&nbsp;List<br>
+:return:&nbsp;List&nbsp;of&nbsp;objects&nbsp;accessed&nbsp;by&nbsp;a&nbsp;function<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-get_base_file"><strong>get_base_file</strong></a>(filepath)</dt><dd><tt>Returns&nbsp;the&nbsp;Base&nbsp;file&nbsp;from&nbsp;a&nbsp;filepath</tt></dd></dl>
+ <dl><dt><a name="-get_built_ins"><strong>get_built_ins</strong></a>()</dt><dd><tt>Get&nbsp;the&nbsp;list&nbsp;of&nbsp;built-in&nbsp;keywords&nbsp;by&nbsp;parsing&nbsp;the&nbsp;R&nbsp;command&nbsp;output&nbsp;in&nbsp;'builtin.log'<br>
+:return:&nbsp;List&nbsp;of&nbsp;built-in&nbsp;keywords<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-get_call_list"><strong>get_call_list</strong></a>(itemlist)</dt><dd><tt>Get&nbsp;a&nbsp;list&nbsp;of&nbsp;calls.&nbsp;This&nbsp;is&nbsp;used&nbsp;for&nbsp;getting&nbsp;a&nbsp;list&nbsp;of&nbsp;function&nbsp;calls,&nbsp;from&nbsp;an&nbsp;item.<br>
+:param&nbsp;itemlist:&nbsp;items&nbsp;whose&nbsp;calls&nbsp;must&nbsp;be&nbsp;returned.<br>
+:type&nbsp;itemlist:&nbsp;List<br>
+:return:&nbsp;List&nbsp;of&nbsp;calls<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-get_child_list"><strong>get_child_list</strong></a>(item)</dt><dd><tt>Get&nbsp;a&nbsp;list&nbsp;of&nbsp;an&nbsp;item's&nbsp;children<br>
+:param&nbsp;item:&nbsp;Node&nbsp;to&nbsp;be&nbsp;queried.<br>
+:type&nbsp;item:&nbsp;Node<br>
+:return:&nbsp;Elements,&nbsp;Tag,&nbsp;and&nbsp;Text<br>
+:rtype:&nbsp;List,&nbsp;List,&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-get_class_definitions"><strong>get_class_definitions</strong></a>(root)</dt><dd><tt>get&nbsp;the&nbsp;class&nbsp;definitions<br>
+Calls&nbsp;s4&nbsp;and&nbsp;r6&nbsp;processsing&nbsp;functions<br>
+:param&nbsp;root:&nbsp;Node&nbsp;Being&nbsp;Queried<br>
+:type&nbsp;root:&nbsp;Node<br>
+:return:&nbsp;List&nbsp;of&nbsp;class&nbsp;definitions<br>
+:rtype:</tt></dd></dl>
+ <dl><dt><a name="-get_cohesion_metrics"><strong>get_cohesion_metrics</strong></a>(classdef)</dt><dd><tt>Calculates&nbsp;cohesion&nbsp;metrics&nbsp;for&nbsp;classdefinitions<br>
+:param&nbsp;classdef:&nbsp;the&nbsp;class&nbsp;definition&nbsp;in&nbsp;question<br>
+:type&nbsp;classdef:<br>
+:return:&nbsp;LCOM&nbsp;dictionary&nbsp;and&nbsp;the&nbsp;average<br>
+:rtype:&nbsp;Dictionary,&nbsp;Float</tt></dd></dl>
+ <dl><dt><a name="-get_coupling_metrics"><strong>get_coupling_metrics</strong></a>(classdef)</dt><dd><tt>Gets&nbsp;Coupling&nbsp;Metrics&nbsp;for&nbsp;a&nbsp;class&nbsp;definition<br>
+:param&nbsp;classdef:&nbsp;the&nbsp;class&nbsp;definition&nbsp;in&nbsp;question<br>
+:type&nbsp;classdef:<br>
+:return:&nbsp;Coupling&nbsp;Metrics&nbsp;and&nbsp;Average&nbsp;Coupling&nbsp;Metrics<br>
+:rtype:&nbsp;Dictionary,&nbsp;Dictionary</tt></dd></dl>
+ <dl><dt><a name="-get_function_calls"><strong>get_function_calls</strong></a>(root)</dt><dd><tt>Gets&nbsp;a&nbsp;List&nbsp;of&nbsp;function&nbsp;calls<br>
+:param&nbsp;root:&nbsp;Root&nbsp;node&nbsp;of&nbsp;an&nbsp;XML&nbsp;Element&nbsp;tree<br>
+:type&nbsp;root:&nbsp;XML&nbsp;ElementTree&nbsp;root&nbsp;node<br>
+:return:&nbsp;Function&nbsp;Calls<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-get_function_definitions"><strong>get_function_definitions</strong></a>(root)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;function&nbsp;definitions<br>
+:param&nbsp;root:&nbsp;Root&nbsp;node&nbsp;of&nbsp;an&nbsp;XML&nbsp;Element&nbsp;tree<br>
+:type&nbsp;root:&nbsp;XML&nbsp;ElementTree&nbsp;root&nbsp;node<br>
+:return:&nbsp;Function&nbsp;Definitions<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-get_library_packages"><strong>get_library_packages</strong></a>(root)</dt><dd><tt>Gets&nbsp;Library&nbsp;packages&nbsp;used&nbsp;in&nbsp;the&nbsp;code.<br>
+:param&nbsp;root:&nbsp;Root&nbsp;node&nbsp;of&nbsp;an&nbsp;XML&nbsp;Element&nbsp;tree<br>
+:type&nbsp;root:&nbsp;XML&nbsp;ElementTree&nbsp;root&nbsp;node<br>
+:return:&nbsp;Library&nbsp;Packages<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-get_num_comments"><strong>get_num_comments</strong></a>(root)</dt><dd><tt>Gets&nbsp;Lines&nbsp;of&nbsp;comments&nbsp;in&nbsp;code<br>
+:param&nbsp;root:&nbsp;Root&nbsp;node&nbsp;of&nbsp;an&nbsp;XML&nbsp;Element&nbsp;tree<br>
+:type&nbsp;root:&nbsp;XML&nbsp;ElementTree&nbsp;root&nbsp;node<br>
+:return:&nbsp;Number&nbsp;of&nbsp;lines&nbsp;of&nbsp;comments<br>
+:rtype:&nbsp;Int</tt></dd></dl>
+ <dl><dt><a name="-get_num_loc"><strong>get_num_loc</strong></a>(root)</dt><dd><tt>Gets&nbsp;Number&nbsp;of&nbsp;Lines&nbsp;of&nbsp;code<br>
+:param&nbsp;root:&nbsp;Root&nbsp;node&nbsp;of&nbsp;an&nbsp;XML&nbsp;Element&nbsp;tree<br>
+:type&nbsp;root:&nbsp;XML&nbsp;ElementTree&nbsp;root&nbsp;node<br>
+:return:&nbsp;Number&nbsp;of&nbsp;lines&nbsp;of&nbsp;code<br>
+:rtype:&nbsp;Int</tt></dd></dl>
+ <dl><dt><a name="-get_object_fields"><strong>get_object_fields</strong></a>(item)</dt><dd><tt>Find&nbsp;All&nbsp;members&nbsp;which&nbsp;are&nbsp;object&nbsp;type&nbsp;by&nbsp;checking&nbsp;the&nbsp;new<br>
+:param&nbsp;item:&nbsp;Node&nbsp;to&nbsp;be&nbsp;queried.<br>
+:type&nbsp;item:&nbsp;Node<br>
+:return:&nbsp;List&nbsp;of&nbsp;objects<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-get_r6_class_definitions"><strong>get_r6_class_definitions</strong></a>(item)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;class&nbsp;definitions&nbsp;of&nbsp;R6&nbsp;class&nbsp;Type<br>
+:param&nbsp;item:&nbsp;Node&nbsp;to&nbsp;be&nbsp;queried.<br>
+:type&nbsp;item:&nbsp;Node<br>
+:return:&nbsp;list&nbsp;of&nbsp;class&nbsp;definitions<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-get_s4_class_definitions"><strong>get_s4_class_definitions</strong></a>(root)</dt><dd><tt>Gets&nbsp;a&nbsp;list&nbsp;of&nbsp;S4&nbsp;Class&nbsp;definitions<br>
+:param&nbsp;root:&nbsp;Node&nbsp;Being&nbsp;Queried<br>
+:type&nbsp;root:&nbsp;Node<br>
+:return:&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;class&nbsp;definitions&nbsp;of&nbsp;S4&nbsp;type<br>
+:rtype:&nbsp;List</tt></dd></dl>
+ <dl><dt><a name="-get_s4_function_details"><strong>get_s4_function_details</strong></a>(carray, item)</dt><dd><tt>Gets&nbsp;function&nbsp;details&nbsp;for&nbsp;S4&nbsp;Class&nbsp;Functions<br>
+Details&nbsp;are&nbsp;appended&nbsp;to&nbsp;carray<br>
+:param&nbsp;item:&nbsp;Node&nbsp;to&nbsp;be&nbsp;queried.<br>
+:type&nbsp;item:&nbsp;Node<br>
+:return:&nbsp;None</tt></dd></dl>
+ <dl><dt><a name="-get_string_without_quotes"><strong>get_string_without_quotes</strong></a>(str)</dt><dd><tt>Helper&nbsp;function&nbsp;to&nbsp;return&nbsp;a&nbsp;string&nbsp;without&nbsp;the&nbsp;quotes<br>
+:param&nbsp;str:&nbsp;Input&nbsp;String<br>
+:type&nbsp;str:&nbsp;String<br>
+:return:&nbsp;String&nbsp;with&nbsp;quotes&nbsp;replaced<br>
+:rtype:&nbsp;String</tt></dd></dl>
+ <dl><dt><a name="-intersection"><strong>intersection</strong></a>(lst1, lst2)</dt><dd><tt>Returns&nbsp;the&nbsp;intersection&nbsp;of&nbsp;two&nbsp;lists.</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><tt>Main&nbsp;function,&nbsp;that&nbsp;reads&nbsp;commandline&nbsp;arguments,&nbsp;calls&nbsp;the&nbsp;parsing&nbsp;script,&nbsp;and&nbsp;then&nbsp;calls&nbsp;the&nbsp;metrics<br>
+calculations&nbsp;on&nbsp;the&nbsp;parsed&nbsp;xml</tt></dd></dl>
+ <dl><dt><a name="-print_dict"><strong>print_dict</strong></a>(hdr, pdictlist, f)</dt><dd><tt>Helper/Debugging&nbsp;function&nbsp;to&nbsp;print&nbsp;a&nbsp;dictionary&nbsp;in&nbsp;an&nbsp;aesthetic&nbsp;way.</tt></dd></dl>
+ <dl><dt><a name="-print_list"><strong>print_list</strong></a>(hdr, plist, f)</dt><dd><tt>Helper/Debugging&nbsp;function&nbsp;to&nbsp;print&nbsp;a&nbsp;list&nbsp;in&nbsp;an&nbsp;aesthetic&nbsp;way.</tt></dd></dl>
+ <dl><dt><a name="-print_xml_path"><strong>print_xml_path</strong></a>(fname)</dt><dd><tt>Debug&nbsp;routine&nbsp;to&nbsp;print&nbsp;the&nbsp;XML&nbsp;Path<br>
+:param&nbsp;fname:<br>
+:type&nbsp;fname:<br>
+:return:&nbsp;None<br>
+:rtype:&nbsp;None</tt></dd></dl>
+ <dl><dt><a name="-process_interclass_metrics"><strong>process_interclass_metrics</strong></a>(cdef)</dt><dd><tt>Use&nbsp;previously&nbsp;defined&nbsp;functions&nbsp;to&nbsp;process&nbsp;interclass&nbsp;metrics&nbsp;-&nbsp;project&nbsp;level&nbsp;and&nbsp;class-level<br>
+:param&nbsp;cdef:&nbsp;Class&nbsp;definitions<br>
+:type&nbsp;cdef:<br>
+:return:&nbsp;&nbsp;project&nbsp;level&nbsp;and&nbsp;class&nbsp;level&nbsp;metrics</tt></dd></dl>
+ <dl><dt><a name="-processxml"><strong>processxml</strong></a>(filename, actualfilename='')</dt><dd><tt>Processes&nbsp;an&nbsp;XML&nbsp;file,&nbsp;using&nbsp;other&nbsp;functions<br>
+:param&nbsp;filename:&nbsp;XML&nbsp;Filename<br>
+:type&nbsp;filename:&nbsp;String<br>
+:param&nbsp;actualfilename:<br>
+:type&nbsp;actualfilename:&nbsp;String<br>
+:return:&nbsp;ClassDefinitions&nbsp;and&nbsp;Metrics<br>
+:rtype:&nbsp;List,&nbsp;Dictionary</tt></dd></dl>
+ <dl><dt><a name="-read_source_lines"><strong>read_source_lines</strong></a>(content, start, end)</dt><dd><tt>Reads&nbsp;Lines&nbsp;from&nbsp;source&nbsp;and&nbsp;returns&nbsp;the&nbsp;lines&nbsp;as&nbsp;a&nbsp;string<br>
+:param&nbsp;content:&nbsp;Content&nbsp;of&nbsp;the&nbsp;Source&nbsp;File<br>
+:type&nbsp;content:&nbsp;String<br>
+:param&nbsp;start:&nbsp;Start&nbsp;Index<br>
+:type&nbsp;start:&nbsp;Index<br>
+:param&nbsp;end:&nbsp;End&nbsp;Index<br>
+:type&nbsp;end:&nbsp;Index<br>
+:return:&nbsp;function&nbsp;text<br>
+:rtype:&nbsp;String</tt></dd></dl>
+ <dl><dt><a name="-sublist"><strong>sublist</strong></a>(lst1, lst2)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>R6_KEYWORDS</strong> = ['R6Class', 'if_any', 'map', 'reset', 'new']<br>
+<strong>S4_KEYWORDS</strong> = ['setMethod', 'slot', 'setClass', 'representation', 'selectMethod', 'setGeneric', 'signature']<br>
+<strong>SCRIPT_VERSION</strong> = '1.0'<br>
+<strong>builtins</strong> = ['zapsmall', 'xzfile', 'xtfrm.POSIXlt', 'xtfrm.POSIXct', 'xtfrm.numeric_version', 'xtfrm.factor', 'xtfrm.difftime', 'xtfrm.default', 'xtfrm.Date', 'xtfrm.AsIs', 'xtfrm', 'xpdrows.data.frame', 'xor', 'writeLines', 'writeChar', 'writeBin', 'write.dcf', 'write', 'withVisible', 'withRestarts', ...]</td></tr></table>
+</body></html>
