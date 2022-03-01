@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.sonarsource.plugins.rtechnicaldebt"},{"l":"org.sonarsource.plugins.rtechnicaldebt.measures"},{"l":"org.sonarsource.plugins.rtechnicaldebt.measures.cumulative"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.sonarsource.plugins.analyzeR"},{"l":"org.sonarsource.plugins.analyzeR.measures"},{"l":"org.sonarsource.plugins.analyzeR.measures.cumulative"}];updateSearchResults();

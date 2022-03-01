@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.sonarsource.plugins.rtechnicaldebt</groupId>
-  <artifactId>sonar-r-techdebt-plugin</artifactId>
+  <groupId>org.sonarsource.plugins.analyzeR</groupId>
+  <artifactId>analyzeR</artifactId>
   <packaging>sonar-plugin</packaging>
   <version>1.0.0</version>
 
-  <name>SonarQube R Technical Debt Plugin</name>
-  <description>Plugin to calculate and display technical-debt metrics for R files.</description>
+  <name>analyzeR</name>
+  <description>analyzeR - Plugin to calculate and display technical-debt metrics for R files.</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -64,7 +64,7 @@
         <extensions>true</extensions>
         <configuration>
           <pluginKey>example</pluginKey>
-          <pluginClass>org.sonarsource.plugins.rtechnicaldebt.RTechnicalDebtPlugin</pluginClass>
+          <pluginClass>org.sonarsource.plugins.analyzeR.analyzeR</pluginClass>
         </configuration>
       </plugin>
       <plugin>
