@@ -54,7 +54,7 @@ The following metrics are considered:
 
 ## Installation & Use
 
-Please, refer to the current [Wiki Entry]() regarding installation guidance.
+Please, refer to the current [Wiki](https://github.com/tdresearchgroup/analyzeR-SonarQubePlugin/wiki).
 
 
 
