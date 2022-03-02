@@ -1,7 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 ![GitHub Issues](https://img.shields.io/github/issues/tdresearchgroup/R-Plugin)
-
 ![GitHub PRs](https://img.shields.io/github/issues-pr/tdresearchgroup/R-Plugin)
 
 
@@ -64,5 +62,6 @@ Please, refer to the current [Wiki Entry]() regarding installation guidance.
 
 ## References
 
-[^1] [10.1109/SANER48275.2020.9054821](https://doi.org/10.1109/SANER48275.2020.9054821)
-[^2] [10.1145/3472163.3472172](https://doi.org/10.1145/3472163.3472172)
+[^1]: [10.1109/SANER48275.2020.9054821](https://doi.org/10.1109/SANER48275.2020.9054821)
+
+[^2]: [10.1145/3472163.3472172](https://doi.org/10.1145/3472163.3472172)
