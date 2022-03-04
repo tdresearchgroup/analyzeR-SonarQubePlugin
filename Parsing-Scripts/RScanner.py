@@ -826,13 +826,21 @@ def get_coupling_metrics(classdef):
 
     mi = {}
 
+
     for k in ce.keys():
+        if (k not in ca.keys()):
+            ca[k] = 0
         if ce[k] + ca[k]:
             mi[k] = ca[k] / (ca[k] + ce[k])
         else:
             mi[k] = 0
 
-        cbo[k] = len(cbo[k])
+        if (k in cbo.keys()):
+            #print(cbo[k])
+            if (isinstance(cbo[k],list)):
+                cbo[k] = len(cbo[k])
+        else:
+            cbo[k] = 0
         data = {"CA": ca[k], "CE": ce[k], "CBO": cbo[k], "MI": mi[k]}
         result[k] = data
 
@@ -1031,7 +1039,7 @@ def main():
     prmetrics, classmetrics = process_interclass_metrics(classdef)
 
     result["metrics"] = metrics
-    result["projectmetrics"] = prmetrics
+    result["moduleMetrics"] = prmetrics
     result["classmetrics"] = classmetrics
 
     print("Generating  file metrics.json ...")
