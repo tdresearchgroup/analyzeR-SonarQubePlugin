@@ -1,7 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![GitHub Issues](https://img.shields.io/github/issues/tdresearchgroup/R-Plugin)
 ![GitHub PRs](https://img.shields.io/github/issues-pr/tdresearchgroup/R-Plugin)
-
+[![DOI](https://zenodo.org/badge/428309952.svg)](https://zenodo.org/badge/latestdoi/428309952)
 
 
 # analyzeR
